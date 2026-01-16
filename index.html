@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UK-SPEC v5 Matrix Pilot: Full Expansion</title>
+    <style>
+        :root {
+            --eng-blue: #005696;
+            --eng-dark: #1a1a1a;
+            --eng-light: #f4f7fa;
+            --border-color: #d1d5db;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            font-size: 14px; /* Slightly smaller text to fit the data */
+        }
+
+        /* Header */
+        header {
+            background: white;
+            border-bottom: 3px solid var(--eng-blue);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--eng-dark);
+        }
+        .brand span { color: var(--eng-blue); }
+
+        /* Container */
+        .container {
+            max-width: 1400px; /* Wider container for the expanded matrix */
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* TIER 1: GATEWAY */
+        .gateway-section {
+            background: white;
+            border-left: 5px solid var(--eng-blue);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-radius: 4px;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: var(--eng-blue);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .gateway-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .gateway-item h4 { margin: 0 0 0.25rem 0; color: var(--eng-blue); }
+        .gateway-item p { margin: 0; color: #555; }
+
+        /* TIER 2: MATRIX */
+        .matrix-wrapper {
+            overflow-x: auto;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-radius: 4px;
+            padding-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 1200px; /* Ensure it scrolls if screen is too small */
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            vertical-align: top;
+        }
+
+        /* Sticky Column for Row Headers (optional, basic implementation) */
+        td.row-header {
+            background-color: var(--eng-light);
+            font-weight: bold;
+            color: var(--eng-blue);
+            width: 180px;
+            min-width: 180px;
+            position: sticky;
+            left: 0;
+            z-index: 10;
+            border-right: 2px solid #ccc;
+        }
+        
+        .row-sub {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: normal;
+            color: #555;
+            margin-top: 4px;
+        }
+
+        /* Column Headers */
+        th.col-header {
+            background-color: var(--eng-dark);
+            color: white;
+            text-align: left;
+            position: relative;
+            border-bottom: 4px solid #555;
+        }
+
+        /* Specific Colours for Behaviour Columns */
+        th.col-header.safety { border-bottom-color: #e53935; } /* Red */
+        th.col-header.sust { border-bottom-color: #43a047; }   /* Green */
+        th.col-header.ethics { border-bottom-color: #fb8c00; }  /* Orange */
+        th.col-header.comms { border-bottom-color: #1e88e5; }   /* Blue */
+        th.col-header.crit { border-bottom-color: #8e24aa; }    /* Purple */
+
+        /* Corner Header */
+        th.corner-header {
+            background: white;
+            color: #333;
+            border: none;
+            text-align: right;
+            font-style: italic;
+            vertical-align: bottom;
+            min-width: 180px;
+            position: sticky;
+            left: 0;
+            z-index: 20; /* Above row headers */
+        }
+
+        /* Cell Styling */
+        .cell-content {
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        tr:hover td { background-color: #fafafa; }
+        /* Keep row header background constant on hover */
+        tr:hover td.row-header { background-color: var(--eng-light); }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="brand">UK-SPEC <span>Dynamic</span> <small style="color:#777; font-weight:400;"> | v5 Matrix Prototype</small></div>
+    <div style="font-size:0.9rem; color:#666;">View: <strong>Generic Engineering</strong></div>
+</header>
+
+<div class="container">
+
+    <div class="gateway-section">
+        <span class="section-badge">Tier 1: Prerequisite</span>
+        <h2 style="margin-top:0;">Underpinning Knowledge (The Gateway)</h2>
+        <p>Applicants must demonstrate sound theoretical knowledge (Group A) before the competence matrix is assessed.</p>
+        <div class="gateway-grid">
+            <div class="gateway-item">
+                <h4>A1: Maintain Knowledge</h4>
+                <p>Maintain and extend a sound theoretical approach to enable role development.</p>
+            </div>
+            <div class="gateway-item">
+                <h4>A2: Apply Knowledge</h4>
+                <p>Use a combination of general and specialist engineering knowledge to optimise application.</p>
+            </div>
+        </div>
+    </div>
+
+    <h2 style="margin-bottom:1rem;">Tier 2: Competence & Behaviour Matrix</h2>
+    <p style="margin-bottom:1.5rem; color:#666;">Technical execution (Rows) integrated with professional behaviours (Columns).</p>
+    
+    <div class="matrix-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th class="corner-header">
+                        Behaviours &rarr;<br>
+                        Competence &darr;
+                    </th>
+                    <th class="col-header safety">Safe Practice</th>
+                    <th class="col-header sust">Sustainability</th>
+                    <th class="col-header ethics">Ethics</th>
+                    <th class="col-header comms">Inclusive Comms</th>
+                    <th class="col-header crit">Critical Thinking</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr>
+                    <td class="row-header">
+                        B1
+                        <span class="row-sub">Identify problems & opportunities</span>
+                    </td>
+                    <td class="cell-content">Identify potential safety hazards early in the problem definition phase.</td>
+                    <td class="cell-content">Identify opportunities to reduce environmental impact before work begins.</td>
+                    <td class="cell-content">Identify ethical conflicts (e.g. dual use) in the project scope.</td>
+                    <td class="cell-content">Ensure diverse stakeholders define the "problem" together.</td>
+                    <td class="cell-content">Challenge whether the "problem" is the right one to solve.</td>
+                </tr>
+
+                <tr>
+                    <td class="row-header">
+                        B2
+                        <span class="row-sub">Design & Development</span>
+                    </td>
+                    <td class="cell-content">Apply "Safety by Design" principles to eliminate risks.</td>
+                    <td class="cell-content">Choose materials/methods that lower lifecycle carbon.</td>
+                    <td class="cell-content">Refuse solutions that compromise integrity or public good.</td>
+                    <td class="cell-content">Present design concepts in accessible formats for all users.</td>
+                    <td class="cell-content">Evaluate multiple design options against evidence.</td>
+                </tr>
+
+                <tr>
+                    <td class="row-header">
+                        B3
+                        <span class="row-sub">Implementation</span>
+                    </td>
+                    <td class="cell-content">Implement safe systems of work during deployment.</td>
+                    <td class="cell-content">Minimise waste and energy use during construction/coding.</td>
+                    <td class="cell-content">Report implementation issues transparently.</td>
+                    <td class="cell-content">Coordinate with teams clearly during rollout.</td>
+                    <td class="cell-content">Analyse implementation data to check performance vs theory.</td>
+                </tr>
+
+                <tr>
+                    <td class="row-header">
+                        C1
+                        <span class="row-sub">Plan & Manage</span>
+                    </td>
+                    <td class="cell-content">Prioritise safety milestones in the project schedule.</td>
+                    <td class="cell-content">Include sustainability targets as project KPIs.</td>
+                    <td class="cell-content">Ensure contracts/plans are fair and legally compliant.</td>
+                    <td class="cell-content">Communicate plans to all levels of the organisation.</td>
+                    <td class="cell-content">Anticipate project risks and plan contingencies.</td>
+                </tr>
+
+                <tr>
+                    <td class="row-header">
+                        C2
+                        <span class="row-sub">Budgets & Resources</span>
+                    </td>
+                    <td class="cell-content">Secure budget specifically for safety equipment/training.</td>
+                    <td class="cell-content">Allocate resources for sustainable alternatives (even if costlier).</td>
+                    <td class="cell-content">Prevent bribery and ensure supply chain transparency.</td>
+                    <td class="cell-content">Justify resource needs clearly to non-technical budget holders.</td>
+                    <td class="cell-content">Optimise resource usage to achieve maximum value.</td>
+                </tr>
+
+                <tr>
+                    <td class="row-header">
+                        C3
+                        <span class="row-sub">People Management</span>
+                    </td>
+                    <td class="cell-content">Create a "psychologically safe" culture where staff can speak up.</td>
+                    <td class="cell-content">Train teams on sustainable practices.</td>
+                    <td class="cell-content">Treat all staff fairly and support their development.</td>
+                    <td class="cell-content">Actively support EDI and diverse hiring practices.</td>
+                    <td class="cell-content">Mentor staff to develop their own analytical skills.</td>
+                </tr>
+
+                <tr>
+                    <td class="row-header">
+                        C4
+                        <span class="row-sub">Quality & Improvement</span>
+                    </td>
+                    <td class="cell-content">Review safety incidents to prevent recurrence.</td>
+                    <td class="cell-content">Measure carbon/waste data to drive future improvements.</td>
+                    <td class="cell-content">Adhere to QA standards and codes of conduct.</td>
+                    <td class="cell-content">Share lessons learned widely and clearly.</td>
+                    <td class="cell-content">Use feedback loops to refine processes systematically.</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>
