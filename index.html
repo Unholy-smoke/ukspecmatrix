@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UK-SPEC v5 Matrix Pilot: Full Expansion</title>
+    <title>UK-SPEC Matrix Model Prototype</title>
     <style>
         :root {
             --eng-blue: #005696;
@@ -18,7 +18,7 @@
             padding: 0;
             background-color: #f9f9f9;
             color: #333;
-            font-size: 14px; /* Slightly smaller text to fit the data */
+            font-size: 13px;
         }
 
         /* Header */
@@ -40,7 +40,7 @@
 
         /* Container */
         .container {
-            max-width: 1400px; /* Wider container for the expanded matrix */
+            max-width: 1600px;
             margin: 2rem auto;
             padding: 0 1rem;
         }
@@ -66,16 +66,28 @@
             margin-bottom: 0.5rem;
             text-transform: uppercase;
         }
+        
+        /* Tier 2 Badge specific spacing since it's outside the white box */
+        .matrix-badge {
+            margin-bottom: 10px;
+        }
 
         .gateway-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
             margin-top: 1rem;
         }
 
-        .gateway-item h4 { margin: 0 0 0.25rem 0; color: var(--eng-blue); }
-        .gateway-item p { margin: 0; color: #555; }
+        .gateway-item {
+            background: #fdfdfd;
+            padding: 1rem;
+            border: 1px solid #eee;
+            border-radius: 4px;
+        }
+        .gateway-item h4 { margin: 0 0 0.5rem 0; color: var(--eng-blue); font-size: 1rem; }
+        .gateway-item p { margin: 0; color: #555; font-size: 0.9rem; line-height: 1.4; }
+        .gateway-code { font-family: monospace; font-weight: bold; color: #777; font-size: 0.8rem; display:block; margin-bottom:4px; }
 
         /* TIER 2: MATRIX */
         .matrix-wrapper {
@@ -89,35 +101,82 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            min-width: 1200px; /* Ensure it scrolls if screen is too small */
+            min-width: 1500px;
         }
 
         th, td {
-            padding: 10px;
+            padding: 10px 8px;
             border: 1px solid var(--border-color);
             vertical-align: top;
         }
 
-        /* Sticky Column for Row Headers (optional, basic implementation) */
+        /* Sticky Row Header (COMPETENCE COLUMN) */
         td.row-header {
             background-color: var(--eng-light);
-            font-weight: bold;
             color: var(--eng-blue);
-            width: 180px;
-            min-width: 180px;
+            width: 220px;
+            min-width: 220px;
             position: sticky;
             left: 0;
             z-index: 10;
             border-right: 2px solid #ccc;
         }
         
-        .row-sub {
+        .comp-code {
             display: block;
-            font-size: 0.75rem;
-            font-weight: normal;
-            color: #555;
-            margin-top: 4px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            margin-bottom: 4px;
         }
+
+        /* Expandable Text Styles */
+        .comp-text-wrapper {
+            cursor: pointer;
+            position: relative;
+        }
+
+        .comp-text-wrapper:hover .comp-short {
+            color: #000;
+            text-decoration: underline dotted;
+        }
+
+        .comp-short {
+            display: block;
+            font-size: 0.85rem;
+            color: #444;
+            line-height: 1.3;
+        }
+
+        .comp-full {
+            display: none;
+            font-size: 0.85rem;
+            color: #222;
+            line-height: 1.4;
+            margin-top: 4px;
+            padding: 8px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: relative; 
+            z-index: 100;
+        }
+
+        .toggle-icon {
+            font-size: 0.7rem;
+            color: #888;
+            margin-left: 4px;
+            vertical-align: middle;
+        }
+
+        /* Active state for expansion */
+        .comp-text-wrapper.active .comp-short {
+            display: none;
+        }
+        .comp-text-wrapper.active .comp-full {
+            display: block;
+        }
+
 
         /* Column Headers */
         th.col-header {
@@ -126,14 +185,14 @@
             text-align: left;
             position: relative;
             border-bottom: 4px solid #555;
+            width: 15.6%;
         }
 
-        /* Specific Colours for Behaviour Columns */
-        th.col-header.safety { border-bottom-color: #e53935; } /* Red */
-        th.col-header.sust { border-bottom-color: #43a047; }   /* Green */
-        th.col-header.ethics { border-bottom-color: #fb8c00; }  /* Orange */
-        th.col-header.comms { border-bottom-color: #1e88e5; }   /* Blue */
-        th.col-header.crit { border-bottom-color: #8e24aa; }    /* Purple */
+        th.col-header.safety { border-bottom-color: #d32f2f; }
+        th.col-header.sust { border-bottom-color: #2e7d32; }
+        th.col-header.ethics { border-bottom-color: #f9a825; }
+        th.col-header.inclusive { border-bottom-color: #1565c0; }
+        th.col-header.crit { border-bottom-color: #7b1fa2; }
 
         /* Corner Header */
         th.corner-header {
@@ -143,10 +202,10 @@
             text-align: right;
             font-style: italic;
             vertical-align: bottom;
-            min-width: 180px;
+            min-width: 220px;
             position: sticky;
             left: 0;
-            z-index: 20; /* Above row headers */
+            z-index: 20;
         }
 
         /* Cell Styling */
@@ -154,40 +213,61 @@
             font-size: 0.85rem;
             line-height: 1.4;
         }
-
+        
         tr:hover td { background-color: #fafafa; }
-        /* Keep row header background constant on hover */
-        tr:hover td.row-header { background-color: var(--eng-light); }
+        tr:hover td.row-header { background-color: #eef2f6; }
+        
+        /* Section Dividers */
+        tr.divider-row td {
+            background-color: #eee;
+            font-weight: bold;
+            font-size: 0.8rem;
+            padding: 5px 10px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
 
     </style>
 </head>
 <body>
 
 <header>
-    <div class="brand">UK-SPEC <span>Dynamic</span> <small style="color:#777; font-weight:400;"> | v5 Matrix Prototype</small></div>
+    <div class="brand">UK-SPEC <span>Dynamic</span> <small style="color:#777; font-weight:400;"> | Matrix Model Prototype</small></div>
     <div style="font-size:0.9rem; color:#666;">View: <strong>Generic Engineering</strong></div>
 </header>
 
 <div class="container">
 
     <div class="gateway-section">
-        <span class="section-badge">Tier 1: Prerequisite</span>
-        <h2 style="margin-top:0;">Underpinning Knowledge (The Gateway)</h2>
-        <p>Applicants must demonstrate sound theoretical knowledge (Group A) before the competence matrix is assessed.</p>
+        <span class="section-badge">Tier 1: The Gateway</span>
+        <h2 style="margin-top:0;">Knowledge and Commitment</h2>
+        
         <div class="gateway-grid">
             <div class="gateway-item">
-                <h4>A1: Maintain Knowledge</h4>
-                <p>Maintain and extend a sound theoretical approach to enable role development.</p>
+                <span class="gateway-code">A1</span>
+                <h4>Maintain Knowledge</h4>
+                <p>Have maintained and extended a sound theoretical approach to enable them to develop their particular role.</p>
             </div>
             <div class="gateway-item">
-                <h4>A2: Apply Knowledge</h4>
-                <p>Use a combination of general and specialist engineering knowledge to optimise application.</p>
+                <span class="gateway-code">A2</span>
+                <h4>Apply Knowledge</h4>
+                <p>Are developing technological solutions to unusual or challenging problems, using their knowledge and understanding.</p>
+            </div>
+            <div class="gateway-item">
+                <span class="gateway-code">E1</span>
+                <h4>Code of Conduct</h4>
+                <p>Understand and comply with relevant codes of conduct.</p>
+            </div>
+            <div class="gateway-item">
+                <span class="gateway-code">E4</span>
+                <h4>CPD Commitment</h4>
+                <p>Carry out and record the Continuing Professional Development (CPD) necessary to maintain and enhance competence.</p>
             </div>
         </div>
     </div>
 
-    <h2 style="margin-bottom:1rem;">Tier 2: Competence & Behaviour Matrix</h2>
-    <p style="margin-bottom:1.5rem; color:#666;">Technical execution (Rows) integrated with professional behaviours (Columns).</p>
+    <span class="section-badge matrix-badge">Tier 2: The Competence Matrix</span>
     
     <div class="matrix-wrapper">
         <table>
@@ -197,97 +277,154 @@
                         Behaviours &rarr;<br>
                         Competence &darr;
                     </th>
-                    <th class="col-header safety">Safe Practice</th>
-                    <th class="col-header sust">Sustainability</th>
-                    <th class="col-header ethics">Ethics</th>
-                    <th class="col-header comms">Inclusive Comms</th>
-                    <th class="col-header crit">Critical Thinking</th>
+                    <th class="col-header safety">Safe Practice<br><small style="font-weight:400; opacity:0.8;">(Culture, Cyber, Risk)</small></th>
+                    <th class="col-header sust">Sustainability<br><small style="font-weight:400; opacity:0.8;">(Net Zero, Nature)</small></th>
+                    <th class="col-header ethics">Ethical Practice<br><small style="font-weight:400; opacity:0.8;">(Integrity, Trust)</small></th>
+                    <th class="col-header inclusive">Inclusive Practice<br><small style="font-weight:400; opacity:0.8;">(EDI, Empathy)</small></th>
+                    <th class="col-header crit">Critical Thinking<br><small style="font-weight:400; opacity:0.8;">(Analysis, Logic)</small></th>
                 </tr>
             </thead>
             <tbody>
                 
+                <tr class="divider-row"><td colspan="6">Group B: Design & Problem Solving</td></tr>
+
                 <tr>
                     <td class="row-header">
-                        B1
-                        <span class="row-sub">Identify problems & opportunities</span>
+                        <span class="comp-code">B1</span>
+                        <div class="comp-text-wrapper" onclick="this.classList.toggle('active')">
+                            <span class="comp-short">Take an active role in the identification and... <span class="toggle-icon">▼</span></span>
+                            <span class="comp-full">Take an active role in the identification and definition of project requirements, problems and opportunities.</span>
+                        </div>
                     </td>
                     <td class="cell-content">Identify potential safety hazards early in the problem definition phase.</td>
-                    <td class="cell-content">Identify opportunities to reduce environmental impact before work begins.</td>
-                    <td class="cell-content">Identify ethical conflicts (e.g. dual use) in the project scope.</td>
-                    <td class="cell-content">Ensure diverse stakeholders define the "problem" together.</td>
+                    <td class="cell-content">Identify opportunities to reduce environmental impact before work begins (e.g. reuse).</td>
+                    <td class="cell-content">Identify ethical conflicts (e.g. dual use, harm to public) in the project scope.</td>
+                    <td class="cell-content">Ensure diverse stakeholders define the "problem" together (don't assume).</td>
                     <td class="cell-content">Challenge whether the "problem" is the right one to solve.</td>
                 </tr>
 
                 <tr>
                     <td class="row-header">
-                        B2
-                        <span class="row-sub">Design & Development</span>
+                        <span class="comp-code">B2</span>
+                        <div class="comp-text-wrapper" onclick="this.classList.toggle('active')">
+                            <span class="comp-short">Can identify the appropriate investigations and... <span class="toggle-icon">▼</span></span>
+                            <span class="comp-full">Can identify the appropriate investigations and research needed to undertake the design, development and analysis required to complete an engineering task and conduct these activities effectively.</span>
+                        </div>
                     </td>
                     <td class="cell-content">Apply "Safety by Design" principles to eliminate risks.</td>
-                    <td class="cell-content">Choose materials/methods that lower lifecycle carbon.</td>
-                    <td class="cell-content">Refuse solutions that compromise integrity or public good.</td>
-                    <td class="cell-content">Present design concepts in accessible formats for all users.</td>
+                    <td class="cell-content">Select materials/methods that lower lifecycle carbon and protect nature.</td>
+                    <td class="cell-content">Refuse solutions that compromise integrity or public trust (even if cheaper).</td>
+                    <td class="cell-content">Design for diverse user needs (e.g. accessibility standards).</td>
                     <td class="cell-content">Evaluate multiple design options against evidence.</td>
                 </tr>
 
                 <tr>
                     <td class="row-header">
-                        B3
-                        <span class="row-sub">Implementation</span>
+                        <span class="comp-code">B3</span>
+                        <div class="comp-text-wrapper" onclick="this.classList.toggle('active')">
+                            <span class="comp-short">Can implement engineering tasks and evaluate... <span class="toggle-icon">▼</span></span>
+                            <span class="comp-full">Can implement engineering tasks and evaluate the effectiveness of engineering solutions.</span>
+                        </div>
                     </td>
-                    <td class="cell-content">Implement safe systems of work during deployment.</td>
-                    <td class="cell-content">Minimise waste and energy use during construction/coding.</td>
-                    <td class="cell-content">Report implementation issues transparently.</td>
-                    <td class="cell-content">Coordinate with teams clearly during rollout.</td>
+                    <td class="cell-content">Implement safe systems of work during deployment/construction.</td>
+                    <td class="cell-content">Minimise waste, energy, and pollution during implementation.</td>
+                    <td class="cell-content">Report implementation issues/defects transparently; do not hide faults.</td>
+                    <td class="cell-content">Consider impact of construction/rollout on local communities.</td>
                     <td class="cell-content">Analyse implementation data to check performance vs theory.</td>
                 </tr>
 
+                <tr class="divider-row"><td colspan="6">Group C: Management & Leadership</td></tr>
+
                 <tr>
                     <td class="row-header">
-                        C1
-                        <span class="row-sub">Plan & Manage</span>
+                        <span class="comp-code">C1</span>
+                        <div class="comp-text-wrapper" onclick="this.classList.toggle('active')">
+                            <span class="comp-short">Plan the work and resources needed to enable... <span class="toggle-icon">▼</span></span>
+                            <span class="comp-full">Plan the work and resources needed to enable effective implementation of a significant engineering task or project.</span>
+                        </div>
                     </td>
                     <td class="cell-content">Prioritise safety milestones in the project schedule.</td>
-                    <td class="cell-content">Include sustainability targets as project KPIs.</td>
-                    <td class="cell-content">Ensure contracts/plans are fair and legally compliant.</td>
-                    <td class="cell-content">Communicate plans to all levels of the organisation.</td>
+                    <td class="cell-content">Include net-zero or biodiversity targets as project KPIs.</td>
+                    <td class="cell-content">Ensure contracts are fair; reject bribery/corruption in planning.</td>
+                    <td class="cell-content">Communicate plans clearly to all levels of the organisation.</td>
                     <td class="cell-content">Anticipate project risks and plan contingencies.</td>
                 </tr>
 
                 <tr>
                     <td class="row-header">
-                        C2
-                        <span class="row-sub">Budgets & Resources</span>
+                        <span class="comp-code">C2</span>
+                        <div class="comp-text-wrapper" onclick="this.classList.toggle('active')">
+                            <span class="comp-short">Manage (organise, direct and control), programme... <span class="toggle-icon">▼</span></span>
+                            <span class="comp-full">Manage (organise, direct and control), programme or schedule, budget and resource elements of a significant engineering task or project.</span>
+                        </div>
                     </td>
                     <td class="cell-content">Secure budget specifically for safety equipment/training.</td>
-                    <td class="cell-content">Allocate resources for sustainable alternatives (even if costlier).</td>
-                    <td class="cell-content">Prevent bribery and ensure supply chain transparency.</td>
-                    <td class="cell-content">Justify resource needs clearly to non-technical budget holders.</td>
+                    <td class="cell-content">Allocate budget for sustainable alternatives (circular economy).</td>
+                    <td class="cell-content">Ensure supply chain transparency (modern slavery check).</td>
+                    <td class="cell-content">Ensure procurement supports diverse or local suppliers.</td>
                     <td class="cell-content">Optimise resource usage to achieve maximum value.</td>
                 </tr>
 
                 <tr>
                     <td class="row-header">
-                        C3
-                        <span class="row-sub">People Management</span>
+                        <span class="comp-code">C3</span>
+                        <div class="comp-text-wrapper" onclick="this.classList.toggle('active')">
+                            <span class="comp-short">Lead teams or technical specialisms and assist... <span class="toggle-icon">▼</span></span>
+                            <span class="comp-full">Lead teams or technical specialisms and assist others to meet changing technical and managerial needs.</span>
+                        </div>
                     </td>
                     <td class="cell-content">Create a "psychologically safe" culture where staff can speak up.</td>
-                    <td class="cell-content">Train teams on sustainable practices.</td>
-                    <td class="cell-content">Treat all staff fairly and support their development.</td>
+                    <td class="cell-content">Train teams on climate literacy and sustainable practices.</td>
+                    <td class="cell-content">Treat staff fairly; uphold employment rights; handle grievances with integrity.</td>
                     <td class="cell-content">Actively support EDI and diverse hiring practices.</td>
                     <td class="cell-content">Mentor staff to develop their own analytical skills.</td>
                 </tr>
 
                 <tr>
                     <td class="row-header">
-                        C4
-                        <span class="row-sub">Quality & Improvement</span>
+                        <span class="comp-code">C4</span>
+                        <div class="comp-text-wrapper" onclick="this.classList.toggle('active')">
+                            <span class="comp-short">Bring about continuous quality improvement and... <span class="toggle-icon">▼</span></span>
+                            <span class="comp-full">Bring about continuous quality improvement and promote best practice.</span>
+                        </div>
                     </td>
                     <td class="cell-content">Review safety incidents to prevent recurrence.</td>
-                    <td class="cell-content">Measure carbon/waste data to drive future improvements.</td>
-                    <td class="cell-content">Adhere to QA standards and codes of conduct.</td>
-                    <td class="cell-content">Share lessons learned widely and clearly.</td>
+                    <td class="cell-content">Measure carbon/waste data to drive future environmental improvements.</td>
+                    <td class="cell-content">Adhere to codes of conduct; refuse to sign off substandard work.</td>
+                    <td class="cell-content">Seek feedback from diverse users to improve quality.</td>
                     <td class="cell-content">Use feedback loops to refine processes systematically.</td>
+                </tr>
+
+                <tr class="divider-row"><td colspan="6">Group D: Communication (Competence)</td></tr>
+
+                <tr>
+                    <td class="row-header">
+                        <span class="comp-code">D1</span>
+                        <div class="comp-text-wrapper" onclick="this.classList.toggle('active')">
+                            <span class="comp-short">Communicate effectively with others, at all... <span class="toggle-icon">▼</span></span>
+                            <span class="comp-full">Communicate effectively with others, at all levels, in English.</span>
+                        </div>
+                    </td>
+                    <td class="cell-content">Write clear, unambiguous safety instructions or warnings.</td>
+                    <td class="cell-content">Report environmental data honestly (avoid "greenwashing").</td>
+                    <td class="cell-content">Write reports that objectively present risks; do not manipulate data.</td>
+                    <td class="cell-content">Use plain English; avoid exclusionary jargon; use accessible formats.</td>
+                    <td class="cell-content">Structure written arguments logically to support conclusions.</td>
+                </tr>
+
+                <tr>
+                    <td class="row-header">
+                        <span class="comp-code">D2</span>
+                        <div class="comp-text-wrapper" onclick="this.classList.toggle('active')">
+                            <span class="comp-short">Clearly present and discuss proposals... <span class="toggle-icon">▼</span></span>
+                            <span class="comp-full">Clearly present and discuss proposals, justifications and conclusions.</span>
+                        </div>
+                    </td>
+                    <td class="cell-content">Deliver safety briefings clearly; ensure understanding.</td>
+                    <td class="cell-content">Advocate for sustainable choices/lifecycle value in client meetings.</td>
+                    <td class="cell-content">Declare conflicts of interest verbally; defend ethical boundaries.</td>
+                    <td class="cell-content">Active listening; ensuring quiet voices are heard in discussion.</td>
+                    <td class="cell-content">Defend design choices against scrutiny with evidence.</td>
                 </tr>
 
             </tbody>
