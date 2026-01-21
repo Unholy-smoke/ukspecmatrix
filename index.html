@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UK-SPEC Matrix Model Prototype</title>
-    <script src="data.js"></script>
+    <!-- Load shared data and context manifest -->
+    <script src="common.js"></script>
+    <script src="contexts.js"></script>
+    <!-- Generic is always loaded as fallback -->
+    <script src="generic.js"></script>
     <style>
         :root {
             --eng-blue: #005696;
@@ -52,6 +56,39 @@
             color: var(--eng-dark);
         }
         .brand span { color: var(--eng-blue); }
+
+        /* Context Selector */
+        .context-selector {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .context-selector label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .context-selector select {
+            padding: 6px 12px;
+            font-size: 0.9rem;
+            border: 2px solid var(--eng-blue);
+            border-radius: 4px;
+            background: white;
+            color: var(--eng-dark);
+            font-weight: 600;
+            cursor: pointer;
+            min-width: 200px;
+        }
+
+        .context-selector select:hover {
+            background-color: #f0f7ff;
+        }
+
+        .context-selector select:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 86, 150, 0.2);
+        }
 
         /* Container */
         .container {
@@ -144,80 +181,11 @@
             margin-bottom: 4px;
         }
 
-        /* Expandable Text Styles */
-        .comp-text-wrapper {
-            cursor: pointer;
-            position: relative;
-            padding: 6px 8px 24px 8px;
-            border-radius: 4px;
-            border: 1px dashed transparent;
-            transition: all 0.15s ease;
-            min-height: 40px;
-        }
-
-        .comp-text-wrapper:hover {
-            background-color: rgba(0, 86, 150, 0.05);
-            border-color: var(--eng-blue);
-        }
-
-        .comp-short {
-            display: block;
+        /* Competence Text (always visible, no toggle) */
+        .comp-text {
             font-size: 0.85rem;
             color: #444;
-            line-height: 1.3;
-            padding-right: 4px;
-        }
-
-        .comp-full {
-            display: none;
-            font-size: 0.85rem;
-            color: #222;
             line-height: 1.4;
-            margin-top: 4px;
-            padding: 8px;
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            position: relative;
-            z-index: 100;
-        }
-
-        .toggle-icon {
-            position: absolute;
-            bottom: 4px;
-            right: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 18px;
-            height: 18px;
-            font-size: 0.6rem;
-            color: white;
-            background-color: var(--eng-blue);
-            border-radius: 50%;
-            transition: transform 0.2s ease;
-        }
-
-        .comp-text-wrapper:hover .toggle-icon {
-            background-color: #003d6b;
-        }
-
-        .comp-text-wrapper.active .toggle-icon {
-            transform: rotate(180deg);
-        }
-
-        /* Active state for expansion */
-        .comp-text-wrapper.active .comp-short {
-            display: none;
-        }
-        .comp-text-wrapper.active .comp-full {
-            display: block;
-        }
-        .comp-text-wrapper.active {
-            background-color: rgba(0, 86, 150, 0.08);
-            border-color: var(--eng-blue);
-            border-style: solid;
         }
 
 
@@ -260,6 +228,8 @@
             line-height: 1.4;
             cursor: pointer;
             position: relative;
+            padding-bottom: 24px;
+            min-height: 40px;
         }
 
         /* Cell expansion styles */
@@ -277,35 +247,31 @@
 
         .cell-content.expanded .cell-full {
             display: block;
-            padding: 8px;
-            background: white;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
-            position: relative;
-            z-index: 50;
         }
 
-        /* Visual hint for expandable cells */
-        .cell-content::after {
-            content: '⋯';
+        /* Toggle icon for cells */
+        .cell-toggle {
             position: absolute;
-            bottom: 2px;
+            bottom: 4px;
             right: 4px;
-            font-size: 0.7rem;
-            color: #999;
-            opacity: 0;
-            transition: opacity 0.15s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px;
+            height: 18px;
+            font-size: 0.6rem;
+            color: white;
+            background-color: var(--eng-blue);
+            border-radius: 50%;
+            transition: transform 0.2s ease, background-color 0.15s ease;
         }
 
-        td:hover .cell-content::after {
-            opacity: 1;
+        .cell-content:hover .cell-toggle {
+            background-color: #003d6b;
         }
 
-        .cell-content.expanded::after {
-            content: '✕';
-            opacity: 1;
-            color: #666;
+        .cell-content.expanded .cell-toggle {
+            transform: rotate(180deg);
         }
 
         /* Column-specific cell tinting */
@@ -326,10 +292,10 @@
         
         /* Section Dividers */
         tr.divider-row td {
-            background: linear-gradient(to right, var(--eng-blue) 0%, var(--eng-blue) 4px, #e8eef3 4px, #e8eef3 100%);
+            background-color: #e8eef3;
             font-weight: 600;
             font-size: 0.8rem;
-            padding: 10px 10px 10px 16px;
+            padding: 10px 10px 10px 12px;
             color: #2c3e50;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -337,7 +303,16 @@
             border-bottom: 1px solid #ccc;
         }
 
-        tr.divider-row td::before {
+        /* First cell of divider row - sticky with blue left border */
+        tr.divider-row td:first-child {
+            background: linear-gradient(to right, var(--eng-blue) 0%, var(--eng-blue) 4px, #e8eef3 4px, #e8eef3 100%);
+            position: sticky;
+            left: 0;
+            z-index: 10;
+            padding-left: 16px;
+        }
+
+        tr.divider-row td:first-child::before {
             content: '';
             display: inline-block;
             width: 6px;
@@ -354,14 +329,18 @@
 
 <header>
     <div class="brand">UK-SPEC <span>Dynamic</span> <small style="color:#777; font-weight:400;"> | Matrix Model Prototype</small></div>
-    <div style="font-size:0.9rem; color:#666;">View: <strong>Generic Engineering</strong></div>
+    <div class="context-selector">
+        <label for="context-select">Contextualise:</label>
+        <select id="context-select" onchange="loadContext(this.value)">
+            <!-- Populated by JavaScript from contexts.js -->
+        </select>
+    </div>
 </header>
 
 <div class="container">
 
     <div class="gateway-section">
-        <span class="section-badge">Tier 1: The Gateway</span>
-        <h2 style="margin-top:0;">Knowledge and Commitment</h2>
+        <span class="section-badge">Tier 1: Knowledge and Commitment</span>
         
         <div class="gateway-grid">
             <div class="gateway-item">
@@ -387,7 +366,7 @@
         </div>
     </div>
 
-    <span class="section-badge matrix-badge">Tier 2: The Competence Matrix</span>
+    <span class="section-badge matrix-badge">Tier 2: Competence/Behaviour Matrix</span>
     
     <div class="matrix-wrapper">
         <table>
@@ -404,16 +383,98 @@
 
 <script>
     /*
-     * Render the matrix table from data.js
+     * UK-SPEC Matrix Renderer with Context Switching
      */
+
+    // Current context's MATRIX (loaded dynamically)
+    let currentMatrix = null;
+    let currentContextId = null;
+
     document.addEventListener('DOMContentLoaded', function() {
+        populateContextDropdown();
         renderMatrixHead();
-        renderMatrixBody();
+        // Load default context
+        loadContext(DEFAULT_CONTEXT);
     });
 
+    /*
+     * Populate the context dropdown from contexts.js
+     */
+    function populateContextDropdown() {
+        const select = document.getElementById('context-select');
+        let html = '';
+
+        CONTEXTS.forEach(ctx => {
+            const selected = ctx.id === DEFAULT_CONTEXT ? 'selected' : '';
+            html += `<option value="${ctx.id}" ${selected}>${ctx.label}</option>`;
+        });
+
+        select.innerHTML = html;
+    }
+
+    /*
+     * Load a context file dynamically
+     */
+    function loadContext(contextId) {
+        // Find the context in the manifest
+        const context = CONTEXTS.find(c => c.id === contextId);
+        if (!context) {
+            console.error('Context not found:', contextId);
+            return;
+        }
+
+        // If it's generic, we already have it loaded as GENERIC_MATRIX
+        if (contextId === 'generic') {
+            currentMatrix = null; // Will use GENERIC_MATRIX directly
+            currentContextId = contextId;
+            renderMatrixBody();
+            return;
+        }
+
+        // Dynamically load the context file
+        const script = document.createElement('script');
+        script.src = context.file;
+        script.onload = function() {
+            // The loaded file defines MATRIX
+            currentMatrix = typeof MATRIX !== 'undefined' ? MATRIX : null;
+            currentContextId = contextId;
+            renderMatrixBody();
+        };
+        script.onerror = function() {
+            console.error('Failed to load context file:', context.file);
+            alert('Could not load ' + context.label + '. Falling back to Generic.');
+            document.getElementById('context-select').value = 'generic';
+            loadContext('generic');
+        };
+        document.head.appendChild(script);
+    }
+
+    /*
+     * Get cell content with fallback to generic
+     */
+    function getCellContent(compCode, behaviourId) {
+        // Try current context first (if loaded and has content)
+        if (currentMatrix &&
+            currentMatrix[compCode] &&
+            currentMatrix[compCode][behaviourId] &&
+            currentMatrix[compCode][behaviourId].trim() !== '') {
+            return currentMatrix[compCode][behaviourId];
+        }
+
+        // Fall back to generic
+        if (GENERIC_MATRIX[compCode] && GENERIC_MATRIX[compCode][behaviourId]) {
+            return GENERIC_MATRIX[compCode][behaviourId];
+        }
+
+        return '';
+    }
+
+    /*
+     * Render table header (behaviours)
+     */
     function renderMatrixHead() {
         const thead = document.getElementById('matrix-head');
-        const colCount = BEHAVIOURS.length + 1; // +1 for corner header
+        const colCount = BEHAVIOURS.length + 1;
 
         let html = '<tr>';
 
@@ -435,6 +496,9 @@
         thead.innerHTML = html;
     }
 
+    /*
+     * Render table body (competences and cells)
+     */
     function renderMatrixBody() {
         const tbody = document.getElementById('matrix-body');
         const colCount = BEHAVIOURS.length + 1;
@@ -442,30 +506,34 @@
 
         // Iterate through each group
         COMPETENCE_GROUPS.forEach(group => {
-            // Group divider row
-            html += `<tr class="divider-row"><td colspan="${colCount}">${group.name}</td></tr>`;
+            // Group divider row - first cell sticky with name, rest empty
+            html += `<tr class="divider-row">`;
+            html += `<td>${group.name}</td>`;
+            BEHAVIOURS.forEach(() => {
+                html += `<td></td>`;
+            });
+            html += `</tr>`;
 
             // Competence rows in this group
             group.competences.forEach(compCode => {
                 const comp = COMPETENCES[compCode];
-                const matrixRow = MATRIX[compCode];
 
                 html += '<tr>';
 
-                // Row header (competence)
+                // Row header (competence) - always shows full text, no toggle
                 html += `<td class="row-header">
                     <span class="comp-code">${compCode}</span>
-                    <div class="comp-text-wrapper" onclick="this.classList.toggle('active')">
-                        <span class="comp-short">${comp.short} <span class="toggle-icon">▼</span></span>
-                        <span class="comp-full">${comp.full}</span>
-                    </div>
+                    <div class="comp-text">${comp.full}</div>
                 </td>`;
 
-                // Matrix cells for each behaviour
+                // Matrix cells for each behaviour (with fallback and toggle icon)
                 BEHAVIOURS.forEach(b => {
-                    const cellText = matrixRow[b.id] || '';
+                    const cellText = getCellContent(compCode, b.id);
                     html += `<td class="col-${b.id}">
-                        <div class="cell-content" onclick="this.classList.toggle('expanded')">${cellText}</div>
+                        <div class="cell-content" onclick="this.classList.toggle('expanded')">
+                            ${cellText}
+                            <span class="cell-toggle">▼</span>
+                        </div>
                     </td>`;
                 });
 
