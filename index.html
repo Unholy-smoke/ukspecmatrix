@@ -1,549 +1,1072 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UK-SPEC Matrix Model Prototype</title>
-    <!-- Load shared data and context manifest -->
-    <script src="common.js"></script>
-    <script src="contexts.js"></script>
-    <!-- Generic is always loaded as fallback -->
-    <script src="generic.js"></script>
-    <style>
-        :root {
-            --eng-blue: #005696;
-            --eng-dark: #1a1a1a;
-            --eng-light: #f4f7fa;
-            --border-color: #d1d5db;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UK-SPEC v4 — Chartered Engineer — Dynamic Examples of Evidence</title>
+<style>
+  :root {
+    --paper: #FBF9F2;
+    --paper-edge: #6FA398;
+    --header-band: #6FA398;
+    --header-text: #1F4A45;
+    --body: #1A1A1A;
+    --muted: #5C6470;
+    --rule: #C9CFC8;
+    --bullet: #4A4A4A;
+    --col-comp: #F1F0E7;
+    --col-comp2: #F8F6EE;
 
-            /* Column accent colors */
-            --safety-color: #d32f2f;
-            --sust-color: #2e7d32;
-            --ethics-color: #f9a825;
-            --inclusive-color: #1565c0;
-            --crit-color: #7b1fa2;
+    --civil:      #B85C3D;
+    --structural: #2C4F87;
+    --mechanical: #4B5563;
+    --electrical: #B45309;
+    --chemical:   #047857;
+    --software:   #7C3AED;
+  }
 
-            /* Very light tints for cell backgrounds */
-            --safety-tint: #fef5f5;
-            --sust-tint: #f3f9f3;
-            --ethics-tint: #fffdf5;
-            --inclusive-tint: #f5f8fc;
-            --crit-tint: #f9f5fc;
-        }
+  * { box-sizing: border-box; }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-            color: #333;
-            font-size: 13px;
-        }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #E5E7EB;
+    color: var(--body);
+    font-family: "Aptos", "Aptos Display", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-        /* Header */
-        header {
-            background: white;
-            border-bottom: 3px solid var(--eng-blue);
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+  /* Header bar */
+  header.site {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #ffffff;
+    border-bottom: 1px solid #D1D5DB;
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  header.site .titleblock { flex: 0 0 auto; }
+  header.site h1 {
+    font-size: 17px;
+    font-weight: 600;
+    margin: 0;
+    color: #111827;
+    letter-spacing: -0.005em;
+  }
+  header.site .sub {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 400;
+  }
 
-        .brand {
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: var(--eng-dark);
-        }
-        .brand span { color: var(--eng-blue); }
+  /* Lens chip row */
+  .lens-chips {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .lens-chips .chips-label {
+    font-size: 12px;
+    color: var(--muted);
+    margin-right: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .chip {
+    --c: #4B5563;
+    appearance: none;
+    -webkit-appearance: none;
+    border: 1px solid var(--c);
+    background: #ffffff;
+    color: var(--c);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 999px;
+    cursor: pointer;
+    line-height: 1.2;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: background-color 0.18s ease, color 0.18s ease, box-shadow 0.18s ease, transform 0.12s ease;
+    white-space: nowrap;
+  }
+  .chip::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--c);
+    flex: 0 0 auto;
+    transition: background-color 0.18s ease, box-shadow 0.18s ease;
+  }
+  .chip:hover {
+    background: color-mix(in srgb, var(--c) 8%, white);
+  }
+  .chip:focus-visible {
+    outline: 2px solid var(--c);
+    outline-offset: 2px;
+  }
+  .chip[aria-pressed="true"] {
+    background: var(--c);
+    color: #ffffff;
+    box-shadow: 0 2px 8px color-mix(in srgb, var(--c) 35%, transparent);
+  }
+  .chip[aria-pressed="true"]::before {
+    background: #ffffff;
+    box-shadow: inset 0 0 0 2px var(--c);
+  }
+  .chip[aria-pressed="true"] .x {
+    display: inline-flex;
+  }
+  .chip .x {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    font-size: 11px;
+    margin-left: 2px;
+    margin-right: -4px;
+    line-height: 1;
+  }
+  .chip[aria-pressed="true"]:hover .x {
+    background: rgba(255,255,255,0.4);
+  }
 
-        /* Context Selector */
-        .context-selector {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+  /* Main content */
+  main {
+    max-width: 1180px;
+    margin: 24px auto 80px;
+    padding: 0 16px;
+  }
 
-        .context-selector label {
-            font-size: 0.9rem;
-            color: #666;
-        }
+  /* Each "page" mimics a landscape A4 sheet of the printed standard */
+  .page {
+    background: var(--paper);
+    border: 1px solid #C9CFC8;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    margin-bottom: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .page::before {
+    content: "";
+    position: absolute;
+    top: 0; bottom: 0; left: 0;
+    width: 14px;
+    background: var(--paper-edge);
+  }
+  .page-inner {
+    margin-left: 14px;
+    padding: 22px 32px 36px 32px;
+  }
 
-        .context-selector select {
-            padding: 6px 12px;
-            font-size: 0.9rem;
-            border: 2px solid var(--eng-blue);
-            border-radius: 4px;
-            background: white;
-            color: var(--eng-dark);
-            font-weight: 600;
-            cursor: pointer;
-            min-width: 200px;
-        }
+  /* Page footer (page number) */
+  .page-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 32px 14px 46px;
+    font-size: 11px;
+    color: var(--muted);
+    background: var(--paper);
+  }
 
-        .context-selector select:hover {
-            background-color: #f0f7ff;
-        }
+  /* Table */
+  table.spec {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+  table.spec col.c-competence { width: 32%; }
+  table.spec col.c-numbered   { width: 26%; }
+  table.spec col.c-examples   { width: 42%; }
 
-        .context-selector select:focus {
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(0, 86, 150, 0.2);
-        }
+  table.spec thead th {
+    background: var(--header-band);
+    color: var(--header-text);
+    font-size: 16px;
+    font-weight: 600;
+    text-align: left;
+    padding: 9px 14px;
+    letter-spacing: 0.005em;
+    border: 1px solid var(--header-band);
+  }
+  table.spec thead th + th {
+    border-left: 1px solid rgba(255,255,255,0.55);
+  }
 
-        /* Container */
-        .container {
-            max-width: 1600px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
+  table.spec td {
+    border: 1px solid var(--rule);
+    padding: 14px 16px;
+    vertical-align: top;
+  }
+  table.spec td.competence-col {
+    background: var(--col-comp);
+  }
+  table.spec td.numbered-col {
+    background: var(--col-comp2);
+  }
+  table.spec td.examples-col {
+    background: #ffffff;
+  }
 
-        /* TIER 1: GATEWAY */
-        .gateway-section {
-            background: white;
-            border-left: 5px solid var(--eng-blue);
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            border-radius: 4px;
-        }
+  /* Competence column content */
+  .group-letter-title {
+    font-weight: 600;
+    color: #1F4A45;
+    font-size: 15px;
+    margin: 0 0 9px 0;
+  }
+  .shall {
+    font-weight: 600;
+    margin: 0 0 10px 0;
+  }
+  .desc {
+    font-weight: 400;
+    margin: 0;
+    color: #374151;
+  }
 
-        .section-badge {
-            display: inline-block;
-            background: var(--eng-blue);
-            color: white;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-        }
-        
-        /* Tier 2 Badge specific spacing since it's outside the white box */
-        .matrix-badge {
-            margin-bottom: 10px;
-        }
+  /* Numbered point */
+  .applicant-shall {
+    color: var(--header-text);
+    font-weight: 500;
+    margin: 0 0 8px 0;
+  }
+  .point {
+    margin: 0;
+  }
+  .point .num {
+    font-weight: 600;
+    margin-right: 4px;
+  }
 
-        .gateway-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            margin-top: 1rem;
-        }
+  /* Examples — wrapping <details> (collapsible on mobile only) */
+  details.examples-wrap { margin: 0; padding: 0; }
+  details.examples-wrap > summary {
+    display: none;  /* hidden on desktop; shown on mobile via media query */
+    list-style: none;
+    cursor: pointer;
+  }
+  details.examples-wrap > summary::-webkit-details-marker { display: none; }
 
-        .gateway-item {
-            background: #fdfdfd;
-            padding: 1rem;
-            border: 1px solid #eee;
-            border-radius: 4px;
-        }
-        .gateway-item h4 { margin: 0 0 0.5rem 0; color: var(--eng-blue); font-size: 1rem; }
-        .gateway-item p { margin: 0; color: #555; font-size: 0.9rem; line-height: 1.4; }
-        .gateway-code { font-family: monospace; font-weight: bold; color: #777; font-size: 0.8rem; display:block; margin-bottom:4px; }
+  /* Examples list */
+  ul.examples {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  ul.examples li {
+    position: relative;
+    padding: 4px 0 4px 22px;
+    border-left: 3px solid transparent;
+    transition: color 0.35s ease, border-left-color 0.35s ease, padding-left 0.25s ease;
+    color: var(--body);
+  }
+  ul.examples li::before {
+    content: "";
+    position: absolute;
+    left: 10px;
+    top: 12px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--bullet);
+    transition: opacity 0.25s ease;
+  }
+  ul.examples li.lensed {
+    color: var(--lens-color);
+    border-left: 3px solid var(--lens-color);
+    padding-left: 16px;
+  }
+  ul.examples li.lensed::before {
+    /* Drop the bullet on lensed items — the coloured left-border is the marker */
+    opacity: 0;
+  }
 
-        /* TIER 2: MATRIX */
-        .matrix-wrapper {
-            overflow: auto;
-            max-height: 70vh;
-            background: white;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            border-radius: 4px;
-        }
+  /* Crossfade for example text */
+  .ex-text {
+    display: inline-block;
+    transition: opacity 0.22s ease;
+  }
+  .ex-text.fading { opacity: 0; }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 1500px;
-        }
+  /* Continued page label */
+  .continued {
+    font-style: italic;
+    color: var(--muted);
+    font-size: 13px;
+    margin-left: 8px;
+    font-weight: 400;
+  }
 
-        th, td {
-            padding: 10px 8px;
-            border: 1px solid var(--border-color);
-            vertical-align: top;
-        }
+  /* Group letter banner inside continuation pages */
+  .group-cont-cell {
+    color: #1F4A45;
+    font-weight: 600;
+    font-size: 15px;
+  }
 
-        /* Sticky Row Header (COMPETENCE COLUMN) */
-        td.row-header {
-            background-color: var(--eng-light);
-            color: var(--eng-blue);
-            width: 220px;
-            min-width: 220px;
-            position: sticky;
-            left: 0;
-            z-index: 10;
-            border-right: 2px solid #ccc;
-        }
-        
-        .comp-code {
-            display: block;
-            font-weight: 800;
-            font-size: 1.1rem;
-            margin-bottom: 4px;
-        }
+  /* small-screen guard */
+  @media (max-width: 880px) {
+    header.site { padding: 10px 14px; gap: 12px; }
+    header.site h1 { font-size: 16px; }
+    .lens-chips { margin-left: 0; width: 100%; }
+    .lens-chips .chips-label { display: none; }
+    .chip { font-size: 12px; padding: 5px 10px; }
 
-        /* Competence Text (always visible, no toggle) */
-        .comp-text {
-            font-size: 0.85rem;
-            color: #444;
-            line-height: 1.4;
-        }
+    main { padding: 0 8px; margin-top: 16px; }
+    .page-inner { padding: 16px 14px 18px 14px; }
+    table.spec, table.spec thead, table.spec tbody, table.spec tr, table.spec td, table.spec th { display: block; width: 100% !important; }
+    table.spec thead { display: none; }
+    table.spec td { border: 1px solid var(--rule); border-top: none; }
+    table.spec tr td:first-child { border-top: 1px solid var(--rule); }
+    table.spec col { display: none; }
 
-
-        /* Column Headers */
-        th.col-header {
-            background-color: var(--eng-dark);
-            color: white;
-            text-align: left;
-            position: sticky;
-            top: 0;
-            z-index: 15;
-            border-bottom: 4px solid #555;
-            width: 15.6%;
-        }
-
-        th.col-header.safety { border-bottom-color: var(--safety-color); }
-        th.col-header.sust { border-bottom-color: var(--sust-color); }
-        th.col-header.ethics { border-bottom-color: var(--ethics-color); }
-        th.col-header.inclusive { border-bottom-color: var(--inclusive-color); }
-        th.col-header.crit { border-bottom-color: var(--crit-color); }
-
-        /* Corner Header */
-        th.corner-header {
-            background: white;
-            color: #333;
-            border: none;
-            text-align: right;
-            font-style: italic;
-            vertical-align: bottom;
-            min-width: 220px;
-            position: sticky;
-            left: 0;
-            top: 0;
-            z-index: 25;
-        }
-
-        /* Cell Styling */
-        .cell-content {
-            font-size: 0.85rem;
-            line-height: 1.4;
-            cursor: pointer;
-            position: relative;
-            padding-bottom: 24px;
-            min-height: 40px;
-        }
-
-        /* Cell expansion styles */
-        .cell-content .cell-short {
-            display: block;
-        }
-
-        .cell-content .cell-full {
-            display: none;
-        }
-
-        .cell-content.expanded .cell-short {
-            display: none;
-        }
-
-        .cell-content.expanded .cell-full {
-            display: block;
-        }
-
-        /* Toggle icon for cells */
-        .cell-toggle {
-            position: absolute;
-            bottom: 4px;
-            right: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 18px;
-            height: 18px;
-            font-size: 0.6rem;
-            color: white;
-            background-color: var(--eng-blue);
-            border-radius: 50%;
-            transition: transform 0.2s ease, background-color 0.15s ease;
-        }
-
-        .cell-content:hover .cell-toggle {
-            background-color: #003d6b;
-        }
-
-        .cell-content.expanded .cell-toggle {
-            transform: rotate(180deg);
-        }
-
-        /* Column-specific cell tinting */
-        td.col-safety { background-color: var(--safety-tint); }
-        td.col-sust { background-color: var(--sust-tint); }
-        td.col-ethics { background-color: var(--ethics-tint); }
-        td.col-inclusive { background-color: var(--inclusive-tint); }
-        td.col-crit { background-color: var(--crit-tint); }
-
-        /* Cell hover effect */
-        td.col-safety:hover { background-color: #fdeaea; }
-        td.col-sust:hover { background-color: #e8f5e9; }
-        td.col-ethics:hover { background-color: #fff8e1; }
-        td.col-inclusive:hover { background-color: #e3f2fd; }
-        td.col-crit:hover { background-color: #f3e5f5; }
-
-        tr:hover td.row-header { background-color: #eef2f6; }
-        
-        /* Section Dividers */
-        tr.divider-row td {
-            background-color: #e8eef3;
-            font-weight: 600;
-            font-size: 0.8rem;
-            padding: 10px 10px 10px 12px;
-            color: #2c3e50;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border-top: 2px solid #ccc;
-            border-bottom: 1px solid #ccc;
-        }
-
-        /* First cell of divider row - sticky with blue left border */
-        tr.divider-row td:first-child {
-            background: linear-gradient(to right, var(--eng-blue) 0%, var(--eng-blue) 4px, #e8eef3 4px, #e8eef3 100%);
-            position: sticky;
-            left: 0;
-            z-index: 10;
-            padding-left: 16px;
-        }
-
-        tr.divider-row td:first-child::before {
-            content: '';
-            display: inline-block;
-            width: 6px;
-            height: 6px;
-            background-color: var(--eng-blue);
-            border-radius: 50%;
-            margin-right: 8px;
-            vertical-align: middle;
-        }
-
-    </style>
+    /* Mobile-only collapsible examples */
+    details.examples-wrap > summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 4px;
+      font-size: 13px;
+      color: var(--header-text);
+      font-weight: 500;
+      gap: 10px;
+    }
+    details.examples-wrap > summary::after {
+      content: "▾";
+      font-size: 12px;
+      color: var(--muted);
+      transition: transform 0.2s ease;
+    }
+    details.examples-wrap[open] > summary::after { transform: rotate(180deg); }
+    details.examples-wrap > summary .summary-count {
+      color: var(--muted);
+      font-weight: 400;
+      font-size: 12px;
+    }
+    details.examples-wrap:not([open]) ul.examples { display: none; }
+    td.examples-col { padding: 8px 12px; }
+  }
+</style>
 </head>
 <body>
 
-<header>
-    <div class="brand">UK-SPEC <span>Dynamic</span> <small style="color:#777; font-weight:400;"> | Matrix Model Prototype</small></div>
-    <div class="context-selector">
-        <label for="context-select">Contextualise:</label>
-        <select id="context-select" onchange="loadContext(this.value)">
-            <!-- Populated by JavaScript from contexts.js -->
-        </select>
-    </div>
+<header class="site">
+  <div class="titleblock">
+    <h1>UK-SPEC v4 &nbsp;·&nbsp; Chartered Engineer</h1>
+    <div class="sub">Dynamic Examples of Evidence — illustrative prototype</div>
+  </div>
+  <div class="lens-chips" role="group" aria-label="View through Lens">
+    <span class="chips-label">Lens</span>
+    <button class="chip" type="button" data-lens="civil"      aria-pressed="false" style="--c:#B85C3D;">Civil<span class="x" aria-hidden="true">×</span></button>
+    <button class="chip" type="button" data-lens="structural" aria-pressed="false" style="--c:#2C4F87;">Structural<span class="x" aria-hidden="true">×</span></button>
+    <button class="chip" type="button" data-lens="mechanical" aria-pressed="false" style="--c:#4B5563;">Mechanical<span class="x" aria-hidden="true">×</span></button>
+    <button class="chip" type="button" data-lens="electrical" aria-pressed="false" style="--c:#B45309;">Electrical &amp; Electronic<span class="x" aria-hidden="true">×</span></button>
+    <button class="chip" type="button" data-lens="chemical"   aria-pressed="false" style="--c:#047857;">Chemical<span class="x" aria-hidden="true">×</span></button>
+    <button class="chip" type="button" data-lens="software"   aria-pressed="false" style="--c:#7C3AED;">Software<span class="x" aria-hidden="true">×</span></button>
+  </div>
 </header>
 
-<div class="container">
-
-    <div class="gateway-section">
-        <span class="section-badge">Tier 1: Knowledge and Commitment</span>
-        
-        <div class="gateway-grid">
-            <div class="gateway-item">
-                <span class="gateway-code">A1</span>
-                <h4>Maintain Knowledge</h4>
-                <p>Have maintained and extended a sound theoretical approach to enable them to develop their particular role.</p>
-            </div>
-            <div class="gateway-item">
-                <span class="gateway-code">A2</span>
-                <h4>Apply Knowledge</h4>
-                <p>Are developing technological solutions to unusual or challenging problems, using their knowledge and understanding.</p>
-            </div>
-            <div class="gateway-item">
-                <span class="gateway-code">E1</span>
-                <h4>Code of Conduct</h4>
-                <p>Understand and comply with relevant codes of conduct.</p>
-            </div>
-            <div class="gateway-item">
-                <span class="gateway-code">E4</span>
-                <h4>CPD Commitment</h4>
-                <p>Carry out and record the Continuing Professional Development (CPD) necessary to maintain and enhance competence.</p>
-            </div>
-        </div>
-    </div>
-
-    <span class="section-badge matrix-badge">Tier 2: Competence/Behaviour Matrix</span>
-    
-    <div class="matrix-wrapper">
-        <table>
-            <thead id="matrix-head">
-                <!-- Populated by JavaScript from data.js -->
-            </thead>
-            <tbody id="matrix-body">
-                <!-- Populated by JavaScript from data.js -->
-            </tbody>
-        </table>
-    </div>
-
-</div>
+<main id="content"></main>
 
 <script>
-    /*
-     * UK-SPEC Matrix Renderer with Context Switching
-     */
+/* ============================================================
+   UK-SPEC CEng — Dynamic Examples of Evidence (prototype)
+   Single-file build for GitHub Pages.
+   ============================================================ */
 
-    // Current context's MATRIX (loaded dynamically)
-    let currentMatrix = null;
-    let currentContextId = null;
+const GROUPS = {
+  A: {
+    title: "Knowledge and understanding",
+    shall: "Chartered Engineers shall use a combination of general and specialist engineering knowledge and understanding to optimise the application of advanced and complex systems.",
+    desc:  "This competence is about the ability to understand underpinning technical principles relevant to the applicant's area of practice and applying them to develop technical solutions. This could involve technical solutions for novel problems or dealing with significant technical complexity. This may involve the integration of a range of technologies and consideration of other factors. This competence requires that an applicant is maintaining and developing their knowledge in their field of practice and not just that required for specific tasks."
+  },
+  B: {
+    title: "Design, development and solving engineering problems",
+    shall: "Chartered Engineers shall apply appropriate theoretical and practical methods to the analysis and solution of engineering problems.",
+    desc:  "This competence is about the ability to apply engineering knowledge effectively and efficiently to the individual tasks which need to be undertaken in the applicant's role."
+  },
+  C: {
+    title: "Responsibility, management and leadership",
+    shall: "Chartered Engineers shall demonstrate technical and commercial leadership.",
+    desc:  "This competence is about the ability to plan the applicant's own work and manage or specify the work of others effectively, efficiently, and in a way which provides leadership at an appropriate level, whether technical or commercial. Leadership is not necessarily about having a formal line management role. In matrix management and other types of organisational structure, where Chartered Engineers are working within complex and varied working relationships, they will provide leadership to achieve objectives. This competence is also about the ability to consider and identify improvements to quality."
+  },
+  D: {
+    title: "Communication and interpersonal skills",
+    shall: "Chartered Engineers shall demonstrate effective communication and interpersonal skills.",
+    desc:  "This is the ability to work with others constructively, to explain ideas and proposals clearly and to discuss issues objectively and constructively."
+  },
+  E: {
+    title: "Personal and professional commitment",
+    shall: "Chartered Engineers shall demonstrate a personal commitment to professional standards, recognising obligations to society, the profession and the environment.",
+    desc:  "This competence is about ensuring that the applicant is acting in a professional manner in their work and in their dealings with others. A Chartered Engineer should set a standard and example to others with regard to professionalism."
+  }
+};
 
-    document.addEventListener('DOMContentLoaded', function() {
-        populateContextDropdown();
-        renderMatrixHead();
-        // Load default context
-        loadContext(DEFAULT_CONTEXT);
+const LENSES = {
+  civil:      { label: "Civil engineering",                color: "#B85C3D" },
+  structural: { label: "Structural engineering",           color: "#2C4F87" },
+  mechanical: { label: "Mechanical engineering",           color: "#4B5563" },
+  electrical: { label: "Electrical & Electronic engineering", color: "#B45309" },
+  chemical:   { label: "Chemical engineering",             color: "#047857" },
+  software:   { label: "Software engineering",             color: "#7C3AED" }
+};
+
+/* Each example: { generic: "...", lens: { civil: "...", ... } }
+   When a lens is selected, the example renders the lens text if defined, otherwise the generic text. */
+
+const COMPETENCES = [
+  {
+    group: "A", num: 1, applicantShall: true,
+    point: "Have maintained and extended a sound theoretical approach to enable them to develop their particular role",
+    examples: [
+      { generic: "Formal training related to your role",
+        lens: {
+          civil: "Postgraduate study or short courses in geotechnics, hydraulics or transport planning",
+          structural: "Advanced study in structural dynamics, seismic design or non-linear analysis",
+          mechanical: "Postgraduate study or short courses in thermofluids, dynamics or finite element analysis",
+          electrical: "Advanced training in power systems, control engineering or RF design",
+          chemical: "Postgraduate study in process design, reaction engineering or process safety",
+          software: "Advanced training in distributed systems, machine learning or secure software engineering"
+        }
+      },
+      { generic: "Learning and developing new engineering knowledge in a different industry or role" /* keep generic — illustrates pass-through */ },
+      { generic: "Understanding the current and emerging technology and technical best practice in your area of expertise",
+        lens: {
+          civil: "Tracking current Eurocodes, BS, DMRB and Building Regulations updates relevant to your area of practice",
+          structural: "Tracking current Eurocodes (EN 1990–1999), the IStructE Manual and material-specific design standards",
+          mechanical: "Tracking ISO/ASME standards, PED/Machinery Directive and emerging additive manufacturing practice",
+          electrical: "Tracking BS 7671, IEC 61508/61511, Grid Code and emerging power-electronics practice",
+          chemical: "Tracking PED, ATEX/DSEAR, COMAH and IChemE process-safety guidance",
+          software: "Tracking OWASP, ISO/IEC 27001, NCSC guidance and emerging AI assurance practice"
+        }
+      },
+      { generic: "Developing a broader and deeper knowledge base through research and experimentation",
+        lens: {
+          civil: "Contributing to applied research on resilient infrastructure, ground investigation or low-carbon materials",
+          structural: "Contributing to applied research on novel structural systems, mass timber or low-carbon concrete",
+          mechanical: "Running rigs, prototypes or simulations to extend understanding of mechanical behaviour",
+          electrical: "Designing and running laboratory or simulation studies in power, control or signal processing",
+          chemical: "Running pilot-plant trials or process-modelling studies to extend process understanding",
+          software: "Running A/B tests, performance benchmarks or applied research into algorithms and architectures"
+        }
+      },
+      { generic: "Learning and developing new engineering theories and techniques in the workplace",
+        lens: {
+          civil: "Adopting BIM workflows, digital twins or parametric design tools in live projects",
+          structural: "Adopting performance-based design, parametric workflows or generative structural design",
+          mechanical: "Adopting model-based systems engineering or generative design within the workplace",
+          electrical: "Adopting model-based design (e.g. Simulink) or hardware-in-the-loop testing in the workplace",
+          chemical: "Adopting digital twins, advanced process control or quality-by-design methods",
+          software: "Adopting new languages, frameworks or DevSecOps practices and applying them on real systems"
+        }
+      }
+    ]
+  },
+  {
+    group: "A", num: 2, applicantShall: false,
+    point: "Are developing technological solutions to unusual or challenging problems, using their knowledge and understanding and/or dealing with complex technical issues or situations with significant levels of risk.",
+    examples: [
+      { generic: "Carrying out technical research and development",
+        lens: {
+          civil: "Investigating ground behaviour, scour or seismic response on a complex site",
+          structural: "Researching long-span, tall-building or retrofit solutions where standard codes don't fully apply",
+          mechanical: "Developing a novel mechanism, drivetrain or thermal management approach",
+          electrical: "Developing novel power-electronic, control or RF designs for unproven duty",
+          chemical: "Developing novel reactor, separation or process-intensification concepts",
+          software: "Developing novel algorithms, ML models or distributed-system designs"
+        }
+      },
+      { generic: "Developing new designs, processes or systems based on new or evolving technology" },
+      { generic: "Carrying out complex and/or non-standard technical analyses",
+        lens: {
+          civil: "Carrying out non-linear soil-structure interaction or coupled hydraulic analysis",
+          structural: "Carrying out non-linear time-history, progressive-collapse or fatigue analysis",
+          mechanical: "Carrying out CFD, multi-body dynamics or non-linear FE analysis",
+          electrical: "Carrying out transient stability, EMC or fault-level studies",
+          chemical: "Carrying out HAZOP, dynamic process simulation or QRA",
+          software: "Carrying out threat modelling, formal verification or large-scale performance analysis"
+        }
+      },
+      { generic: "Developing solutions involving complex or multi-disciplinary technology" },
+      { generic: "Developing and evaluating continuous improvement systems" },
+      { generic: "Developing solutions in safety-critical industries or applications",
+        lens: {
+          civil: "Working on dam, tunnel, bridge or critical infrastructure projects with significant public-safety risk",
+          structural: "Working on stadia, high-rise or critical infrastructure where structural failure carries severe consequences",
+          mechanical: "Working in nuclear, aerospace or rail rolling-stock domains with high safety-criticality",
+          electrical: "Working on safety-related control, traction or medical devices with SIL/IEC 61508 obligations",
+          chemical: "Working on COMAH-tier sites, pharmaceutical manufacture or other high-hazard process plant",
+          software: "Working on safety-related software with DO-178C, IEC 62304 or ISO 26262 obligations"
+        }
+      }
+    ]
+  },
+  {
+    group: "B", num: 1, applicantShall: true,
+    point: "Take an active role in the identification and definition of project requirements, problems and opportunities",
+    examples: [
+      { generic: "Identifying projects or technical improvements to products, processes or systems",
+        lens: {
+          civil: "Identifying improvements to highway, water, drainage or transport assets",
+          structural: "Identifying retrofit, strengthening or material-substitution opportunities in existing structures",
+          mechanical: "Identifying product, plant or machinery improvements based on field performance data",
+          electrical: "Identifying network reinforcement, plant upgrade or control-system improvements",
+          chemical: "Identifying debottlenecking, yield-improvement or emissions-reduction opportunities",
+          software: "Identifying architecture, performance or security improvements to existing software systems"
+        }
+      },
+      { generic: "Preparing specifications, taking account of functional and other requirements",
+        lens: {
+          civil: "Preparing technical specifications under NEC, FIDIC or similar contract suites",
+          structural: "Preparing structural specifications, drawings and design statements for tender",
+          mechanical: "Preparing mechanical equipment specifications, datasheets and acceptance criteria",
+          electrical: "Preparing electrical specifications, single-line diagrams and protection settings",
+          chemical: "Preparing process specifications, P&IDs and equipment datasheets",
+          software: "Preparing functional and non-functional requirements, API contracts and acceptance criteria"
+        }
+      },
+      { generic: "Establishing user requirements" },
+      { generic: "Reviewing specifications and tenders to identify technical issues and potential improvements" },
+      { generic: "Carrying out technical risk analysis and identifying mitigation measures",
+        lens: {
+          civil: "Carrying out CDM, geotechnical and constructability risk assessments and proposing mitigations",
+          structural: "Carrying out structural-robustness, buildability and disproportionate-collapse risk assessments",
+          mechanical: "Carrying out FMEA, hazard analysis and reliability assessments on mechanical systems",
+          electrical: "Carrying out arc-flash, EMC and protection-coordination risk assessments",
+          chemical: "Carrying out HAZID, HAZOP, LOPA and consequence modelling",
+          software: "Carrying out threat modelling, secure-design review and software FMEA"
+        }
+      },
+      { generic: "Considering and implementing new and emerging technologies" }
+    ]
+  },
+  {
+    group: "B", num: 2, applicantShall: false,
+    point: "Can identify the appropriate investigations and research needed to undertake the design, development and analysis required to complete an engineering task and conduct these activities effectively",
+    examples: [
+      { generic: "Identifying and agreeing appropriate research methodologies" },
+      { generic: "Investigating a technical issue, identifying potential solutions and determining the factors needed to compare them",
+        lens: {
+          civil: "Investigating a settlement, scour or pavement-failure issue and comparing remediation options",
+          structural: "Investigating a defect, crack pattern or vibration issue and comparing strengthening options",
+          mechanical: "Investigating a wear, vibration or thermal issue and comparing redesign options",
+          electrical: "Investigating a fault, harmonic distortion or interference issue and comparing mitigation options",
+          chemical: "Investigating a process upset or off-spec product and comparing root-cause hypotheses",
+          software: "Investigating a production incident or performance regression and comparing remediation options"
+        }
+      },
+      { generic: "Identifying and carrying out physical tests or trials and analysing and evaluating the results",
+        lens: {
+          civil: "Specifying and interpreting site investigation, ground-improvement trials or full-scale load tests",
+          structural: "Specifying and interpreting load tests, monitoring or material testing on existing structures",
+          mechanical: "Specifying and interpreting rig trials, fatigue tests or environmental testing",
+          electrical: "Specifying and interpreting type tests, EMC tests or commissioning tests",
+          chemical: "Specifying and interpreting pilot trials, lab studies or commissioning runs",
+          software: "Designing and interpreting load tests, chaos experiments or A/B tests in production"
+        }
+      },
+      { generic: "Carrying out technical simulations or analysis",
+        lens: {
+          civil: "Running hydraulic, traffic, flood or geotechnical simulations to inform design",
+          structural: "Running FE, dynamic or progressive-collapse simulations to inform structural design",
+          mechanical: "Running CFD, FEA or multi-body dynamic simulations to inform design choices",
+          electrical: "Running power-system, electromagnetic or control-system simulations",
+          chemical: "Running steady-state and dynamic process simulations (e.g. Aspen, gPROMS)",
+          software: "Running performance, capacity and resilience simulations against representative workloads"
+        }
+      },
+      { generic: "Preparing, presenting and agreeing design recommendations, with appropriate analysis of risk, and taking account of cost, quality, safety, reliability, accessibility, appearance, fitness for purpose, security (including cyber security), intellectual property constraints and opportunities, and environmental impact" }
+    ]
+  },
+  {
+    group: "B", num: 3, applicantShall: false,
+    point: "Can implement engineering tasks and evaluate the effectiveness of engineering solutions.",
+    examples: [
+      { generic: "Ensuring that the application of the design results in the appropriate practical outcome",
+        lens: {
+          civil: "Supervising construction, witnessing key activities and signing off works against design intent",
+          structural: "Inspecting construction, witnessing key activities and confirming compliance with design",
+          mechanical: "Overseeing manufacture, FAT/SAT and commissioning to confirm the design performs as intended",
+          electrical: "Overseeing build, FAT/SAT and energisation to confirm performance against design",
+          chemical: "Overseeing fabrication, mechanical completion and commissioning of process plant",
+          software: "Overseeing release, deployment and post-launch verification against acceptance criteria"
+        }
+      },
+      { generic: "Implementing design solutions, taking account of critical constraints, including due concern for safety, sustainability and disposal or decommissioning" },
+      { generic: "Identifying and implementing lessons learned" },
+      { generic: "Evaluating existing designs or processes and identifying faults or potential improvements including risk, safety and life cycle considerations",
+        lens: {
+          civil: "Carrying out asset condition surveys and whole-life evaluations of infrastructure",
+          structural: "Carrying out structural appraisals, defect surveys and whole-life evaluations",
+          mechanical: "Carrying out reliability reviews, RCA and whole-life cost evaluations on plant or products",
+          electrical: "Carrying out plant health audits, protection-grading reviews and whole-life evaluations",
+          chemical: "Carrying out plant audits, mechanical-integrity reviews and process-safety reviews",
+          software: "Carrying out post-incident reviews, technical-debt audits and architecture reviews"
+        }
+      },
+      { generic: "Actively learning from feedback on results to improve future design solutions and build best practice" }
+    ]
+  },
+  {
+    group: "C", num: 1, applicantShall: true,
+    point: "Plan the work and resources needed to enable effective implementation of a significant engineering task or project",
+    examples: [
+      { generic: "Preparing budgets and associated work programmes for projects or tasks" },
+      { generic: "Systematically reviewing the factors affecting the project implementation including safety, sustainability and disposal or decommissioning considerations",
+        lens: {
+          civil: "Reviewing CDM, sustainability and decommissioning factors at design and construction stage",
+          structural: "Reviewing demolition, temporary works and end-of-life implications of structural choices",
+          mechanical: "Reviewing operability, maintainability and end-of-life recycling of mechanical equipment",
+          electrical: "Reviewing safety, EMC and end-of-life recycling factors for electrical installations",
+          chemical: "Reviewing inherent safety, energy efficiency and decommissioning of process plant",
+          software: "Reviewing security, data-protection and end-of-life data-disposal implications"
+        }
+      },
+      { generic: "Carrying out a task or project risk assessment and identifying mitigation measures" },
+      { generic: "Leading on preparing and agreeing implementation plans and method statements",
+        lens: {
+          civil: "Leading on construction phase plans, method statements and traffic management plans",
+          structural: "Leading on temporary-works design, lifting plans and erection sequences",
+          mechanical: "Leading on installation, commissioning and maintenance plans",
+          electrical: "Leading on energisation, switching and outage plans",
+          chemical: "Leading on commissioning, start-up and turnaround plans",
+          software: "Leading on release plans, runbooks and roll-back procedures"
+        }
+      },
+      { generic: "Negotiating and agreeing arrangements with customers, colleagues, contractors and other stakeholders, including regulatory bodies" },
+      { generic: "Ensuring that information flow is appropriate and effective" }
+    ]
+  },
+  {
+    group: "C", num: 2, applicantShall: false,
+    point: "Manage (organise, direct and control), programme or schedule, budget and resource elements of a significant engineering task or project",
+    examples: [
+      { generic: "Operating or defining appropriate management systems including risk registers and contingency systems" },
+      { generic: "Managing the balance between quality, cost and time" },
+      { generic: "Monitoring progress and associated costs and cost forecasts, taking appropriate actions when required" },
+      { generic: "Establishing and maintaining appropriate quality standards within legal and statutory requirements",
+        lens: {
+          civil: "Maintaining ISO 9001 and sector-specific quality standards on civil engineering projects",
+          structural: "Maintaining design-office quality systems and CE/UKCA marking obligations",
+          mechanical: "Maintaining ISO 9001, PED and sector-specific quality standards in design and manufacture",
+          electrical: "Maintaining ISO 9001 and product-conformity (CE/UKCA, type-test) obligations",
+          chemical: "Maintaining ISO 9001, GMP or sector-specific quality and integrity standards",
+          software: "Maintaining ISO/IEC 25010 quality, CI/CD assurance and security-by-design practices"
+        }
+      },
+      { generic: "Interfacing effectively with customers, contractors and other stakeholders" }
+    ]
+  },
+  {
+    group: "C", num: 3, applicantShall: false,
+    point: "Lead teams or technical specialisms and assist others to meet changing technical and managerial needs",
+    examples: [
+      { generic: "Agreeing objectives and work plans with teams and individuals" },
+      { generic: "Reinforcing team commitment to professional standards" },
+      { generic: "Leading and supporting team and individual development" },
+      { generic: "Assessing team and individual performance, and providing feedback" },
+      { generic: "Seeking input from other teams or specialists where needed and managing the relationship" },
+      { generic: "Providing specialist knowledge, guidance and input in your specialism to engineering teams, engineers, customers, management and relevant stakeholders" },
+      { generic: "Developing and delivering a teaching module at Masters level, or leading a University research programme" }
+    ]
+  },
+  {
+    group: "C", num: 4, applicantShall: false,
+    point: "Bring about continuous quality improvement and promote best practice.",
+    examples: [
+      { generic: "Promoting quality throughout the organisation as well as its customer and supplier networks" },
+      { generic: "Developing and maintaining operations to meet quality standards eg ISO 9000, EQFM",
+        lens: {
+          civil: "Maintaining operations to ISO 9001, ISO 14001 and CDM 2015 obligations",
+          structural: "Maintaining operations to ISO 9001 and design-office quality assurance procedures",
+          mechanical: "Maintaining operations to ISO 9001, ISO 14001 and ISO 45001",
+          electrical: "Maintaining operations to ISO 9001 and ISO/IEC 17025 (testing & calibration)",
+          chemical: "Maintaining operations to ISO 9001, ISO 14001 and (where relevant) GMP",
+          software: "Maintaining operations to ISO/IEC 27001, ISO/IEC 25010 and CMMI/DevOps maturity models"
+        }
+      },
+      { generic: "Supporting or directing project evaluation and proposing recommendations for improvement" },
+      { generic: "Implementing and sharing the results of lessons learned" }
+    ]
+  },
+  {
+    group: "D", num: 1, applicantShall: true,
+    point: "Communicate effectively with others, at all levels, in English",
+    examples: [
+      { generic: "Preparing reports, drawings, specifications and other documentation on complex matters",
+        lens: {
+          civil: "Preparing design reports, GA drawings and technical notes for civil works",
+          structural: "Preparing structural calculations, drawings and design statements",
+          mechanical: "Preparing design reports, GA drawings, P&IDs and equipment datasheets",
+          electrical: "Preparing design reports, single-line diagrams, schematics and cable schedules",
+          chemical: "Preparing design reports, P&IDs, mass/energy balances and equipment datasheets",
+          software: "Preparing architecture decision records, design docs and runbooks"
+        }
+      },
+      { generic: "Leading, chairing, contributing to and recording meetings and discussions" },
+      { generic: "Exchanging information and providing advice to technical and non-technical colleagues" },
+      { generic: "Engaging or interacting with professional networks" }
+    ]
+  },
+  {
+    group: "D", num: 2, applicantShall: false,
+    point: "Clearly present and discuss proposals, justifications and conclusions",
+    examples: [
+      { generic: "Contributing to scientific papers or articles as an author" },
+      { generic: "Preparing and delivering presentations on strategic matters" },
+      { generic: "Preparing bids, proposals or studies",
+        lens: {
+          civil: "Preparing tender submissions, business cases and option appraisals for infrastructure schemes",
+          structural: "Preparing fee bids, design proposals and option studies",
+          mechanical: "Preparing technical bids, feasibility studies and concept proposals",
+          electrical: "Preparing technical bids, feasibility studies and option appraisals",
+          chemical: "Preparing FEED studies, business cases and concept-select proposals",
+          software: "Preparing RFP responses, architecture proposals and discovery reports"
+        }
+      },
+      { generic: "Identifying, agreeing and leading work towards collective goals" }
+    ]
+  },
+  {
+    group: "D", num: 3, applicantShall: false,
+    point: "Demonstrate personal and social skills and awareness of diversity and inclusion issues.",
+    examples: [
+      { generic: "Knowing and managing own emotions, strengths and weaknesses" },
+      { generic: "Being confident and flexible in dealing with new and changing interpersonal situations" },
+      { generic: "Identifying, agreeing and working towards collective goals" },
+      { generic: "Creating, maintaining and enhancing productive working relationships, and resolving conflicts" },
+      { generic: "Being supportive of the needs and concerns of others, especially where this relates to diversity and inclusion" }
+    ]
+  },
+  {
+    group: "E", num: 1, applicantShall: true,
+    point: "Understand and comply with relevant codes of conduct",
+    examples: [
+      { generic: "Demonstrating compliance with your Licensee's Code of Professional Conduct" },
+      { generic: "Identifying aspects of the Code which are particularly relevant to your role" },
+      { generic: "Being aware of the legislative and regulatory frameworks relevant to your role and how they conform to them",
+        lens: {
+          civil: "Being aware of CDM 2015, the Building Safety Act 2022 and relevant planning and environmental law",
+          structural: "Being aware of CDM 2015, the Building Safety Act 2022 and Construction Products Regulations",
+          mechanical: "Being aware of HSWA, PUWER, PSSR, PED and relevant product-conformity legislation",
+          electrical: "Being aware of HSWA, EAWR 1989, BS 7671 and relevant product-conformity legislation",
+          chemical: "Being aware of HSWA, COMAH, DSEAR/ATEX, REACH and relevant environmental permits",
+          software: "Being aware of UK GDPR, the Data Protection Act, the Computer Misuse Act and the AI regulatory landscape"
+        }
+      },
+      { generic: "Leading work within relevant legislation and regulatory frameworks, including social and employment legislation" }
+    ]
+  },
+  {
+    group: "E", num: 2, applicantShall: false,
+    point: "Understand the safety implications of their role and manage, apply and improve safe systems of work",
+    examples: [
+      { generic: "Identifying and taking responsibility for your own obligations and ensuring that others assume similar responsibility for health, safety and welfare issues" },
+      { generic: "Ensuring that systems satisfy health, safety and welfare requirements" },
+      { generic: "Developing and implementing appropriate hazard identification and risk management systems and culture",
+        lens: {
+          civil: "Implementing CDM duty-holder systems, site safety inspections and Designer's Risk Registers",
+          structural: "Implementing Designer's Risk Registers and disproportionate-collapse risk management",
+          mechanical: "Implementing FMEA, hazard logs and machinery-safety risk management",
+          electrical: "Implementing arc-flash assessments, lockout/tagout and electrical safety rules",
+          chemical: "Implementing HAZID/HAZOP, LOPA and process safety management systems",
+          software: "Implementing threat modelling, secure-SDL practices and operational security monitoring"
+        }
+      },
+      { generic: "Managing, evaluating and improving these systems" },
+      { generic: "Applying a sound knowledge of health and safety legislation, for example: HASAW 1974, CDM regulations, ISO 45001 and company safety policies",
+        lens: {
+          civil: "Applying HSWA 1974, CDM 2015, the Building Safety Act 2022 and ISO 45001",
+          structural: "Applying HSWA 1974, CDM 2015, the Building Safety Act 2022 and Construction Products Regulations",
+          mechanical: "Applying HSWA 1974, PUWER, PSSR, the Machinery Directive/Regulations and ISO 45001",
+          electrical: "Applying HSWA 1974, EAWR 1989, BS 7671, IEC 61508 and ISO 45001",
+          chemical: "Applying HSWA 1974, COMAH, DSEAR/ATEX, IChemE process-safety guidance and ISO 45001",
+          software: "Applying HSWA 1974, ISO 45001, ISO/IEC 27001 and (where relevant) IEC 61508 / ISO 26262 / IEC 62304"
+        }
+      }
+    ]
+  },
+  {
+    group: "E", num: 3, applicantShall: false,
+    point: "Understand the principles of sustainable development and apply them in their work",
+    examples: [
+      { generic: "Operating and acting responsibly, taking account of the need to progress environmental, social and economic outcomes simultaneously" },
+      { generic: "Providing products and services which maintain and enhance the quality of the environment and community, and meet financial objectives",
+        lens: {
+          civil: "Designing infrastructure for low embodied carbon, biodiversity net gain and climate resilience",
+          structural: "Designing for low embodied carbon, material reuse and adaptability over the structure's life",
+          mechanical: "Designing for energy efficiency, recyclability and lifetime emissions reduction",
+          electrical: "Designing for energy efficiency, electrification and grid decarbonisation",
+          chemical: "Designing for inherent safety, low-carbon process intensification and circular feedstocks",
+          software: "Designing for energy-efficient compute, responsible AI and digital inclusion"
+        }
+      },
+      { generic: "Recognising how sustainability principles, as described in the Guidance on Sustainability on page 48, can be applied in your day-to-day work" },
+      { generic: "Understanding and securing stakeholder involvement in sustainable development" },
+      { generic: "Using resources efficiently and effectively in all activities" },
+      { generic: "Taking action to minimise environmental impact in your area of responsibility" }
+    ]
+  },
+  {
+    group: "E", num: 4, applicantShall: false,
+    point: "Carry out and record the Continuing Professional Development (CPD) necessary to maintain and enhance competence in their own area of practice",
+    examples: [
+      { generic: "Undertaking reviews of your own development needs" },
+      { generic: "Planning how to meet personal and organisational objectives" },
+      { generic: "Carrying out planned and unplanned CPD activities" },
+      { generic: "Maintaining evidence of competence development" },
+      { generic: "Evaluating CPD outcomes against any plans made" },
+      { generic: "Assisting others with their own CPD" }
+    ]
+  },
+  {
+    group: "E", num: 5, applicantShall: false,
+    point: "Understand the ethical issues that may arise in their role and carry out their responsibilities in an ethical manner.",
+    examples: [
+      { generic: "Understanding the ethical issues that you may encounter in your role",
+        lens: {
+          civil: "Considering ethical questions around community impact, displacement and long-lived infrastructure",
+          structural: "Considering ethical questions around public safety, whistleblowing and challenging unsafe specifications",
+          mechanical: "Considering ethical questions around dual-use technology, automation and worker safety",
+          electrical: "Considering ethical questions around critical-infrastructure security and equitable access",
+          chemical: "Considering ethical questions around major-accident hazards, emissions and community consent",
+          software: "Considering ethical questions around algorithmic bias, surveillance, privacy and AI safety"
+        }
+      },
+      { generic: "Giving an example of where you have applied ethical principles as described in the Statement of Ethical Principles on page 47" },
+      { generic: "Giving an example of where you have applied or upheld ethical principles as defined by your organisation or company" }
+    ]
+  }
+];
+
+/* ============================================================
+   Render
+   ============================================================ */
+
+const escapeHtml = (s) => String(s ?? "").replace(/[&<>"']/g, c => ({
+  "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+}[c]));
+
+function renderCompetenceCell(groupLetter, isContinued) {
+  const g = GROUPS[groupLetter];
+  const continuedHtml = isContinued ? '<span class="continued">(continued)</span>' : '';
+  if (isContinued) {
+    return `<div class="group-cont-cell">${escapeHtml(g.title.split(',')[0]).split(' ')[0] === g.title.split(' ')[0] ? '' : ''}${groupLetter}. ${escapeHtml(g.title)} ${continuedHtml}</div>`;
+  }
+  return `
+    <div class="group-letter-title">${groupLetter}. ${escapeHtml(g.title)}</div>
+    <p class="shall">${escapeHtml(g.shall)}</p>
+    <p class="desc">${escapeHtml(g.desc)}</p>
+  `;
+}
+
+function renderNumberedCell(comp, showApplicantShall) {
+  return `
+    ${showApplicantShall ? '<p class="applicant-shall">The applicant shall demonstrate that they:</p>' : ''}
+    <p class="point"><span class="num">${comp.num}.</span> ${escapeHtml(comp.point)}</p>
+  `;
+}
+
+function renderExamples(examples, compIdx) {
+  const lis = examples.map((ex, i) => `
+    <li data-comp="${compIdx}" data-ex="${i}">
+      <span class="ex-text">${escapeHtml(ex.generic)}</span>
+    </li>
+  `).join('');
+  return `
+    <details class="examples-wrap" open>
+      <summary><span class="summary-text">Examples of evidence</span> <span class="summary-count">(${examples.length})</span></summary>
+      <ul class="examples">${lis}</ul>
+    </details>
+  `;
+}
+
+/* Render strategy:
+   We'll create one "page" per natural break:
+     - Page 1: A1 + A2
+     - Page 2: B1 + B2
+     - Page 3: B3 (continued)
+     - Page 4: C1 + C2
+     - Page 5: C3 + C4 (continued)
+     - Page 6: D1 + D2 + D3
+     - Page 7: E1 + E2
+     - Page 8: E3 + E4 + E5 (continued)
+   This mirrors the printed standard's pagination. */
+
+const PAGE_LAYOUT = [
+  { startGroup: "A", indices: [0, 1],     continued: false, pageNo: 32 },  // A1, A2
+  { startGroup: "B", indices: [2, 3],     continued: false, pageNo: 33 },  // B1, B2
+  { startGroup: "B", indices: [4],         continued: true,  pageNo: 34 },  // B3
+  { startGroup: "C", indices: [5, 6],      continued: false, pageNo: 35 },  // C1, C2
+  { startGroup: "C", indices: [7, 8],      continued: true,  pageNo: 36 },  // C3, C4
+  { startGroup: "D", indices: [9, 10, 11], continued: false, pageNo: 37 },  // D1, D2, D3
+  { startGroup: "E", indices: [12, 13],    continued: false, pageNo: 38 },  // E1, E2
+  { startGroup: "E", indices: [14, 15, 16],continued: true,  pageNo: 39 }   // E3, E4, E5
+];
+
+function renderPage(layout) {
+  const { startGroup, indices, continued, pageNo } = layout;
+  const rows = indices.map((compIdx, rowIdxInPage) => {
+    const comp = COMPETENCES[compIdx];
+    const showFullCompCol = rowIdxInPage === 0;  // first row in page shows the merged competence content
+    const showApplicantShall = comp.applicantShall;
+
+    let compCellHtml = '';
+    if (showFullCompCol) {
+      compCellHtml = continued
+        ? `<td class="competence-col" rowspan="${indices.length}"><div class="group-cont-cell">${startGroup}. ${escapeHtml(GROUPS[startGroup].title)} <span class="continued">(continued)</span></div></td>`
+        : `<td class="competence-col" rowspan="${indices.length}">${renderCompetenceCell(startGroup, false)}</td>`;
+    }
+    return `<tr>
+      ${compCellHtml}
+      <td class="numbered-col">${renderNumberedCell(comp, showApplicantShall)}</td>
+      <td class="examples-col">${renderExamples(comp.examples, compIdx)}</td>
+    </tr>`;
+  }).join('');
+
+  return `
+    <section class="page">
+      <div class="page-inner">
+        <table class="spec">
+          <colgroup>
+            <col class="c-competence">
+            <col class="c-numbered">
+            <col class="c-examples">
+          </colgroup>
+          <thead>
+            <tr>
+              <th>Competence</th>
+              <th>Competence</th>
+              <th>Examples of evidence</th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+      <div class="page-footer">
+        <span>${pageNo}</span>
+        <span>UK-SPEC v4 — Chartered Engineer (CEng)</span>
+      </div>
+    </section>
+  `;
+}
+
+document.getElementById('content').innerHTML = PAGE_LAYOUT.map(renderPage).join('');
+
+/* ============================================================
+   Lens behaviour — chip row
+   ============================================================ */
+
+const chips = Array.from(document.querySelectorAll('.chip[data-lens]'));
+let currentLens = '';
+
+function applyLens(lensKey) {
+  const lens = LENSES[lensKey];
+  const color = lens ? lens.color : null;
+
+  // Sync chip pressed state
+  chips.forEach(c => {
+    const on = c.dataset.lens === lensKey;
+    c.setAttribute('aria-pressed', on ? 'true' : 'false');
+  });
+
+  // Update root for li::before colour reference
+  document.documentElement.style.setProperty('--lens-color', color || '#4A4A4A');
+
+  // For each example list item, decide its content + lensed state
+  const items = document.querySelectorAll('ul.examples li');
+  items.forEach(li => {
+    const compIdx = +li.dataset.comp;
+    const exIdx = +li.dataset.ex;
+    const ex = COMPETENCES[compIdx].examples[exIdx];
+    const overrideText = (lens && ex.lens && ex.lens[lensKey]) ? ex.lens[lensKey] : null;
+    const newText = overrideText !== null ? overrideText : ex.generic;
+    const span = li.querySelector('.ex-text');
+
+    // Crossfade text only if it's actually changing
+    if (span.textContent !== newText) {
+      span.classList.add('fading');
+      setTimeout(() => {
+        span.textContent = newText;
+        span.classList.remove('fading');
+      }, 220);
+    }
+
+    // Toggle lensed class (border + colour)
+    if (overrideText !== null) {
+      li.classList.add('lensed');
+    } else {
+      li.classList.remove('lensed');
+    }
+  });
+
+  currentLens = lensKey || '';
+}
+
+chips.forEach(chip => {
+  chip.addEventListener('click', (e) => {
+    const key = chip.dataset.lens;
+    // Toggle: if already active, clear; otherwise activate this one
+    applyLens(currentLens === key ? '' : key);
+  });
+});
+
+/* ============================================================
+   Mobile: collapse Examples by default; desktop: always open.
+   We set initial state on load; we don't clobber user's choice on resize.
+   ============================================================ */
+const isMobileViewport = () => window.matchMedia('(max-width: 880px)').matches;
+function syncDisclosureForViewport(force = false) {
+  const mobile = isMobileViewport();
+  document.querySelectorAll('details.examples-wrap').forEach(d => {
+    if (mobile) {
+      // Only set on first run, not on every resize — respect user's tap state
+      if (force || d.dataset.initialised !== '1') {
+        d.open = false;
+        d.dataset.initialised = '1';
+      }
+    } else {
+      d.open = true;  // always open on desktop
+    }
+  });
+}
+syncDisclosureForViewport(true);
+
+// On crossing the breakpoint, re-sync (force) so behaviour matches the new mode
+let wasMobile = isMobileViewport();
+window.addEventListener('resize', () => {
+  const mobile = isMobileViewport();
+  if (mobile !== wasMobile) {
+    // Crossed the breakpoint — reset all to the new mode's default
+    document.querySelectorAll('details.examples-wrap').forEach(d => {
+      d.dataset.initialised = '';
     });
+    syncDisclosureForViewport(true);
+    wasMobile = mobile;
+  }
+});
 
-    /*
-     * Populate the context dropdown from contexts.js
-     */
-    function populateContextDropdown() {
-        const select = document.getElementById('context-select');
-        let html = '';
+/* Initial render: no lens */
+applyLens('');
 
-        CONTEXTS.forEach(ctx => {
-            const selected = ctx.id === DEFAULT_CONTEXT ? 'selected' : '';
-            html += `<option value="${ctx.id}" ${selected}>${ctx.label}</option>`;
-        });
-
-        select.innerHTML = html;
-    }
-
-    /*
-     * Load a context file dynamically
-     */
-    function loadContext(contextId) {
-        // Find the context in the manifest
-        const context = CONTEXTS.find(c => c.id === contextId);
-        if (!context) {
-            console.error('Context not found:', contextId);
-            return;
-        }
-
-        // If it's generic, we already have it loaded as GENERIC_MATRIX
-        if (contextId === 'generic') {
-            currentMatrix = null; // Will use GENERIC_MATRIX directly
-            currentContextId = contextId;
-            renderMatrixBody();
-            return;
-        }
-
-        // Dynamically load the context file
-        const script = document.createElement('script');
-        script.src = context.file;
-        script.onload = function() {
-            // The loaded file defines MATRIX
-            currentMatrix = typeof MATRIX !== 'undefined' ? MATRIX : null;
-            currentContextId = contextId;
-            renderMatrixBody();
-        };
-        script.onerror = function() {
-            console.error('Failed to load context file:', context.file);
-            alert('Could not load ' + context.label + '. Falling back to Generic.');
-            document.getElementById('context-select').value = 'generic';
-            loadContext('generic');
-        };
-        document.head.appendChild(script);
-    }
-
-    /*
-     * Get cell content with fallback to generic
-     */
-    function getCellContent(compCode, behaviourId) {
-        // Try current context first (if loaded and has content)
-        if (currentMatrix &&
-            currentMatrix[compCode] &&
-            currentMatrix[compCode][behaviourId] &&
-            currentMatrix[compCode][behaviourId].trim() !== '') {
-            return currentMatrix[compCode][behaviourId];
-        }
-
-        // Fall back to generic
-        if (GENERIC_MATRIX[compCode] && GENERIC_MATRIX[compCode][behaviourId]) {
-            return GENERIC_MATRIX[compCode][behaviourId];
-        }
-
-        return '';
-    }
-
-    /*
-     * Render table header (behaviours)
-     */
-    function renderMatrixHead() {
-        const thead = document.getElementById('matrix-head');
-        const colCount = BEHAVIOURS.length + 1;
-
-        let html = '<tr>';
-
-        // Corner header
-        html += `<th class="corner-header">
-            Behaviours &rarr;<br>
-            Competence &darr;
-        </th>`;
-
-        // Behaviour column headers
-        BEHAVIOURS.forEach(b => {
-            html += `<th class="col-header ${b.colorClass}">
-                ${b.title}<br>
-                <small style="font-weight:400; opacity:0.8;">${b.subtitle}</small>
-            </th>`;
-        });
-
-        html += '</tr>';
-        thead.innerHTML = html;
-    }
-
-    /*
-     * Render table body (competences and cells)
-     */
-    function renderMatrixBody() {
-        const tbody = document.getElementById('matrix-body');
-        const colCount = BEHAVIOURS.length + 1;
-        let html = '';
-
-        // Iterate through each group
-        COMPETENCE_GROUPS.forEach(group => {
-            // Group divider row - first cell sticky with name, rest empty
-            html += `<tr class="divider-row">`;
-            html += `<td>${group.name}</td>`;
-            BEHAVIOURS.forEach(() => {
-                html += `<td></td>`;
-            });
-            html += `</tr>`;
-
-            // Competence rows in this group
-            group.competences.forEach(compCode => {
-                const comp = COMPETENCES[compCode];
-
-                html += '<tr>';
-
-                // Row header (competence) - always shows full text, no toggle
-                html += `<td class="row-header">
-                    <span class="comp-code">${compCode}</span>
-                    <div class="comp-text">${comp.full}</div>
-                </td>`;
-
-                // Matrix cells for each behaviour (with fallback and toggle icon)
-                BEHAVIOURS.forEach(b => {
-                    const cellText = getCellContent(compCode, b.id);
-                    html += `<td class="col-${b.id}">
-                        <div class="cell-content" onclick="this.classList.toggle('expanded')">
-                            ${cellText}
-                            <span class="cell-toggle">▼</span>
-                        </div>
-                    </td>`;
-                });
-
-                html += '</tr>';
-            });
-        });
-
-        tbody.innerHTML = html;
-    }
 </script>
-
 </body>
 </html>
