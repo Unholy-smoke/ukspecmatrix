@@ -44,7 +44,7 @@
       "html": "One of the professional titles available to individuals who meet the required standards of competence and commitment. See www.engc.org.uk/ceng."
     },
     "licensee": {
-      "label": "Licensee / PEI",
+      "label": "Licensed PEI",
       "html": "A Professional Engineering Institution (PEI): an engineering membership organisation licensed by the Engineering Council to assess applicants for professional registration and act as the awarding body. See www.engc.org.uk/licensees."
     }
   },
@@ -73,7 +73,7 @@
             "Carrying out technical research and development",
             "Developing new designs, processes or systems based on new or evolving technology",
             "Carrying out complex and/or non-standard technical analyses",
-            "Developing solutions involving complex or multi- disciplinary technology",
+            "Developing solutions involving complex or multi-disciplinary technology",
             "Developing and evaluating continuous improvement systems",
             "Developing solutions in safety-critical industries or applications"
           ]

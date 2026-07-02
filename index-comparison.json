@@ -29,7 +29,7 @@
       "keyAttributes": [
         "The theoretical knowledge to solve problems in new technologies and develop new analytical techniques",
         "Successful application of the knowledge to deliver innovative products and services and/or take technical responsibility for complex engineering systems",
-        "Responsibility for financial and planning aspects of projects, sub- projects or tasks",
+        "Responsibility for financial and planning aspects of projects, sub-projects or tasks",
         "Leading and developing other professional staff through management, mentoring or coaching",
         "Effective interpersonal skills in communicating technical matters",
         "Commitment to professional engineering values"
@@ -41,7 +41,7 @@
       {
         "id": "A",
         "title": "Knowledge and understanding",
-        "framing": "Engineering Technicians shall use engineering knowledge and understanding to apply technical and practical skills.",
+        "framing": "Engineering Technicians use engineering knowledge and understanding to apply technical and practical skills.",
         "statements": [
           {
             "id": "A1",
@@ -56,7 +56,7 @@
       {
         "id": "B",
         "title": "Design, development and solving engineering problems",
-        "framing": "Engineering Technicians shall contribute to the design, development, manufacture, construction, commissioning, decommissioning, operation or maintenance of products, equipment, processes, systems or services.",
+        "framing": "Engineering Technicians contribute to the design, development, manufacture, construction, commissioning, decommissioning, operation or maintenance of products, equipment, processes, systems or services.",
         "statements": [
           {
             "id": "B1",
@@ -71,7 +71,7 @@
       {
         "id": "C",
         "title": "Responsibility, management and leadership",
-        "framing": "Engineering Technicians shall accept and exercise personal responsibility.",
+        "framing": "Engineering Technicians accept and exercise personal responsibility.",
         "statements": [
           {
             "id": "C1",
@@ -90,7 +90,7 @@
       {
         "id": "D",
         "title": "Communication and interpersonal skills",
-        "framing": "Engineering Technicians shall use effective communication and interpersonal skills.",
+        "framing": "Engineering Technicians use effective communication and interpersonal skills.",
         "statements": [
           {
             "id": "D1",
@@ -109,7 +109,7 @@
       {
         "id": "E",
         "title": "Personal and professional commitment",
-        "framing": "Engineering Technicians shall demonstrate commitment to an appropriate code of professional conduct, recognising obligations to society, the profession and the environment.",
+        "framing": "Engineering Technicians demonstrate commitment to an appropriate code of professional conduct, recognising obligations to society, the profession and the environment.",
         "statements": [
           {
             "id": "E1",
@@ -138,7 +138,7 @@
       {
         "id": "A",
         "title": "Knowledge and understanding",
-        "framing": "Incorporated Engineers shall use a combination of general and specialist engineering knowledge and understanding to apply existing and emerging technology.",
+        "framing": "Incorporated Engineers use a combination of general and specialist engineering knowledge and understanding to apply existing and emerging technology.",
         "statements": [
           {
             "id": "A1",
@@ -146,14 +146,14 @@
           },
           {
             "id": "A2",
-            "text": "Use a sound evidence- based approach to problem- solving and contribute to continuous improvement."
+            "text": "Use a sound evidence-based approach to problem-solving and contribute to continuous improvement."
           }
         ]
       },
       {
         "id": "B",
         "title": "Design, development and solving engineering problems",
-        "framing": "Incorporated Engineers shall apply appropriate theoretical and practical methods to design, develop, manufacture, construct, commission, operate, maintain, decommission and recycle engineering processes, systems, services and products.",
+        "framing": "Incorporated Engineers apply appropriate theoretical and practical methods to design, develop, manufacture, construct, commission, operate, maintain, decommission and recycle engineering processes, systems, services and products.",
         "statements": [
           {
             "id": "B1",
@@ -172,7 +172,7 @@
       {
         "id": "C",
         "title": "Responsibility, management and leadership",
-        "framing": "Incorporated Engineers shall provide technical and commercial management.",
+        "framing": "Incorporated Engineers provide technical and commercial management.",
         "statements": [
           {
             "id": "C1",
@@ -195,7 +195,7 @@
       {
         "id": "D",
         "title": "Communication and interpersonal skills",
-        "framing": "Incorporated Engineers shall demonstrate effective communication and interpersonal skills.",
+        "framing": "Incorporated Engineers demonstrate effective communication and interpersonal skills.",
         "statements": [
           {
             "id": "D1",
@@ -214,7 +214,7 @@
       {
         "id": "E",
         "title": "Personal and professional commitment",
-        "framing": "Incorporated Engineers shall demonstrate a personal commitment to professional standards, recognising obligations to society, the profession and the environment.",
+        "framing": "Incorporated Engineers demonstrate a personal commitment to professional standards, recognising obligations to society, the profession and the environment.",
         "statements": [
           {
             "id": "E1",
@@ -243,7 +243,7 @@
       {
         "id": "A",
         "title": "Knowledge and understanding",
-        "framing": "Chartered Engineers shall use a combination of general and specialist engineering knowledge and understanding to optimise the application of advanced and complex systems.",
+        "framing": "Chartered Engineers use a combination of general and specialist engineering knowledge and understanding to optimise the application of advanced and complex systems.",
         "statements": [
           {
             "id": "A1",
@@ -258,7 +258,7 @@
       {
         "id": "B",
         "title": "Design, development and solving engineering problems",
-        "framing": "Chartered Engineers shall apply appropriate theoretical and practical methods to the analysis and solution of engineering problems.",
+        "framing": "Chartered Engineers apply appropriate theoretical and practical methods to the analysis and solution of engineering problems.",
         "statements": [
           {
             "id": "B1",
@@ -277,7 +277,7 @@
       {
         "id": "C",
         "title": "Responsibility, management and leadership",
-        "framing": "Chartered Engineers shall demonstrate technical and commercial leadership.",
+        "framing": "Chartered Engineers demonstrate technical and commercial leadership.",
         "statements": [
           {
             "id": "C1",
@@ -300,7 +300,7 @@
       {
         "id": "D",
         "title": "Communication and interpersonal skills",
-        "framing": "Chartered Engineers shall demonstrate effective communication and interpersonal skills.",
+        "framing": "Chartered Engineers demonstrate effective communication and interpersonal skills.",
         "statements": [
           {
             "id": "D1",
@@ -319,7 +319,7 @@
       {
         "id": "E",
         "title": "Personal and professional commitment",
-        "framing": "Chartered Engineers shall demonstrate a personal commitment to professional standards, recognising obligations to society, the profession and the environment.",
+        "framing": "Chartered Engineers demonstrate a personal commitment to professional standards, recognising obligations to society, the profession and the environment.",
         "statements": [
           {
             "id": "E1",
