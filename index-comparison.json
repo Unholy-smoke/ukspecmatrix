@@ -1,0 +1,353 @@
+{
+  "title": "Which registration is right for me? – UK-SPEC titles compared",
+  "source": "UK-SPEC fourth edition v4.2: Table 1 overview (p7); comparison content EngTech pp.19–23, IEng pp.24–30, CEng pp.31–39 (framing + statements only, no examples)",
+  "overview": [
+    {
+      "title": "EngTech",
+      "descriptor": "Applies proven techniques and procedures to solve practical engineering problems. Applies safe systems of work.",
+      "keyAttributes": [
+        "Contribution to either the design, development, manufacture, commissioning, decommissioning, operation or maintenance of products, equipment, processes or services",
+        "Supervisory or technical responsibility",
+        "Effective interpersonal skills in communicating technical matters",
+        "Commitment to professional engineering values"
+      ]
+    },
+    {
+      "title": "IEng",
+      "descriptor": "Maintains and manages applications of current and developing technology, and may undertake engineering design, development, manufacture, construction and operation.",
+      "keyAttributes": [
+        "The theoretical knowledge to solve problems in developed technologies using well proven analytical techniques",
+        "Successful application of their knowledge to deliver engineering projects or services using established technologies and methods",
+        "Contribution to project and financial planning and management together with some responsibility for leading and developing other professional staff",
+        "Effective interpersonal skills in communicating technical matters",
+        "Commitment to professional engineering values"
+      ]
+    },
+    {
+      "title": "CEng",
+      "descriptor": "Develops solutions to engineering problems using new or existing technologies, through innovation, creativity and change. May be accountable for complex systems with significant levels of risk.",
+      "keyAttributes": [
+        "The theoretical knowledge to solve problems in new technologies and develop new analytical techniques",
+        "Successful application of the knowledge to deliver innovative products and services and/or take technical responsibility for complex engineering systems",
+        "Responsibility for financial and planning aspects of projects, sub- projects or tasks",
+        "Leading and developing other professional staff through management, mentoring or coaching",
+        "Effective interpersonal skills in communicating technical matters",
+        "Commitment to professional engineering values"
+      ]
+    }
+  ],
+  "tiers": {
+    "EngTech": [
+      {
+        "id": "A",
+        "title": "Knowledge and understanding",
+        "framing": "Engineering Technicians shall use engineering knowledge and understanding to apply technical and practical skills.",
+        "statements": [
+          {
+            "id": "A1",
+            "text": "Review and select appropriate techniques, procedures and methods to undertake tasks"
+          },
+          {
+            "id": "A2",
+            "text": "Use appropriate scientific, technical or engineering principles."
+          }
+        ]
+      },
+      {
+        "id": "B",
+        "title": "Design, development and solving engineering problems",
+        "framing": "Engineering Technicians shall contribute to the design, development, manufacture, construction, commissioning, decommissioning, operation or maintenance of products, equipment, processes, systems or services.",
+        "statements": [
+          {
+            "id": "B1",
+            "text": "Identify problems and apply appropriate methods to identify causes and achieve satisfactory solutions"
+          },
+          {
+            "id": "B2",
+            "text": "Identify, organise and use resources effectively to complete tasks, with consideration for cost, quality, safety, security and environmental impact."
+          }
+        ]
+      },
+      {
+        "id": "C",
+        "title": "Responsibility, management and leadership",
+        "framing": "Engineering Technicians shall accept and exercise personal responsibility.",
+        "statements": [
+          {
+            "id": "C1",
+            "text": "Work reliably and effectively without close supervision, to the appropriate codes of practice"
+          },
+          {
+            "id": "C2",
+            "text": "Accept responsibility for the work of themselves or others"
+          },
+          {
+            "id": "C3",
+            "text": "Accept, allocate and supervise technical and other tasks."
+          }
+        ]
+      },
+      {
+        "id": "D",
+        "title": "Communication and interpersonal skills",
+        "framing": "Engineering Technicians shall use effective communication and interpersonal skills.",
+        "statements": [
+          {
+            "id": "D1",
+            "text": "Communicate effectively with others, at all levels, in English"
+          },
+          {
+            "id": "D2",
+            "text": "Work effectively with colleagues, clients, suppliers or the public"
+          },
+          {
+            "id": "D3",
+            "text": "Demonstrate personal and social skills and awareness of diversity and inclusion issues."
+          }
+        ]
+      },
+      {
+        "id": "E",
+        "title": "Personal and professional commitment",
+        "framing": "Engineering Technicians shall demonstrate commitment to an appropriate code of professional conduct, recognising obligations to society, the profession and the environment.",
+        "statements": [
+          {
+            "id": "E1",
+            "text": "Understand and comply with relevant codes of conduct"
+          },
+          {
+            "id": "E2",
+            "text": "Understand the safety implications of their role and apply safe systems of work"
+          },
+          {
+            "id": "E3",
+            "text": "Understand the principles of sustainable development and apply them in their work"
+          },
+          {
+            "id": "E4",
+            "text": "Carry out and record the Continuing Professional Development (CPD) necessary to maintain and enhance competence in their own area of practice"
+          },
+          {
+            "id": "E5",
+            "text": "Understand the ethical issues that may arise in their role and carry out their responsibilities in an ethical manner."
+          }
+        ]
+      }
+    ],
+    "IEng": [
+      {
+        "id": "A",
+        "title": "Knowledge and understanding",
+        "framing": "Incorporated Engineers shall use a combination of general and specialist engineering knowledge and understanding to apply existing and emerging technology.",
+        "statements": [
+          {
+            "id": "A1",
+            "text": "Have maintained and extended a sound theoretical approach to the application of technology in engineering practice"
+          },
+          {
+            "id": "A2",
+            "text": "Use a sound evidence- based approach to problem- solving and contribute to continuous improvement."
+          }
+        ]
+      },
+      {
+        "id": "B",
+        "title": "Design, development and solving engineering problems",
+        "framing": "Incorporated Engineers shall apply appropriate theoretical and practical methods to design, develop, manufacture, construct, commission, operate, maintain, decommission and recycle engineering processes, systems, services and products.",
+        "statements": [
+          {
+            "id": "B1",
+            "text": "Identify, review and select techniques, procedures and methods to undertake engineering tasks"
+          },
+          {
+            "id": "B2",
+            "text": "Contribute to the design and development of engineering solutions"
+          },
+          {
+            "id": "B3",
+            "text": "Implement design solutions for equipment or processes and contribute to their evaluation."
+          }
+        ]
+      },
+      {
+        "id": "C",
+        "title": "Responsibility, management and leadership",
+        "framing": "Incorporated Engineers shall provide technical and commercial management.",
+        "statements": [
+          {
+            "id": "C1",
+            "text": "Plan the work and resources needed to enable effective implementation of engineering tasks and projects"
+          },
+          {
+            "id": "C2",
+            "text": "Manage (organise, direct and control), programme or schedule, budget and resource elements of engineering tasks or projects"
+          },
+          {
+            "id": "C3",
+            "text": "Manage teams, or the input of others, into own work and assist others to meet changing technical and management needs"
+          },
+          {
+            "id": "C4",
+            "text": "Take an active role in continuous quality improvement."
+          }
+        ]
+      },
+      {
+        "id": "D",
+        "title": "Communication and interpersonal skills",
+        "framing": "Incorporated Engineers shall demonstrate effective communication and interpersonal skills.",
+        "statements": [
+          {
+            "id": "D1",
+            "text": "Communicate effectively with others, at all levels, in English"
+          },
+          {
+            "id": "D2",
+            "text": "Clearly present and discuss proposals, justifications and conclusions"
+          },
+          {
+            "id": "D3",
+            "text": "Demonstrate personal and social skills and awareness of diversity and inclusion issues."
+          }
+        ]
+      },
+      {
+        "id": "E",
+        "title": "Personal and professional commitment",
+        "framing": "Incorporated Engineers shall demonstrate a personal commitment to professional standards, recognising obligations to society, the profession and the environment.",
+        "statements": [
+          {
+            "id": "E1",
+            "text": "Understand and comply with relevant codes of conduct"
+          },
+          {
+            "id": "E2",
+            "text": "Understand the safety implications of their role and manage, apply and improve safe systems of work"
+          },
+          {
+            "id": "E3",
+            "text": "Understand the principles of sustainable development and apply them in their work"
+          },
+          {
+            "id": "E4",
+            "text": "Carry out and record the Continuing Professional Development (CPD) necessary to maintain and enhance competence in their own area of practice"
+          },
+          {
+            "id": "E5",
+            "text": "Understand the ethical issues that may arise in their role and carry out their responsibilities in an ethical manner."
+          }
+        ]
+      }
+    ],
+    "CEng": [
+      {
+        "id": "A",
+        "title": "Knowledge and understanding",
+        "framing": "Chartered Engineers shall use a combination of general and specialist engineering knowledge and understanding to optimise the application of advanced and complex systems.",
+        "statements": [
+          {
+            "id": "A1",
+            "text": "Have maintained and extended a sound theoretical approach to enable them to develop their particular role"
+          },
+          {
+            "id": "A2",
+            "text": "Are developing technological solutions to unusual or challenging problems, using their knowledge and understanding and/or dealing with complex technical issues or situations with significant levels of risk."
+          }
+        ]
+      },
+      {
+        "id": "B",
+        "title": "Design, development and solving engineering problems",
+        "framing": "Chartered Engineers shall apply appropriate theoretical and practical methods to the analysis and solution of engineering problems.",
+        "statements": [
+          {
+            "id": "B1",
+            "text": "Take an active role in the identification and definition of project requirements, problems and opportunities"
+          },
+          {
+            "id": "B2",
+            "text": "Can identify the appropriate investigations and research needed to undertake the design, development and analysis required to complete an engineering task and conduct these activities effectively"
+          },
+          {
+            "id": "B3",
+            "text": "Can implement engineering tasks and evaluate the effectiveness of engineering solutions."
+          }
+        ]
+      },
+      {
+        "id": "C",
+        "title": "Responsibility, management and leadership",
+        "framing": "Chartered Engineers shall demonstrate technical and commercial leadership.",
+        "statements": [
+          {
+            "id": "C1",
+            "text": "Plan the work and resources needed to enable effective implementation of a significant engineering task or project"
+          },
+          {
+            "id": "C2",
+            "text": "Manage (organise, direct and control), programme or schedule, budget and resource elements of a significant engineering task or project"
+          },
+          {
+            "id": "C3",
+            "text": "Lead teams or technical specialisms and assist others to meet changing technical and managerial needs"
+          },
+          {
+            "id": "C4",
+            "text": "Bring about continuous quality improvement and promote best practice."
+          }
+        ]
+      },
+      {
+        "id": "D",
+        "title": "Communication and interpersonal skills",
+        "framing": "Chartered Engineers shall demonstrate effective communication and interpersonal skills.",
+        "statements": [
+          {
+            "id": "D1",
+            "text": "Communicate effectively with others, at all levels, in English"
+          },
+          {
+            "id": "D2",
+            "text": "Clearly present and discuss proposals, justifications and conclusions"
+          },
+          {
+            "id": "D3",
+            "text": "Demonstrate personal and social skills and awareness of diversity and inclusion issues."
+          }
+        ]
+      },
+      {
+        "id": "E",
+        "title": "Personal and professional commitment",
+        "framing": "Chartered Engineers shall demonstrate a personal commitment to professional standards, recognising obligations to society, the profession and the environment.",
+        "statements": [
+          {
+            "id": "E1",
+            "text": "Understand and comply with relevant codes of conduct"
+          },
+          {
+            "id": "E2",
+            "text": "Understand the safety implications of their role and manage, apply and improve safe systems of work"
+          },
+          {
+            "id": "E3",
+            "text": "Understand the principles of sustainable development and apply them in their work"
+          },
+          {
+            "id": "E4",
+            "text": "Carry out and record the Continuing Professional Development (CPD) necessary to maintain and enhance competence in their own area of practice"
+          },
+          {
+            "id": "E5",
+            "text": "Understand the ethical issues that may arise in their role and carry out their responsibilities in an ethical manner."
+          }
+        ]
+      }
+    ]
+  },
+  "linksThrough": {
+    "CEng": "CEng detail page (live in prototype)",
+    "IEng": "stub/disabled",
+    "EngTech": "stub/disabled"
+  }
+}
