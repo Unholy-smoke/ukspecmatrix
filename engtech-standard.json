@@ -1,0 +1,239 @@
+{
+  "title": "Engineering Technician (EngTech)",
+  "source": "UK-SPEC fourth edition v4.2, pp.21–24 (competences), p8/p9/p10/p18/p20 (front matter), pp.49–55 (glossary)",
+  "note": "Competence text verified verbatim against uk-spec-fourth-edition-v42.pdf. Note: competence E uses the intro \"This shall include the ability to:\" where A–D use \"The applicant shall demonstrate that they:\" – this is as printed. The \"How to get registered\" text and glossary definitions are lightly condensed/composed from the source and marked as such.",
+  "frontMatter": {
+    "whatIsEngTech": {
+      "lead": "Engineering Technicians apply proven techniques and procedures to the solution of practical engineering problems.",
+      "demonstrates": [
+        "Engineering knowledge and understanding to apply technical and practical skills",
+        "Evidence of their contribution to the design, development, manufacture, commissioning, decommissioning, operation or maintenance of products, equipment, processes or services",
+        "Supervisory or technical responsibility",
+        "Effective interpersonal skills in communicating technical matters",
+        "The ability to operate in accordance with safe systems of work and to demonstrate appropriate understanding of the principles of sustainability",
+        "Commitment to professional engineering values"
+      ]
+    },
+    "howToRegister": "The Engineering Council sets the Standards for EngTech, IEng and CEng, but you apply and are assessed through a Professional Engineering Institution (a Licensee) relevant to your discipline – the Licensee is the awarding body. For EngTech the Professional Review may include an interview, at the discretion of the Licensee, or may be based solely on the submitted documents. [Condensed from UK-SPEC p10/p18 – verify before use.]",
+    "competenceDefinition": "Competence is defined as a professional’s ability to carry out engineering tasks successfully and safely within their field of practice. This includes having the individual skills, knowledge and understanding, personal behaviour and approach, to be able to work collaboratively with others to achieve the intended outcomes. Competence includes the ability to make professional judgments and an awareness of the limits of one’s own ability and knowledge in order to seek assistance when required.",
+    "illustrativeExamplesCaption": "The examples of evidence are intended as guidance to help identify activities that might demonstrate the required competence and commitment for Engineering Technician registration. They are intended as examples only as the most appropriate evidence will vary with each individual role. The list is not exhaustive and other types of evidence might be valid. There is no requirement to provide multiple examples of evidence for each area of competence, but examples from two or three projects or tasks would be useful."
+  },
+  "terms": {
+    "competence": {
+      "label": "Competence",
+      "html": "Competence is defined as a professional’s ability to carry out engineering tasks successfully and safely within their field of practice. This includes having the individual skills, knowledge and understanding, personal behaviour and approach, to be able to work collaboratively with others to achieve the intended outcomes. Competence includes the ability to make professional judgments and an awareness of the limits of one’s own ability and knowledge in order to seek assistance when required."
+    },
+    "professionalCommitment": {
+      "label": "Professional commitment",
+      "html": "A personal and professional commitment to society, the environment and the profession – including public and employee safety, protecting the environment and sustainable development, complying with codes of conduct and the law, safe systems of work, CPD, acting ethically, recognising inclusivity and diversity, a security-minded approach, and active participation in the profession. [From UK-SPEC p9.]"
+    },
+    "cpd": {
+      "label": "Continuing Professional Development (CPD)",
+      "html": "The systematic acquisition of knowledge and skills, and the development of personal qualities, to maintain and enhance professional competence. Recording CPD is a requirement of registration. [Glossary, pp.49–55.]"
+    },
+    "engTech": {
+      "label": "Engineering Technician (EngTech)",
+      "html": "One of the professional titles available to individuals who meet the required standards of competence and commitment. See www.engc.org.uk/engtech."
+    },
+    "iEng": {
+      "label": "Incorporated Engineer (IEng)",
+      "html": "One of the professional titles available to individuals who meet the required standards of competence and commitment. See www.engc.org.uk/ieng."
+    },
+    "cEng": {
+      "label": "Chartered Engineer (CEng)",
+      "html": "One of the professional titles available to individuals who meet the required standards of competence and commitment. See www.engc.org.uk/ceng."
+    },
+    "licensee": {
+      "label": "Licensee / PEI",
+      "html": "A Professional Engineering Institution (PEI): an engineering membership organisation licensed by the Engineering Council to assess applicants for professional registration and act as the awarding body. See www.engc.org.uk/licensees."
+    }
+  },
+  "groups": [
+    {
+      "id": "A",
+      "title": "Knowledge and understanding",
+      "framing": "Engineering Technicians shall use engineering knowledge and understanding to apply technical and practical skills.",
+      "explanation": "This competence is about having knowledge of the technologies, standards and practices relevant to the applicant’s area of work and having evidence of maintaining and applying this knowledge.",
+      "statementsIntro": "The applicant shall demonstrate that they:",
+      "statements": [
+        {
+          "id": "A1",
+          "text": "Review and select appropriate techniques, procedures and methods to undertake tasks",
+          "illustrativeExamples": [
+            "Evaluating potential methods of carrying out an engineering task and selecting the most appropriate solution",
+            "Recognising a difficulty and then identifying an approach to resolve it",
+            "Identifying an improvement in a technique, procedure, process or method",
+            "Interpreting and carrying out test procedures"
+          ]
+        },
+        {
+          "id": "A2",
+          "text": "Use appropriate scientific, technical or engineering principles.",
+          "illustrativeExamples": [
+            "Drawing on your technical knowledge to complete a task",
+            "Performing calculations using standard formulae",
+            "Analysing performance or test data or comparing performance information with published material"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "title": "Design, development and solving engineering problems",
+      "framing": "Engineering Technicians shall contribute to the design, development, manufacture, construction, commissioning, decommissioning, operation or maintenance of products, equipment, processes, systems or services.",
+      "explanation": "This competence is about the ability to apply engineering knowledge effectively and efficiently to the individual tasks which need to be undertaken in the applicant’s role.",
+      "statementsIntro": "The applicant shall demonstrate that they:",
+      "statements": [
+        {
+          "id": "B1",
+          "text": "Identify problems and apply appropriate methods to identify causes and achieve satisfactory solutions",
+          "illustrativeExamples": [
+            "Using knowledge to identify a problem or an opportunity for improvement",
+            "Investigating a problem to identify the underlying cause",
+            "Identifying a solution to a problem or an improvement opportunity",
+            "Contributing to the design of an item or process"
+          ]
+        },
+        {
+          "id": "B2",
+          "text": "Identify, organise and use resources effectively to complete tasks, with consideration for cost, quality, safety, security and environmental impact.",
+          "illustrativeExamples": [
+            "Balancing these factors in selecting appropriate materials",
+            "Identifying precautions as a result of evaluating risks and other factors",
+            "Considering how waste can be minimised, recycled or disposed of safely if recycling is not possible",
+            "Contributing to best practice methods of continuous improvement",
+            "Improving the quality of an operation or process"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "title": "Responsibility, management and leadership",
+      "framing": "Engineering Technicians shall accept and exercise personal responsibility.",
+      "explanation": "This competence is about the ability to plan and manage the applicant’s own work effectively and efficiently. It is also about the ability to consider and identify improvements to maintain quality in their work.",
+      "statementsIntro": "The applicant shall demonstrate that they:",
+      "statements": [
+        {
+          "id": "C1",
+          "text": "Work reliably and effectively without close supervision, to the appropriate codes of practice",
+          "illustrativeExamples": [
+            "Completing challenging tasks successfully within your area of work",
+            "Identifying issues which fall outside of your current knowledge and seeking advice",
+            "Identifying standards and codes of practice relevant to a new task"
+          ]
+        },
+        {
+          "id": "C2",
+          "text": "Accept responsibility for the work of themselves or others",
+          "illustrativeExamples": [
+            "Fully understanding drawings, permits to work, instructions or other similar documents after appropriate checking, and identifying issues",
+            "Inspecting work carried out by others",
+            "Checking the status of equipment, the work environment and facilities and taking appropriate actions before commencing work"
+          ]
+        },
+        {
+          "id": "C3",
+          "text": "Accept, allocate and supervise technical and other tasks.",
+          "illustrativeExamples": [
+            "Ensuring that the scope of a task is clear before accepting and/or allocating it to others",
+            "Querying any aspect of a task which is not clear and/or providing an explanation if a query is raised by others",
+            "Learning from your own experience and/or providing constructive feedback when supervising or working with others"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "D",
+      "title": "Communication and interpersonal skills",
+      "framing": "Engineering Technicians shall use effective communication and interpersonal skills.",
+      "explanation": "This is the ability to work with others constructively, to explain ideas and proposals clearly and to discuss issues objectively and constructively.",
+      "statementsIntro": "The applicant shall demonstrate that they:",
+      "statements": [
+        {
+          "id": "D1",
+          "text": "Communicate effectively with others, at all levels, in English",
+          "illustrativeExamples": [
+            "Contributing to meetings and discussions",
+            "Preparing communications, documents and reports on technical matters",
+            "Exchanging information and providing advice to technical and non-technical colleagues"
+          ]
+        },
+        {
+          "id": "D2",
+          "text": "Work effectively with colleagues, clients, suppliers or the public",
+          "illustrativeExamples": [
+            "Contributing constructively as part of a team",
+            "Successfully resolving issues in discussions with team members, suppliers, clients and/or others",
+            "Persuading others to accept suggestions or recommendations",
+            "Identifying, agreeing and working towards collective goals"
+          ]
+        },
+        {
+          "id": "D3",
+          "text": "Demonstrate personal and social skills and awareness of diversity and inclusion issues.",
+          "illustrativeExamples": [
+            "Knowing and managing own emotions, strengths and weaknesses",
+            "Being confident and flexible in dealing with new and changing interpersonal situations",
+            "Creating, maintaining and enhancing productive working relationships, and resolving conflicts",
+            "Being supportive of the needs and concerns of others, especially where this relates to diversity and inclusion"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "E",
+      "title": "Personal and professional commitment",
+      "framing": "Engineering Technicians shall demonstrate commitment to an appropriate code of professional conduct, recognising obligations to society, the profession and the environment.",
+      "explanation": "This competence is about ensuring that the applicant is acting in a professional manner in their work and in their dealings with others. An Engineering Technician should set a standard and example to others with regard to professionalism.",
+      "statementsIntro": "This shall include the ability to:",
+      "statements": [
+        {
+          "id": "E1",
+          "text": "Understand and comply with relevant codes of conduct",
+          "illustrativeExamples": [
+            "Demonstrating compliance with your Licensee’s Code of Professional Conduct",
+            "Working within all relevant legislative and regulatory frameworks, including social and employment legislation"
+          ]
+        },
+        {
+          "id": "E2",
+          "text": "Understand the safety implications of their role and apply safe systems of work",
+          "illustrativeExamples": [
+            "Providing evidence of applying current safety requirements, such as risk assessment and other examples of good practice you adopt in your work",
+            "A sound knowledge of health and safety legislation, for example: HASAW 1974, CDM regulations, ISO 45001 and company safety policies"
+          ]
+        },
+        {
+          "id": "E3",
+          "text": "Understand the principles of sustainable development and apply them in their work",
+          "illustrativeExamples": [
+            "Recognising how sustainability principles, as described in the Guidance on Sustainability on page 48, can be applied in your day-to-day work",
+            "Identifying actions that you can and have taken to improve sustainability"
+          ]
+        },
+        {
+          "id": "E4",
+          "text": "Carry out and record the Continuing Professional Development (CPD) necessary to maintain and enhance competence in their own area of practice",
+          "illustrativeExamples": [
+            "Undertaking reviews of your own development needs",
+            "Planning how to meet personal and organisational objectives",
+            "Carrying out and recording planned and unplanned CPD activities",
+            "Maintaining evidence of competence development",
+            "Evaluating CPD outcomes against any plans made",
+            "Assisting others with their own CPD"
+          ]
+        },
+        {
+          "id": "E5",
+          "text": "Understand the ethical issues that may arise in their role and carry out their responsibilities in an ethical manner.",
+          "illustrativeExamples": [
+            "Understanding the ethical issues that you may encounter in your role",
+            "Giving an example of where you have applied ethical principles as described in the Statement of Ethical Principles on page 47",
+            "Giving an example of where you have applied or upheld ethical principles as defined by your organisation or company"
+          ]
+        }
+      ]
+    }
+  ]
+}

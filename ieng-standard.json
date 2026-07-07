@@ -1,0 +1,276 @@
+{
+  "title": "Incorporated Engineer (IEng)",
+  "source": "UK-SPEC fourth edition v4.2, pp.26–31 (competences), p8/p9/p10/p25 (front matter), pp.49–55 (glossary)",
+  "note": "Competence text verified verbatim against uk-spec-fourth-edition-v42.pdf. The \"How to get registered\" text and glossary definitions are lightly condensed/composed from the source and marked as such.",
+  "frontMatter": {
+    "whatIsIEng": {
+      "lead": "Incorporated Engineers maintain and manage applications of current and developing technology, and may undertake engineering design, development, manufacture, construction and operation.",
+      "demonstrates": [
+        "The theoretical knowledge to solve problems in established technologies using well proven analytical techniques",
+        "Successful application of the knowledge to deliver engineering tasks or services using established technologies and methods",
+        "Contribution to the financial and planning aspects of projects or tasks and contribution to leading and developing other professional staff",
+        "Effective interpersonal skills in communicating technical matters",
+        "The ability to specify and operate to safe systems of work and to demonstrate appropriate consideration of the principles of sustainability",
+        "Commitment to professional engineering values"
+      ]
+    },
+    "howToRegister": "The Engineering Council sets the Standards for EngTech, IEng and CEng, but you apply and are assessed through a Professional Engineering Institution (a Licensee) relevant to your discipline – the Licensee is the awarding body. For IEng the assessment (Professional Review) has two stages: an assessment of written evidence, then an interview, which is mandatory for IEng applicants. [Condensed from UK-SPEC p10/p18 – verify before use.]",
+    "competenceDefinition": "Competence is defined as a professional’s ability to carry out engineering tasks successfully and safely within their field of practice. This includes having the individual skills, knowledge and understanding, personal behaviour and approach, to be able to work collaboratively with others to achieve the intended outcomes. Competence includes the ability to make professional judgments and an awareness of the limits of one’s own ability and knowledge in order to seek assistance when required.",
+    "illustrativeExamplesCaption": "The examples of evidence are intended as guidance to help identify activities that might demonstrate the required competence and commitment for Incorporated Engineer registration. They are intended as examples only as the most appropriate evidence will vary with each individual role. The list is not exhaustive and other types of evidence might be valid. There is no requirement to provide multiple examples of evidence for each area of competence, but examples from two or three projects or tasks would be useful."
+  },
+  "terms": {
+    "competence": {
+      "label": "Competence",
+      "html": "Competence is defined as a professional’s ability to carry out engineering tasks successfully and safely within their field of practice. This includes having the individual skills, knowledge and understanding, personal behaviour and approach, to be able to work collaboratively with others to achieve the intended outcomes. Competence includes the ability to make professional judgments and an awareness of the limits of one’s own ability and knowledge in order to seek assistance when required."
+    },
+    "professionalCommitment": {
+      "label": "Professional commitment",
+      "html": "A personal and professional commitment to society, the environment and the profession – including public and employee safety, protecting the environment and sustainable development, complying with codes of conduct and the law, safe systems of work, CPD, acting ethically, recognising inclusivity and diversity, a security-minded approach, and active participation in the profession. [From UK-SPEC p9.]"
+    },
+    "cpd": {
+      "label": "Continuing Professional Development (CPD)",
+      "html": "The systematic acquisition of knowledge and skills, and the development of personal qualities, to maintain and enhance professional competence. Recording CPD is a requirement of registration. [Glossary, pp.49–55.]"
+    },
+    "engTech": {
+      "label": "Engineering Technician (EngTech)",
+      "html": "One of the professional titles available to individuals who meet the required standards of competence and commitment. See www.engc.org.uk/engtech."
+    },
+    "iEng": {
+      "label": "Incorporated Engineer (IEng)",
+      "html": "One of the professional titles available to individuals who meet the required standards of competence and commitment. See www.engc.org.uk/ieng."
+    },
+    "cEng": {
+      "label": "Chartered Engineer (CEng)",
+      "html": "One of the professional titles available to individuals who meet the required standards of competence and commitment. See www.engc.org.uk/ceng."
+    },
+    "licensee": {
+      "label": "Licensee / PEI",
+      "html": "A Professional Engineering Institution (PEI): an engineering membership organisation licensed by the Engineering Council to assess applicants for professional registration and act as the awarding body. See www.engc.org.uk/licensees."
+    }
+  },
+  "groups": [
+    {
+      "id": "A",
+      "title": "Knowledge and understanding",
+      "framing": "Incorporated Engineers shall use a combination of general and specialist engineering knowledge and understanding to apply existing and emerging technology.",
+      "explanation": "This competence is about having knowledge of the technologies, standards and practices relevant to the applicant’s area of practice and having evidence of maintaining and applying this knowledge.",
+      "statementsIntro": "The applicant shall demonstrate that they:",
+      "statements": [
+        {
+          "id": "A1",
+          "text": "Have maintained and extended a sound theoretical approach to the application of technology in engineering practice",
+          "illustrativeExamples": [
+            "Identifying the limits of your knowledge and skills",
+            "Taking steps to develop and extend personal knowledge of appropriate technology, both current and emerging",
+            "Applying newly gained knowledge successfully in a task or project",
+            "Reviewing current procedures and processes and recommended improvements or changes to reflect best practice",
+            "Developing knowledge needed to work in a new industry area or discipline"
+          ]
+        },
+        {
+          "id": "A2",
+          "text": "Use a sound evidence-based approach to problem-solving and contribute to continuous improvement.",
+          "illustrativeExamples": [
+            "Applying knowledge and experience to investigate and solve problems arising during engineering tasks and implementing corrective action",
+            "Identifying opportunities for improvements and how these have been (or could be) implemented",
+            "Using an established process to analyse issues and establish priorities"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "title": "Design, development and solving engineering problems",
+      "framing": "Incorporated Engineers shall apply appropriate theoretical and practical methods to design, develop, manufacture, construct, commission, operate, maintain, decommission and recycle engineering processes, systems, services and products.",
+      "explanation": "This competence is about the ability to identify appropriate methods and approaches to use to undertake a task within their area of practice and to make a significant contribution to the development of a design or process or the maintenance of operations.",
+      "statementsIntro": "The applicant shall demonstrate that they:",
+      "statements": [
+        {
+          "id": "B1",
+          "text": "Identify, review and select techniques, procedures and methods to undertake engineering tasks",
+          "illustrativeExamples": [
+            "Establishing the engineering steps needed to carry out a task efficiently",
+            "Identifying the available products or processes needed to undertake an engineering task and establishing a means of identifying the most suitable solution",
+            "Preparing technical specifications",
+            "Reviewing and comparing responses to the technical aspects of tender invitations",
+            "Establishing user requirements for improvements"
+          ]
+        },
+        {
+          "id": "B2",
+          "text": "Contribute to the design and development of engineering solutions",
+          "illustrativeExamples": [
+            "Contributing to the identification and specification of design and development requirements for engineering products, processes, systems and services",
+            "Identifying operational risks and evaluating possible engineering solutions, taking account of cost, quality, safety, reliability, accessibility, appearance, fitness for purpose, security (including cyber security), intellectual property constraints and opportunities, and environmental impact",
+            "Collecting and analysing results",
+            "Carrying out necessary tests"
+          ]
+        },
+        {
+          "id": "B3",
+          "text": "Implement design solutions for equipment or processes and contribute to their evaluation.",
+          "illustrativeExamples": [
+            "Identifying the resources required for implementation",
+            "Implementing design solutions, taking account of critical constraints, including due concern for safety and sustainability",
+            "Identifying problems during implementation and taking corrective action",
+            "Contributing to recommendations for improvement and actively learning from feedback on results"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "title": "Responsibility, management and leadership",
+      "framing": "Incorporated Engineers shall provide technical and commercial management.",
+      "explanation": "This competence is about the ability to plan the applicant’s own work and manage or specify the work of others effectively, efficiently and in a way which provides leadership at an appropriate level, whether technical or commercial. Leadership is not necessarily about having a formal line management role. In matrix management and other types of organisational structure, where Incorporated Engineers are working within complex and varied working relationships, they will provide leadership to achieve objectives. This competence is also about the ability to consider and identify improvements to quality.",
+      "statementsIntro": "The applicant shall demonstrate that they:",
+      "statements": [
+        {
+          "id": "C1",
+          "text": "Plan the work and resources needed to enable effective implementation of engineering tasks and projects",
+          "illustrativeExamples": [
+            "Identifying factors affecting the project implementation",
+            "Carrying out holistic and systematic risk identification, assessment and management",
+            "Preparing and agreeing implementation plans and method statements",
+            "Securing the necessary resources and confirming roles in a project team",
+            "Applying the necessary contractual arrangements with other stakeholders (clients, subcontractors, suppliers, etc)"
+          ]
+        },
+        {
+          "id": "C2",
+          "text": "Manage (organise, direct and control), programme or schedule, budget and resource elements of engineering tasks or projects",
+          "illustrativeExamples": [
+            "Operating appropriate management systems",
+            "Working to the agreed quality standards, programme and budget, within legal and statutory requirements",
+            "Managing work teams, coordinating project activities",
+            "Identifying variations from quality standards, programme and budgets, and taking corrective action",
+            "Evaluating performance and recommending improvements"
+          ]
+        },
+        {
+          "id": "C3",
+          "text": "Manage teams, or the input of others, into own work and assist others to meet changing technical and management needs",
+          "illustrativeExamples": [
+            "Agreeing objectives and work plans with teams and individuals",
+            "Reinforcing team commitment to professional standards",
+            "Leading and supporting team and individual development",
+            "Assessing team and individual performance, and providing feedback",
+            "Seeking input from other teams or specialists where needed and managing the relationship"
+          ]
+        },
+        {
+          "id": "C4",
+          "text": "Take an active role in continuous quality improvement.",
+          "illustrativeExamples": [
+            "Ensuring the application of quality management principles by team members and colleagues",
+            "Managing operations to maintain quality standards eg ISO 9000, EQFM",
+            "Evaluating projects and making recommendations for improvement",
+            "Implementing and sharing the results of lessons learned"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "D",
+      "title": "Communication and interpersonal skills",
+      "framing": "Incorporated Engineers shall demonstrate effective communication and interpersonal skills.",
+      "explanation": "This is the ability to work with others constructively, to explain ideas and proposals clearly and to discuss issues objectively and constructively.",
+      "statementsIntro": "The applicant shall demonstrate that they:",
+      "statements": [
+        {
+          "id": "D1",
+          "text": "Communicate effectively with others, at all levels, in English",
+          "illustrativeExamples": [
+            "Contributing to, chairing and recording meetings and discussions",
+            "Preparing communications, documents and reports on technical matters",
+            "Exchanging information and providing advice to technical and non-technical colleagues",
+            "Engaging or interacting with professional networks"
+          ]
+        },
+        {
+          "id": "D2",
+          "text": "Clearly present and discuss proposals, justifications and conclusions",
+          "illustrativeExamples": [
+            "Preparing and delivering appropriate presentations",
+            "Managing debates with audiences",
+            "Feeding the results back to improve the proposals",
+            "Contributing to the awareness of risk"
+          ]
+        },
+        {
+          "id": "D3",
+          "text": "Demonstrate personal and social skills and awareness of diversity and inclusion issues.",
+          "illustrativeExamples": [
+            "Knowing and managing own emotions, strengths and weaknesses",
+            "Being confident and flexible in dealing with new and changing interpersonal situations",
+            "Identifying, agreeing and working towards collective goals",
+            "Creating, maintaining and enhancing productive working relationships, and resolving conflicts",
+            "Being supportive of the needs and concerns of others, especially where this relates to diversity and inclusion"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "E",
+      "title": "Personal and professional commitment",
+      "framing": "Incorporated Engineers shall demonstrate a personal commitment to professional standards, recognising obligations to society, the profession and the environment.",
+      "explanation": "This competence is about ensuring that the applicant is acting in a professional manner in their work and in their dealings with others. An Incorporated Engineer should set a standard and example to others with regard to professionalism.",
+      "statementsIntro": "The applicant shall demonstrate that they:",
+      "statements": [
+        {
+          "id": "E1",
+          "text": "Understand and comply with relevant codes of conduct",
+          "illustrativeExamples": [
+            "Demonstrating compliance with your Licensee’s Code of Professional Conduct",
+            "Identifying aspects of the Code particularly relevant to your role",
+            "Managing work within all relevant legislative and regulatory frameworks, including social and employment legislation"
+          ]
+        },
+        {
+          "id": "E2",
+          "text": "Understand the safety implications of their role and manage, apply and improve safe systems of work",
+          "illustrativeExamples": [
+            "Identifying and taking responsibility for your own obligations for health, safety and welfare issues",
+            "Managing systems that satisfy health, safety and welfare requirements",
+            "Developing and implementing appropriate hazard identification and risk management systems and culture",
+            "Managing, evaluating and improving these systems",
+            "Applying a sound knowledge of health and safety legislation, for example: HASAW 1974, CDM regulations, ISO 45001 and company safety policies"
+          ]
+        },
+        {
+          "id": "E3",
+          "text": "Understand the principles of sustainable development and apply them in their work",
+          "illustrativeExamples": [
+            "Operating and acting responsibly, taking account of the need to progress environmental, social and economic outcomes simultaneously",
+            "Recognising how sustainability principles, as described in the Guidance on Sustainability on page 48 can be applied in your day-to-day work",
+            "Providing products and services which maintain and enhance the quality of the environment and community, and meet financial objectives",
+            "Understanding and encouraging stakeholder involvement in sustainable development",
+            "Using resources efficiently and effectively",
+            "Taking action to minimise environmental impact in your area of responsibility"
+          ]
+        },
+        {
+          "id": "E4",
+          "text": "Carry out and record the Continuing Professional Development (CPD) necessary to maintain and enhance competence in their own area of practice",
+          "illustrativeExamples": [
+            "Undertaking reviews of your own development needs",
+            "Planning how to meet personal and organisational objectives",
+            "Carrying out and recording planned and unplanned CPD activities",
+            "Maintaining evidence of competence development",
+            "Evaluating CPD outcomes against any plans made",
+            "Assisting others with their own CPD"
+          ]
+        },
+        {
+          "id": "E5",
+          "text": "Understand the ethical issues that may arise in their role and carry out their responsibilities in an ethical manner.",
+          "illustrativeExamples": [
+            "Understanding the ethical issues that you may encounter in your role",
+            "Giving an example of where you have applied ethical principles as described in the Statement of Ethical Principles on page 47",
+            "Giving an example of where you have applied or upheld ethical principles as defined by your organisation or company"
+          ]
+        }
+      ]
+    }
+  ]
+}

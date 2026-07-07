@@ -1,0 +1,227 @@
+{
+  "title": "ICT Technician (ICTTech)",
+  "source": "ICTTech Standard third edition, pp.18–23 (competence tables), transcribed verbatim from \"icttech-3rd-edition conv.xls\"",
+  "note": "Text verified verbatim against \"icttech-3rd-edition.pdf\" pp.18–23. Five conversion artifacts in the xls (\"dificulty\", \"eficiently\" ×2, \"ICTTechnician\", missing spaces in \"2.Accept\"/\"3.Accept\") were corrected to match the PDF. \"manufacturers requirements\" (no apostrophe) is as printed in the PDF. Hard line-wraps have been unwrapped; the \"E ... (continued)\" heading on p.23 is merged into the single E table. No other words or punctuation changed.",
+  "columns": [
+    "Competence",
+    "The applicant shall demonstrate that they:",
+    "Examples of evidence"
+  ],
+  "groups": [
+    {
+      "id": "A",
+      "title": "Knowledge and understanding",
+      "framing": "ICT Technicians shall use ICT knowledge and understanding to apply technical, practical and systems skills.",
+      "explanation": "This competence is about having knowledge of the technologies, standards and practices relevant to the applicant’s area of work and having evidence of maintaining and applying this knowledge.",
+      "statementsIntro": "The applicant shall demonstrate that they:",
+      "statements": [
+        {
+          "id": "A1",
+          "text": "Apply ICT principles in an analytical and systematic approach, to solve and review problems and contribute to continuous improvement",
+          "illustrativeExamples": [
+            "Evaluating potential methods of carrying out an engineering task and selecting the most appropriate solution",
+            "Recognising a difficulty and then identifying an approach to resolve it",
+            "Identifying an improvement in a technique, procedure, process or method",
+            "Interpreting and carrying out test procedures"
+          ]
+        },
+        {
+          "id": "A2",
+          "text": "Review, select and use appropriate techniques, procedures and methods to undertake activities.",
+          "illustrativeExamples": [
+            "Drawing on your technical knowledge to complete a task",
+            "Performing calculations using standard formulae",
+            "Analysing performance or test data or comparing performance information with published material",
+            "Applying knowledge of modelling packages and an ability to use them to solve problems"
+          ]
+        }
+      ],
+      "sourcePages": [
+        18
+      ]
+    },
+    {
+      "id": "B",
+      "title": "Design, development and solving ICT problems",
+      "framing": "ICT Technicians shall contribute to the design, development, configuration, testing, commissioning, installation, deployment, operation, migration or maintenance of ICT solutions, products, processes, systems, services or applications.",
+      "explanation": "This competence is about the ability to apply ICT knowledge effectively and efficiently to the individual tasks which need to be undertaken in the applicant’s role.",
+      "statementsIntro": "The applicant shall demonstrate that they:",
+      "statements": [
+        {
+          "id": "B1",
+          "text": "Identify and/or respond to problems with ICT solutions, services or infrastructure and apply suitable methods to seek the causes and to achieve the development of satisfactory solutions",
+          "illustrativeExamples": [
+            "Using knowledge to identify a problem or an opportunity for improvement",
+            "Investigating a problem to identify the underlying cause",
+            "Identifying a solution to a problem or an improvement opportunity",
+            "Contributing to the design of an item or process"
+          ]
+        },
+        {
+          "id": "B2",
+          "text": "Identify, organise and use resources effectively to complete ICT tasks, with consideration for factors such as cost, performance, confidentiality, security, quality and availability of service, health, safety and environmental impact.\nor\nConfigure or maintain ICT systems to provide satisfactory performance and quality of service.\nor\nSecure and protect ICT systems from intrusion, damage, attack or data loss.",
+          "illustrativeExamples": [
+            "Balancing these factors in selecting appropriate materials",
+            "Identifying precautions as a result of evaluating risks and other factors",
+            "Considering how waste can be minimised, recycled or disposed of safely if recycling is not possible",
+            "Contributing to best practice methods of continuous improvement",
+            "Improving the quality of an operation or process",
+            "Ability to tailor and run simulation and other models",
+            "Ability to solve software and/or related technical problems under general guidance from more senior staff",
+            "Knowledge of LAN/WAN: installing equipment and software, upgrading, configuration, testing",
+            "System administration tasks in line with manufacturers requirements"
+          ]
+        }
+      ],
+      "sourcePages": [
+        19
+      ]
+    },
+    {
+      "id": "C",
+      "title": "Responsibility, management and leadership",
+      "framing": "ICT Technicians shall accept and exercise personal responsibility.",
+      "explanation": "This competence is about the ability to plan and manage the applicant’s own work effectively and efficiently. It is also about the ability to consider and identify improvements to maintain quality in their work.",
+      "statementsIntro": "The applicant shall demonstrate that they:",
+      "statements": [
+        {
+          "id": "C1",
+          "text": "Work reliably and effectively on ICT tasks without close supervision and by adhering to the job instructions or best practice",
+          "illustrativeExamples": [
+            "Completing challenging tasks successfully within your area of work",
+            "Identifying issues which fall outside of your current knowledge and seeking advice",
+            "Identifying standards and codes of practice relevant to a new task"
+          ]
+        },
+        {
+          "id": "C2",
+          "text": "Accept responsibility for the work of themselves or others",
+          "illustrativeExamples": [
+            "Fully understanding drawings, permits to work, instructions or other similar documents after appropriate checking, and identifying issues",
+            "Inspecting work carried out by others",
+            "Checking the status of equipment, the work environment and facilities and taking appropriate actions before commencing work"
+          ]
+        },
+        {
+          "id": "C3",
+          "text": "Accept, allocate or supervise technical and other tasks",
+          "illustrativeExamples": [
+            "Ensuring that the scope of a task is clear before accepting and/or allocating it to others",
+            "Querying any aspect of a task which is not clear and/or providing an explanation if a query is raised by others",
+            "Learning from your own experience and/or providing constructive feedback when supervising or working with others"
+          ]
+        },
+        {
+          "id": "C4",
+          "text": "Be aware of and/or involved in continuous quality improvement.",
+          "illustrativeExamples": [
+            "Demonstrate how you have contributed to relevant quality audits and where you have delivered against a quality improvement action",
+            "Examples of where you have reported a problem which has subsequently improved a process"
+          ]
+        }
+      ],
+      "sourcePages": [
+        20
+      ]
+    },
+    {
+      "id": "D",
+      "title": "Communication and interpersonal skills",
+      "framing": "ICT Technicians shall use effective communication and interpersonal skills.",
+      "explanation": "This is the ability to work with others constructively, to explain ideas and proposals clearly and to discuss issues objectively and constructively.",
+      "statementsIntro": "The applicant shall demonstrate that they:",
+      "statements": [
+        {
+          "id": "D1",
+          "text": "Communicate technical and other information effectively in English1",
+          "illustrativeExamples": [
+            "Contributing to meetings and discussions",
+            "Preparing communications, documents and reports on technical matters",
+            "Exchanging information and providing advice to technical and non-technical colleagues",
+            "Examples of different kinds of documents and/or presentations you have prepared or contributed to with an emphasis on those that include technical information about an ICT solution, system, process or hardware or software component",
+            "Give examples of where you have had to prepare documents or presentations for technical and non-technical audiences or recipients"
+          ]
+        },
+        {
+          "id": "D2",
+          "text": "Work effectively with colleagues, clients, suppliers or the public",
+          "illustrativeExamples": [
+            "Contributing constructively as part of a team",
+            "Successfully resolving issues in discussions with team members, suppliers, clients and/or others",
+            "Persuading others to accept suggestions or recommendations",
+            "Identifying, agreeing and working towards collective goals"
+          ]
+        },
+        {
+          "id": "D3",
+          "text": "Be aware of the needs and concerns of others, demonstrate personal and social skills and awareness of diversity and inclusion issues.",
+          "illustrativeExamples": [
+            "Knowing and managing own emotions, strengths and weaknesses",
+            "Being confident and flexible in dealing with new and changing interpersonal situations",
+            "Creating, maintaining and enhancing productive working relationships, and resolving conflicts",
+            "Being supportive of the needs and concerns of others, especially where this relates to diversity and inclusion"
+          ]
+        }
+      ],
+      "sourcePages": [
+        21
+      ],
+      "footnotes": [
+        "1 Any interviews will be conducted in English, subject only to the provisions of the Welsh Language Act 1993."
+      ]
+    },
+    {
+      "id": "E",
+      "title": "Personal and professional commitment",
+      "framing": "ICT Technicians shall demonstrate commitment to an appropriate code of professional conduct, recognising obligations to society, the profession and the environment.",
+      "explanation": "This competence is about ensuring that the applicant is acting in a professional manner in their work and in their dealings with others. An ICT Technician should set a standard and example to others with regard to professionalism.",
+      "statementsIntro": "The applicant shall demonstrate that they:",
+      "statements": [
+        {
+          "id": "E1",
+          "text": "Understand and comply with relevant codes of conduct and regulations/standards",
+          "illustrativeExamples": [
+            "Demonstrating compliance with your Licensee’s Code of Professional Conduct",
+            "Working within all relevant legislative and regulatory frameworks, including social and employment legislation"
+          ]
+        },
+        {
+          "id": "E2",
+          "text": "Manage and apply healthy, safe, secure systems of work, and be aware of appropriate hazard identification and risk management systems. This could include an ability to:\n• Identify and take responsibility for own obligations for health, safety and welfare issues\n• Apply systems that satisfy health, safety and welfare requirements",
+          "illustrativeExamples": [
+            "Providing evidence of applying current safety requirements, such as risk assessment and other examples of good practice you adopt in your work",
+            "A sound knowledge of health and safety legislation, for example: HASAW 1974, CDM regulations, ISO 45001 and company safety policies",
+            "Recognising how sustainability principles, as described in the Guidance on Sustainability on page 26, can be applied in your day-to-day work",
+            "Identifying actions that you can and have taken to improve sustainability",
+            "Demonstrating awareness of environmental sustainability and the general recognition of sustainability"
+          ]
+        },
+        {
+          "id": "E3",
+          "text": "Show you are aware of and apply good practices that protect other people, organisations or the environment from harm caused by the operation of ICT systems. Undertake ICT work in a way that contributes to sustainable development",
+          "illustrativeExamples": [
+            "Understanding the ethical issues that you may encounter in your role",
+            "Giving an example of where you have applied ethical principles as described in the Statement of Ethical Principles on page 26",
+            "Giving an example of where you have applied or upheld ethical principles as defined by your organisation or company"
+          ]
+        },
+        {
+          "id": "E4",
+          "text": "Carry out and record CPD necessary to maintain and enhance competence in ICT including:\n• Undertake reviews of own development needs\n• Plan how to meet personal and organisational objectives\n• Carry out planned and unplanned CPD activities\n• Maintain evidence of competence development.\n• Evaluate CPD outcomes against any plans made\n• Assist others with their own CPD",
+          "illustrativeExamples": [
+            "Undertaking reviews of your own development needs",
+            "Planning how to meet personal and organisational objectives",
+            "Carrying out and recording planned and unplanned CPD activities",
+            "Maintaining evidence of competence development",
+            "Evaluating CPD outcomes against any plans made",
+            "Assisting others with their own CPD"
+          ]
+        }
+      ],
+      "sourcePages": [
+        22,
+        23
+      ]
+    }
+  ]
+}
