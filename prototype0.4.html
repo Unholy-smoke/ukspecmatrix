@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="_ds/engineering-council-design-system-019dd8d6-8965-72d8-af6f-a435d3c24bce/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/engineering-council-design-system-019dd8d6-8965-72d8-af6f-a435d3c24bce/tokens/colors.css">
+<link rel="stylesheet" href="_ds/engineering-council-design-system-019dd8d6-8965-72d8-af6f-a435d3c24bce/tokens/typography.css">
+<link rel="stylesheet" href="_ds/engineering-council-design-system-019dd8d6-8965-72d8-af6f-a435d3c24bce/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/engineering-council-design-system-019dd8d6-8965-72d8-af6f-a435d3c24bce/tokens/radius-shadow.css">
+<link rel="stylesheet" href="_ds/engineering-council-design-system-019dd8d6-8965-72d8-af6f-a435d3c24bce/tokens/base.css">
+<link rel="stylesheet" href="_ds/engineering-council-design-system-019dd8d6-8965-72d8-af6f-a435d3c24bce/styles.css">
+<script src="_ds/engineering-council-design-system-019dd8d6-8965-72d8-af6f-a435d3c24bce/_ds_bundle.js"></script>
+<style>
+body{margin:0;background:#edebe5;font-family:var(--font-brand)}
+summary{list-style:none}
+summary::-webkit-details-marker{display:none}
+details[open] > summary .chev{transform:rotate(180deg)}
+button:focus-visible, summary:focus-visible, a:focus-visible{outline:3px solid var(--ec-blue);outline-offset:2px}
+.dv-turn{padding:40px 44px 32px;border-bottom:1px solid rgba(0,0,0,.08);scroll-margin-top:16px}
+.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 20px}
+.dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#1a1a1a;color:#fff;border-radius:4px;text-decoration:none}
+.dv-tname{font:600 13px/1.2 var(--font-brand);color:#1a1a1a}
+.dv-opts{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start}
+.dv-opt{flex:none;display:flex;flex-direction:column;gap:9px;scroll-margin-top:16px}
+.dv-oid{font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px;text-decoration:none}
+.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 var(--font-brand);color:rgba(0,0,0,.55)}
+.dv-card{max-width:100%;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06);overflow:hidden}
+.dv-opt:target .dv-oid{background:#2a78d6;color:#fff}
+.dv-next{margin:22px 0 0;font:12px/1.5 var(--font-brand);color:rgba(0,0,0,.5)}
+h2[id],h3[id],details[id],section[id]{scroll-margin-top:24px}
+</style>
+</helmet>
+
+<section class="dv-turn" id="t3">
+<div class="dv-thd"><a class="dv-tid" href="#t3">3</a><span class="dv-tname">Full standard pages – CEng · EngTech · IEng · ICT<i>Tech</i>, all on the <a class="dv-oid" href="#2a">2a</a> pattern</span></div>
+<p style="margin:-8px 0 20px; font-size:12px; line-height:1.6; color:rgba(0,0,0,.55); max-width:860px">One shared layout, four data files. EngTech and IEng render verbatim from their content packs. ICT<i>Tech</i> keeps its own vocabulary ("Examples of evidence", "The applicant shall demonstrate that they:") and sits outside the UK-SPEC breadcrumb.</p>
+<div class="dv-opts">
+
+<sc-for list="{{ pages }}" as="p" hint-placeholder-count="4">
+<div class="dv-opt" id="{{ p.aid }}">
+<div class="dv-olabel"><a class="dv-oid" href="{{ p.hash }}">{{ p.aid }}</a>{{ p.tier }} – full standard page</div>
+<div class="dv-card" style="width:1180px; background:var(--ec-black)" data-screen-label="{{ p.screenLabel }}">
+
+<header style="border-bottom:1px solid rgba(255,255,255,.14)">
+  <div style="display:flex; align-items:center; gap:30px; padding:0 40px; height:72px; color:#fff">
+    <x-import component-from-global-scope="EngineeringCouncilDesignSystem_019dd8.Logo" tone="copper-on-black" height="{{ logoH }}" hint-size="150px,34px"></x-import>
+    <nav aria-label="Main" style="display:flex; gap:20px; flex:1; font-size:13.5px; font-weight:500; white-space:nowrap">
+      <a href="{{ p.hash }}" style="color:var(--ec-copper); text-decoration:none">Our role as regulator</a>
+      <a href="{{ p.hash }}" style="color:#fff; text-decoration:none">Registration</a>
+      <a href="{{ p.hash }}" style="color:#fff; text-decoration:none">Guidance</a>
+      <a href="{{ p.hash }}" style="color:#fff; text-decoration:none">Education &amp; skills</a>
+      <a href="{{ p.hash }}" style="color:#fff; text-decoration:none">International</a>
+      <a href="{{ p.hash }}" style="color:#fff; text-decoration:none">News &amp; insights</a>
+    </nav>
+    <span style="font-size:13px; color:var(--ec-grey-400)">UK-SPEC · fourth edition</span>
+  </div>
+</header>
+
+<div style="color:#fff; padding:56px 40px 48px">
+  <div style="max-width:1080px; margin:0 auto">
+    <nav aria-label="Breadcrumb" style="display:flex; flex-wrap:wrap; gap:8px; margin:0 0 24px; font-size:13px; color:var(--ec-grey-400)">
+      <span>Home Page</span><span aria-hidden="true">/</span><span>Setting Standards</span><span aria-hidden="true">/</span><sc-if value="{{ p.underUkspec }}" hint-placeholder-val="{{ true }}"><a href="UK-SPEC Index - Options.dc.html" style="color:var(--ec-copper); text-decoration:none">UK-SPEC</a><span aria-hidden="true">/</span></sc-if><span style="color:#fff">{{ p.crumbA }}<i>{{ p.crumbIt }}</i>{{ p.crumbB }}</span>
+    </nav>
+    <p style="margin:0 0 20px; font-size:13px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--ec-grey-400)">{{ p.eyebrowA }}<i>{{ p.eyebrowIt }}</i>{{ p.eyebrowB }}</p>
+    <h1 style="margin:0 0 22px; font-size:80px; line-height:1.0; font-weight:700; text-transform:uppercase; color:var(--ec-copper)">{{ p.line1 }}<br>{{ p.line2 }}</h1>
+    <sc-if value="{{ p.notVariant }}" hint-placeholder-val="{{ true }}">
+      <p style="margin:0 0 0; font-size:20px; line-height:1.5; max-width:640px; color:var(--ec-grey-100); text-wrap:pretty">{{ p.lead }}</p>
+    </sc-if>
+    <sc-if value="{{ p.isVariant }}" hint-placeholder-val="{{ false }}">
+      <p style="margin:0 0 0; font-size:20px; line-height:1.5; max-width:640px; color:var(--ec-grey-100); text-wrap:pretty">The professional title for ICT technicians. ICT<i>Tech</i> is derived from the EngTech standard.</p>
+    </sc-if>
+    <div style="display:flex; gap:56px; border-top:1px solid rgba(255,255,255,.14); padding-top:26px; margin-top:36px">
+      <sc-for list="{{ p.stats }}" as="st" hint-placeholder-count="3">
+        <div><p style="margin:0; font-size:36px; font-weight:700; color:var(--ec-copper)">{{ st.v }}</p><p style="margin:4px 0 0; font-size:13px; letter-spacing:.06em; text-transform:uppercase; color:var(--ec-grey-400)">{{ st.l }}</p></div>
+      </sc-for>
+    </div>
+  </div>
+</div>
+
+<div style="padding:8px 40px 72px">
+  <div style="max-width:1080px; margin:0 auto; display:grid; grid-template-columns:264px 1fr; gap:48px; align-items:start">
+
+    <aside aria-label="On this page" style="position:sticky; top:24px; background:#fff; border-radius:12px; padding:24px 22px; display:flex; flex-direction:column; gap:18px">
+      <p style="margin:0; font-size:12px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--ec-grey-600)">On this page</p>
+      <div style="display:flex; flex-direction:column; gap:10px; font-size:14px; color:var(--ec-ink)">
+        <sc-if value="{{ p.hasFront }}" hint-placeholder-val="{{ true }}">
+          <a href="{{ p.hashWhat }}" onClick="{{ openTarget }}" style="font-weight:600; color:var(--ec-ink); text-decoration:none" style-hover="text-decoration:underline">{{ p.whatHead }}</a>
+          <a href="{{ p.hashHow }}" onClick="{{ openTarget }}" style="font-weight:600; color:var(--ec-ink); text-decoration:none" style-hover="text-decoration:underline">How to get registered</a>
+        </sc-if>
+        <a href="{{ p.hashComp }}" onClick="{{ openTarget }}" style="font-weight:600; color:var(--ec-ink); text-decoration:none" style-hover="text-decoration:underline">The competence standard</a>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:8px; border-top:1px solid var(--border-default); padding-top:16px">
+        <sc-for list="{{ p.groups }}" as="g" hint-placeholder-count="5">
+          <a href="{{ g.hash }}" onClick="{{ openTarget }}" style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:var(--ec-grey-700); text-decoration:none" style-hover="color:var(--ec-ink)">
+            <span aria-hidden="true" style="flex:none; width:26px; height:18px; display:flex; align-items:center; justify-content:center; background:var(--ec-copper); color:var(--ec-black-on-warm); font-weight:700; font-size:11px; border-radius:0 999px 999px 0">{{ g.id }}</span>
+            <span>{{ g.title }}</span>
+          </a>
+        </sc-for>
+      </div>
+      <div style="border-top:1px solid var(--border-default); padding-top:16px; display:flex; flex-direction:column; gap:10px; font-size:13.5px">
+        <a href="{{ p.hash }}" style="color:var(--ec-copper-strong); font-weight:600; text-decoration:none">Ethical Principles</a>
+        <a href="{{ p.hash }}" style="color:var(--ec-copper-strong); font-weight:600; text-decoration:none">CPD</a>
+        <a href="{{ p.hash }}" style="color:var(--ec-copper-strong); font-weight:600; text-decoration:none">Assessment Process</a>
+        <a href="{{ p.hash }}" style="color:var(--ec-copper-strong); font-weight:600; text-decoration:none">Recognised Qualifications</a>
+        <a href="{{ p.hash }}" style="color:var(--ec-copper-strong); font-weight:600; text-decoration:none">Guidance for Engineers and Technicians</a>
+      </div>
+      <x-import component-from-global-scope="EngineeringCouncilDesignSystem_019dd8.Button" variant="outline" size="sm" onClick="{{ printPage }}" hint-size="150px,36px">Print / save PDF</x-import>
+    </aside>
+
+    <main style="display:flex; flex-direction:column; gap:48px; min-width:0; color:#fff">
+
+      <sc-if value="{{ p.hasFront }}" hint-placeholder-val="{{ true }}">
+        <section>
+          <h2 id="{{ p.idWhat }}" style="margin:0 0 16px; font-size:30px; font-weight:600; color:#fff">{{ p.whatHead }}</h2>
+          <p style="margin:0 0 16px; font-size:19px; line-height:1.55; color:var(--ec-grey-100); text-wrap:pretty">{{ p.lead }}</p>
+          <p style="margin:0 0 14px; font-size:16px; line-height:1.6; color:var(--ec-grey-100)">{{ p.plural }} shall demonstrate:</p>
+          <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px">
+            <sc-for list="{{ p.demonstrates }}" as="dd" hint-placeholder-count="5">
+              <li style="display:flex; gap:14px; font-size:16px; line-height:1.55; color:var(--ec-grey-100)"><span style="flex:none; width:22px; height:10px; margin-top:8px; background:var(--ec-copper); border-radius:0 999px 999px 0"></span><span>{{ dd }}</span></li>
+            </sc-for>
+          </ul>
+        </section>
+
+        <section style="background:var(--ec-grey-900); border:1px solid rgba(255,255,255,.1); border-radius:12px; padding:26px 30px">
+          <h2 id="{{ p.idHow }}" style="margin:0 0 14px; font-size:24px; font-weight:600; color:#fff">How to get registered</h2>
+          <p style="margin:0 0 18px; font-size:15.5px; line-height:1.65; color:var(--ec-grey-100)">{{ p.howPre }}<sc-if value="{{ p.hasTermBtn }}" hint-placeholder-val="{{ true }}"><button type="button" data-term="licensee" data-src="{{ p.termSrc }}" onClick="{{ openTerm }}" style="background:none; border:none; padding:0; font:inherit; cursor:pointer; color:var(--ec-copper); font-weight:600; border-bottom:1.5px dotted currentColor">Professional Engineering Institution (a Licensee)</button></sc-if>{{ p.howPost }}</p>
+          <x-import component-from-global-scope="EngineeringCouncilDesignSystem_019dd8.Button" variant="secondary" size="sm" hint-size="220px,36px">Find your Licensed PEI →</x-import>
+        </section>
+      </sc-if>
+
+      <section>
+        <h2 id="{{ p.idComp }}" style="margin:0 0 16px; font-size:30px; font-weight:600; color:#fff">The competence standard</h2>
+        <sc-if value="{{ p.hasFront }}" hint-placeholder-val="{{ true }}">
+          <p style="margin:0 0 18px; font-size:15.5px; line-height:1.65; color:var(--ec-grey-300); max-width:640px">{{ p.plural }} demonstrate their <button type="button" data-term="competence" data-src="{{ p.termSrc }}" onClick="{{ openTerm }}" style="background:none; border:none; padding:0; font:inherit; cursor:pointer; color:var(--ec-copper); font-weight:600; border-bottom:1.5px dotted currentColor">competence</button> and <button type="button" data-term="professionalCommitment" data-src="{{ p.termSrc }}" onClick="{{ openTerm }}" style="background:none; border:none; padding:0; font:inherit; cursor:pointer; color:var(--ec-copper); font-weight:600; border-bottom:1.5px dotted currentColor">professional commitment</button> across five areas, A to E. Open each area to read the standard in full.</p>
+        </sc-if>
+        <sc-if value="{{ p.isVariant }}" hint-placeholder-val="{{ false }}">
+          <p style="margin:0 0 18px; font-size:15.5px; line-height:1.65; color:var(--ec-grey-300); max-width:640px">ICT Technicians demonstrate their competence across five areas, A to E. Open each area to read the standard in full.</p>
+        </sc-if>
+        <sc-if value="{{ p.hasCaption }}" hint-placeholder-val="{{ true }}">
+          <div style="background:var(--ec-grey-900); border:1px solid rgba(255,255,255,.1); border-radius:10px; padding:16px 20px; margin:0 0 26px">
+            <p style="margin:0 0 6px; font-size:12px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--ec-grey-400)">{{ p.exHead }}</p>
+            <p style="margin:0; font-size:14px; line-height:1.6; color:var(--ec-grey-300)">{{ p.caption }}</p>
+          </div>
+        </sc-if>
+
+        <div style="display:flex; flex-direction:column">
+          <sc-for list="{{ p.groups }}" as="g" hint-placeholder-count="5">
+            <details id="{{ g.anchor }}" open="{{ groupsOpen }}" style="border-top:1px solid rgba(255,255,255,.2)">
+              <summary style="display:flex; align-items:center; gap:22px; padding:22px 4px; cursor:pointer">
+                <span aria-hidden="true" style="flex:none; font-size:52px; font-weight:300; line-height:1; color:var(--ec-copper); width:58px">{{ g.id }}</span>
+                <span style="flex:1; font-size:21px; font-weight:600; color:#fff">{{ g.title }}</span>
+                <span style="flex:none; font-size:13px; color:var(--ec-grey-400)">{{ g.countLabel }}</span>
+                <span class="chev" aria-hidden="true" style="flex:none; font-size:13px; color:var(--ec-copper); transition:transform .2s ease">▾</span>
+              </summary>
+              <div style="padding:0 4px 34px 80px">
+                <p style="margin:0 0 12px; font-size:18px; font-weight:600; line-height:1.5; color:var(--ec-copper); max-width:620px">{{ g.framing }}</p>
+                <p style="margin:0; font-size:14.5px; line-height:1.65; color:var(--ec-grey-300); max-width:640px">{{ g.explanation }}</p>
+                <sc-if value="{{ g.hasIntro }}" hint-placeholder-val="{{ false }}">
+                  <p style="margin:16px 0 0; font-size:13.5px; font-style:italic; color:var(--ec-grey-400)">{{ g.statementsIntro }}</p>
+                </sc-if>
+                <div style="margin-top:22px; display:flex; flex-direction:column; gap:20px">
+                  <sc-for list="{{ g.statements }}" as="s" hint-placeholder-count="3">
+                    <div style="border-top:1px solid rgba(255,255,255,.12); padding-top:18px">
+                      <h3 style="display:flex; gap:14px; align-items:baseline; text-wrap:pretty; margin:0; font-size:16px">
+                        <span style="flex:none; font-size:12.5px; font-weight:700; background:var(--ec-copper); color:var(--ec-black-on-warm); padding:3px 10px; border-radius:0 999px 999px 0">{{ s.id }}</span>
+                        <span style="font-weight:500; line-height:1.55; color:#fff">{{ s.text }}</span>
+                      </h3>
+                      <details style="margin:12px 0 0 0">
+                        <summary style="display:inline-flex; align-items:center; gap:8px; cursor:pointer; font-size:13.5px; font-weight:600; color:var(--ec-copper)"><span class="chev" aria-hidden="true" style="font-size:10px; transition:transform .2s ease">▾</span>{{ s.exLabel }}</summary>
+                        <div style="margin-top:10px; background:var(--ec-grey-900); border:1px solid rgba(255,255,255,.1); border-radius:10px; padding:14px 18px">
+                          <ul style="margin:0; padding:0 0 0 18px; display:flex; flex-direction:column; gap:5px">
+                            <sc-for list="{{ s.illustrativeExamples }}" as="ex" hint-placeholder-count="4">
+                              <li style="font-size:14px; line-height:1.55; color:var(--ec-grey-100)">{{ ex }}</li>
+                            </sc-for>
+                          </ul>
+                        </div>
+                      </details>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </details>
+          </sc-for>
+          <div style="border-top:1px solid rgba(255,255,255,.2)"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<footer style="border-top:1px solid rgba(255,255,255,.14); color:var(--ec-grey-400); padding:28px 40px; display:flex; align-items:center; gap:24px; flex-wrap:wrap">
+  <span style="font-size:12px; flex:1">© Engineering Council 2026. Registered Charity Number 286142</span>
+  <nav aria-label="Related" style="display:flex; gap:22px; font-size:13.5px; align-items:center">
+    <a href="{{ p.hash }}" style="color:var(--ec-copper); text-decoration:none">Ethical Principles</a>
+  </nav>
+</footer>
+</div>
+</div>
+</sc-for>
+
+</div>
+<p class="dv-next">The four cards share one layout – a change to any section applies to all four. ICT<i>Tech</i>'s lead is drafted copy – flag any rewording.</p>
+</section>
+
+<section class="dv-turn" id="t2">
+<div class="dv-thd"><a class="dv-tid" href="#t2">2</a><span class="dv-tname">Combined – <a class="dv-oid" href="#1c">1c</a> dark scheme · <a class="dv-oid" href="#1b">1b</a> sidebar in white · <a class="dv-oid" href="#1a">1a</a> front matter</span></div>
+<div class="dv-opts">
+
+<div class="dv-opt" id="2a">
+<div class="dv-olabel"><a class="dv-oid" href="#2a">2a</a>Dark editorial with a white sticky rail</div>
+<div class="dv-card" style="width:1180px; background:var(--ec-black)" data-screen-label="2a CEng detail – Combined">
+
+<header style="border-bottom:1px solid rgba(255,255,255,.14)">
+  <div style="display:flex; align-items:center; gap:30px; padding:0 40px; height:72px; color:#fff">
+    <x-import component-from-global-scope="EngineeringCouncilDesignSystem_019dd8.Logo" tone="copper-on-black" height="{{ logoH }}" hint-size="150px,34px"></x-import>
+    <nav aria-label="Main" style="display:flex; gap:20px; flex:1; font-size:13.5px; font-weight:500; white-space:nowrap">
+      <a href="#2a" style="color:var(--ec-copper); text-decoration:none">Our role as regulator</a>
+      <a href="#2a" style="color:#fff; text-decoration:none">Registration</a>
+      <a href="#2a" style="color:#fff; text-decoration:none">Guidance</a>
+      <a href="#2a" style="color:#fff; text-decoration:none">Education &amp; skills</a>
+      <a href="#2a" style="color:#fff; text-decoration:none">International</a>
+      <a href="#2a" style="color:#fff; text-decoration:none">News &amp; insights</a>
+    </nav>
+    <span style="font-size:13px; color:var(--ec-grey-400)">UK-SPEC · fourth edition</span>
+  </div>
+</header>
+
+<div style="color:#fff; padding:64px 40px 48px">
+  <div style="max-width:1080px; margin:0 auto">
+    <nav aria-label="Breadcrumb" style="display:flex; flex-wrap:wrap; gap:8px; margin:0 0 24px; font-size:13px; color:var(--ec-grey-400)">
+      <span>Home Page</span><span aria-hidden="true">/</span><span>Setting Standards</span><span aria-hidden="true">/</span><a href="UK-SPEC Index - Options.dc.html" style="color:var(--ec-copper); text-decoration:none">UK-SPEC</a><span aria-hidden="true">/</span><span style="color:#fff">Chartered Engineer (CEng)</span>
+    </nav>
+    <p style="margin:0 0 20px; font-size:13px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--ec-grey-400)">UK-SPEC · UK standard for professional engineering competence and commitment</p>
+    <h1 style="margin:0 0 22px; font-size:80px; line-height:1.0; font-weight:700; text-transform:uppercase; color:var(--ec-copper)">Chartered<br>Engineer</h1>
+    <p style="margin:0 0 36px; font-size:20px; line-height:1.5; max-width:620px; color:var(--ec-grey-100)">{{ lead }}</p>
+    <div style="display:flex; gap:56px; border-top:1px solid rgba(255,255,255,.14); padding-top:26px">
+      <div><p style="margin:0; font-size:36px; font-weight:700; color:var(--ec-copper)">5</p><p style="margin:4px 0 0; font-size:13px; letter-spacing:.06em; text-transform:uppercase; color:var(--ec-grey-400)">Competence areas</p></div>
+      <div><p style="margin:0; font-size:36px; font-weight:700; color:var(--ec-copper)">{{ total }}</p><p style="margin:4px 0 0; font-size:13px; letter-spacing:.06em; text-transform:uppercase; color:var(--ec-grey-400)">Competences</p></div>
+      <div><p style="margin:0; font-size:36px; font-weight:700; color:var(--ec-copper)">2</p><p style="margin:4px 0 0; font-size:13px; letter-spacing:.06em; text-transform:uppercase; color:var(--ec-grey-400)">Stage professional review</p></div>
+    </div>
+  </div>
+</div>
+
+<div style="padding:8px 40px 72px">
+  <div style="max-width:1080px; margin:0 auto; display:grid; grid-template-columns:264px 1fr; gap:48px; align-items:start">
+
+    <aside aria-label="On this page" style="position:sticky; top:24px; background:#fff; border-radius:12px; padding:24px 22px; display:flex; flex-direction:column; gap:18px">
+      <p style="margin:0; font-size:12px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--ec-grey-600)">On this page</p>
+      <div style="display:flex; flex-direction:column; gap:10px; font-size:14px; color:var(--ec-ink)">
+        <a href="#c2-what" onClick="{{ openTarget }}" style="font-weight:600; color:var(--ec-ink); text-decoration:none" style-hover="text-decoration:underline">What is a Chartered Engineer?</a>
+        <a href="#c2-how" onClick="{{ openTarget }}" style="font-weight:600; color:var(--ec-ink); text-decoration:none" style-hover="text-decoration:underline">How to get registered</a>
+        <a href="#c2-comp" onClick="{{ openTarget }}" style="font-weight:600; color:var(--ec-ink); text-decoration:none" style-hover="text-decoration:underline">The competence standard</a>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:8px; border-top:1px solid var(--border-default); padding-top:16px">
+        <sc-for list="{{ groups2a }}" as="g" hint-placeholder-count="5">
+          <a href="{{ g.hash }}" onClick="{{ openTarget }}" style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:var(--ec-grey-700); text-decoration:none" style-hover="color:var(--ec-ink)">
+            <span aria-hidden="true" style="flex:none; width:26px; height:18px; display:flex; align-items:center; justify-content:center; background:var(--ec-copper); color:var(--ec-black-on-warm); font-weight:700; font-size:11px; border-radius:0 999px 999px 0">{{ g.id }}</span>
+            <span>{{ g.title }}</span>
+          </a>
+        </sc-for>
+      </div>
+      <div style="border-top:1px solid var(--border-default); padding-top:16px; display:flex; flex-direction:column; gap:10px; font-size:13.5px">
+        <a href="#2a" style="color:var(--ec-copper-strong); font-weight:600; text-decoration:none">Ethical Principles</a>
+        <a href="#2a" style="color:var(--ec-copper-strong); font-weight:600; text-decoration:none">CPD</a>
+        <a href="#2a" style="color:var(--ec-copper-strong); font-weight:600; text-decoration:none">Assessment Process</a>
+        <a href="#2a" style="color:var(--ec-copper-strong); font-weight:600; text-decoration:none">Recognised Qualifications</a>
+        <a href="#2a" style="color:var(--ec-copper-strong); font-weight:600; text-decoration:none">Guidance for Engineers and Technicians</a>
+      </div>
+      <x-import component-from-global-scope="EngineeringCouncilDesignSystem_019dd8.Button" variant="outline" size="sm" onClick="{{ printPage }}" hint-size="150px,36px">Print / save PDF</x-import>
+    </aside>
+
+    <main style="display:flex; flex-direction:column; gap:48px; min-width:0; color:#fff">
+
+      <section aria-labelledby="c2-what">
+        <h2 id="c2-what" style="margin:0 0 16px; font-size:30px; font-weight:600; color:#fff">What is a Chartered Engineer?</h2>
+        <p style="margin:0 0 16px; font-size:19px; line-height:1.55; color:var(--ec-grey-100)">{{ lead }}</p>
+        <p style="margin:0 0 14px; font-size:16px; line-height:1.6; color:var(--ec-grey-100)">Chartered Engineers shall demonstrate:</p>
+        <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px">
+          <sc-for list="{{ demonstrates }}" as="d" hint-placeholder-count="7">
+            <li style="display:flex; gap:14px; font-size:16px; line-height:1.55; color:var(--ec-grey-100)"><span style="flex:none; width:22px; height:10px; margin-top:8px; background:var(--ec-copper); border-radius:0 999px 999px 0"></span><span>{{ d }}</span></li>
+          </sc-for>
+        </ul>
+      </section>
+
+      <section aria-labelledby="c2-how" style="background:var(--ec-grey-900); border:1px solid rgba(255,255,255,.1); border-radius:12px; padding:26px 30px">
+        <h2 id="c2-how" style="margin:0 0 14px; font-size:24px; font-weight:600; color:#fff">How to get registered</h2>
+        <p style="margin:0 0 18px; font-size:15.5px; line-height:1.65; color:var(--ec-grey-100)">The Engineering Council sets the standard, but you apply and are assessed through a <button type="button" data-term="licensee" onClick="{{ openTerm }}" style="background:none; border:none; padding:0; font:inherit; cursor:pointer; color:var(--ec-copper); font-weight:600; border-bottom:1.5px dotted currentColor">Professional Engineering Institution</button> relevant to your discipline – the institution is the awarding body, not the Engineering Council directly. For CEng, the assessment (Professional Review) has two stages: an assessment of written evidence, followed by an interview.</p>
+        <x-import component-from-global-scope="EngineeringCouncilDesignSystem_019dd8.Button" variant="secondary" size="sm" hint-size="260px,36px">Find your Licensed PEI →</x-import>
+      </section>
+
+      <section aria-labelledby="c2-comp">
+        <h2 id="c2-comp" style="margin:0 0 16px; font-size:30px; font-weight:600; color:#fff">The competence standard</h2>
+        <p style="margin:0 0 18px; font-size:15.5px; line-height:1.65; color:var(--ec-grey-300); max-width:640px">Chartered Engineers demonstrate their <button type="button" data-term="competence" onClick="{{ openTerm }}" style="background:none; border:none; padding:0; font:inherit; cursor:pointer; color:var(--ec-copper); font-weight:600; border-bottom:1.5px dotted currentColor">competence</button> and <button type="button" data-term="professionalCommitment" onClick="{{ openTerm }}" style="background:none; border:none; padding:0; font:inherit; cursor:pointer; color:var(--ec-copper); font-weight:600; border-bottom:1.5px dotted currentColor">professional commitment</button> across five areas, A to E. Open each area to read the standard in full.</p>
+        <div style="background:var(--ec-grey-900); border:1px solid rgba(255,255,255,.1); border-radius:10px; padding:16px 20px; margin:0 0 26px">
+          <p style="margin:0 0 6px; font-size:12px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--ec-grey-400)">About the illustrative examples</p>
+          <p style="margin:0; font-size:14px; line-height:1.6; color:var(--ec-grey-300)">{{ caption }}</p>
+        </div>
+
+        <div style="display:flex; flex-direction:column">
+          <sc-for list="{{ groups2a }}" as="g" hint-placeholder-count="5">
+            <details id="{{ g.anchor }}" open="{{ groupsOpen }}" style="border-top:1px solid rgba(255,255,255,.2)">
+              <summary style="display:flex; align-items:center; gap:22px; padding:22px 4px; cursor:pointer">
+                <span aria-hidden="true" style="flex:none; font-size:52px; font-weight:300; line-height:1; color:var(--ec-copper); width:58px">{{ g.id }}</span>
+                <span style="flex:1; font-size:21px; font-weight:600; color:#fff">{{ g.title }}</span>
+                <span style="flex:none; font-size:13px; color:var(--ec-grey-400)">{{ g.countLabel }}</span>
+                <span class="chev" aria-hidden="true" style="flex:none; font-size:13px; color:var(--ec-copper); transition:transform .2s ease">▾</span>
+              </summary>
+              <div style="padding:0 4px 34px 80px">
+                <p style="margin:0 0 12px; font-size:18px; font-weight:600; line-height:1.5; color:var(--ec-copper); max-width:620px">{{ g.framing }}</p>
+                <p style="margin:0; font-size:14.5px; line-height:1.65; color:var(--ec-grey-300); max-width:640px">{{ g.explanation }}</p>
+                <div style="margin-top:22px; display:flex; flex-direction:column; gap:20px">
+                  <sc-for list="{{ g.statements }}" as="s" hint-placeholder-count="3">
+                    <div style="border-top:1px solid rgba(255,255,255,.12); padding-top:18px">
+                      <h3 style="display:flex; gap:14px; align-items:baseline; text-wrap:pretty; margin:0; font-size:16px">
+                        <span style="flex:none; font-size:12.5px; font-weight:700; background:var(--ec-copper); color:var(--ec-black-on-warm); padding:3px 10px; border-radius:0 999px 999px 0">{{ s.id }}</span>
+                        <span style="font-weight:500; line-height:1.55; color:#fff">{{ s.text }}</span>
+                      </h3>
+                      <sc-if value="{{ showExamples }}" hint-placeholder-val="{{ true }}">
+                        <details style="margin:12px 0 0 0">
+                          <summary style="display:inline-flex; align-items:center; gap:8px; cursor:pointer; font-size:13.5px; font-weight:600; color:var(--ec-copper)"><span class="chev" aria-hidden="true" style="font-size:10px; transition:transform .2s ease">▾</span>{{ s.exLabel }}</summary>
+                          <div style="margin-top:10px; background:var(--ec-grey-900); border:1px solid rgba(255,255,255,.1); border-radius:10px; padding:14px 18px">
+                            <ul style="margin:0; padding:0 0 0 18px; display:flex; flex-direction:column; gap:5px">
+                              <sc-for list="{{ s.illustrativeExamples }}" as="ex" hint-placeholder-count="4">
+                                <li style="font-size:14px; line-height:1.55; color:var(--ec-grey-100)">{{ ex }}</li>
+                              </sc-for>
+                            </ul>
+                          </div>
+                        </details>
+                      </sc-if>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </details>
+          </sc-for>
+          <div style="border-top:1px solid rgba(255,255,255,.2)"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<footer style="border-top:1px solid rgba(255,255,255,.14); color:var(--ec-grey-400); padding:28px 40px; display:flex; align-items:center; gap:24px; flex-wrap:wrap">
+  <span style="font-size:12px; flex:1">© Engineering Council 2026. Registered Charity Number 286142</span>
+  <nav aria-label="Related" style="display:flex; gap:22px; font-size:13.5px; align-items:center">
+    <a href="#2a" style="color:var(--ec-copper); text-decoration:none">Ethical Principles</a>
+  </nav>
+</footer>
+</div>
+</div>
+
+</div>
+<p class="dv-next">Try next: "build the index page in the style of <a class="dv-oid" href="#2a">2a</a>" · "show <a class="dv-oid" href="#2a">2a</a> at mobile width" · "try the sidebar in copper tint instead of white"</p>
+</section>
+
+<section class="dv-turn" id="t1">
+<div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">CEng standard – detail page · three directions + mobile pattern</span></div>
+<p style="margin:-8px 0 20px; font-size:12px; line-height:1.6; color:rgba(0,0,0,.55); max-width:860px">Assumptions: content rendered live from <strong>data/ceng-standard.json</strong> (verbatim UK-SPEC v4.2) – groups A–E collapsed by default, Illustrative Examples nested per competence, dotted-underline terms open UK-SPEC definitions (Popover API, ESC to close). Full EngC brand: Copper on Black display, the Stack device for group letters and competence chips, Hanken Grotesk standing in for Söhne. Print control in each footer. IEng/EngTech nav is present but stubbed.</p>
+<div class="dv-opts">
+
+<!-- ============ 1a – Classic accordion ============ -->
+<div class="dv-opt" id="1a">
+<div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a>Classic – Copper-on-Black hero, single column, card accordions (closest to the CSci model)</div>
+<div class="dv-card" style="width:1180px" data-screen-label="1a CEng detail – Classic">
+
+<header style="background:var(--ec-black); color:#fff">
+  <div style="display:flex; align-items:center; gap:30px; padding:0 40px; height:72px">
+    <x-import component-from-global-scope="EngineeringCouncilDesignSystem_019dd8.Logo" tone="copper-on-black" height="{{ logoH }}" hint-size="150px,34px"></x-import>
+    <nav aria-label="Main" style="display:flex; gap:20px; flex:1; font-size:13.5px; font-weight:500; white-space:nowrap">
+      <a href="#1a" style="color:var(--ec-copper); text-decoration:none">Our role as regulator</a>
+      <a href="#1a" style="color:#fff; text-decoration:none">Registration</a>
+      <a href="#1a" style="color:#fff; text-decoration:none">Guidance</a>
+      <a href="#1a" style="color:#fff; text-decoration:none">Education &amp; skills</a>
+      <a href="#1a" style="color:#fff; text-decoration:none">International</a>
+      <a href="#1a" style="color:#fff; text-decoration:none">News &amp; insights</a>
+    </nav>
+    <span style="font-size:13px; color:var(--ec-grey-400)">UK-SPEC · fourth edition</span>
+  </div>
+</header>
+
+<div style="background:var(--ec-black); color:#fff; padding:56px 40px 64px">
+  <div style="max-width:1000px; margin:0 auto">
+    <nav aria-label="Breadcrumb" style="display:flex; flex-wrap:wrap; gap:8px; margin:0 0 24px; font-size:13px; color:var(--ec-grey-400)">
+      <span>Home Page</span><span aria-hidden="true">/</span><span>Setting Standards</span><span aria-hidden="true">/</span><a href="UK-SPEC Index - Options.dc.html" style="color:var(--ec-copper); text-decoration:none">UK-SPEC</a><span aria-hidden="true">/</span><span style="color:#fff">Chartered Engineer (CEng)</span>
+    </nav>
+    <p style="margin:0 0 18px; font-size:13px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--ec-grey-400)">UK-SPEC · UK standard for professional engineering competence and commitment</p>
+    <h1 style="margin:0 0 20px; font-size:68px; line-height:1.05; font-weight:700; text-transform:uppercase; color:var(--ec-copper)">Chartered Engineer <span style="color:#fff">(CEng)</span></h1>
+    <p style="margin:0; font-size:20px; line-height:1.5; max-width:660px; color:var(--ec-grey-100)">The standard for engineers who develop solutions to complex problems using new or existing technologies – through innovation, creativity and technical analysis.</p>
+  </div>
+</div>
+
+<main style="background:#fff; padding:56px 40px 64px">
+  <div style="max-width:780px; margin:0 auto; display:flex; flex-direction:column; gap:48px">
+
+    <section aria-labelledby="a-what">
+      <h2 id="a-what" style="margin:0 0 16px; font-size:30px; font-weight:600">What is a Chartered Engineer?</h2>
+      <p style="margin:0 0 16px; font-size:19px; line-height:1.55">{{ lead }}</p>
+      <p style="margin:0 0 14px; font-size:16px; line-height:1.6">Chartered Engineers shall demonstrate:</p>
+      <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px">
+        <sc-for list="{{ demonstrates }}" as="d" hint-placeholder-count="7">
+          <li style="display:flex; gap:14px; font-size:16px; line-height:1.55"><span style="flex:none; width:22px; height:10px; margin-top:8px; background:var(--ec-copper); border-radius:0 999px 999px 0"></span><span>{{ d }}</span></li>
+        </sc-for>
+      </ul>
+    </section>
+
+    <section aria-labelledby="a-how">
+      <h2 id="a-how" style="margin:0 0 16px; font-size:30px; font-weight:600">How to get registered</h2>
+      <p style="margin:0 0 18px; font-size:16px; line-height:1.65">The Engineering Council sets the standard, but you apply and are assessed through a <button type="button" data-term="licensee" onClick="{{ openTerm }}" style="background:none; border:none; padding:0; font:inherit; cursor:pointer; color:var(--ec-copper-strong); font-weight:600; border-bottom:1.5px dotted currentColor">Professional Engineering Institution</button> relevant to your discipline – the institution is the awarding body, not the Engineering Council directly. For CEng, the assessment (Professional Review) has two stages: an assessment of written evidence, followed by an interview.</p>
+      <x-import component-from-global-scope="EngineeringCouncilDesignSystem_019dd8.Button" variant="primary" size="sm" hint-size="260px,36px">Find your Licensed PEI →</x-import>
+    </section>
+
+    <section aria-labelledby="a-comp">
+      <h2 id="a-comp" style="margin:0 0 16px; font-size:30px; font-weight:600">The competence standard</h2>
+      <p style="margin:0 0 18px; font-size:16px; line-height:1.65">Chartered Engineers demonstrate their <button type="button" data-term="competence" onClick="{{ openTerm }}" style="background:none; border:none; padding:0; font:inherit; cursor:pointer; color:var(--ec-copper-strong); font-weight:600; border-bottom:1.5px dotted currentColor">competence</button> and <button type="button" data-term="professionalCommitment" onClick="{{ openTerm }}" style="background:none; border:none; padding:0; font:inherit; cursor:pointer; color:var(--ec-copper-strong); font-weight:600; border-bottom:1.5px dotted currentColor">professional commitment</button> across five areas, A to E. Open each area to read the standard in full.</p>
+      <div style="background:var(--ec-grey-050); border:1px solid var(--border-default); border-radius:10px; padding:16px 20px; margin:0 0 24px">
+        <p style="margin:0 0 6px; font-size:12px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--ec-grey-600)">About the illustrative examples</p>
+        <p style="margin:0; font-size:14px; line-height:1.6; color:var(--ec-grey-700)">{{ caption }}</p>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:14px">
+        <sc-for list="{{ groups }}" as="g" hint-placeholder-count="5">
+          <details open="{{ groupsOpen }}" style="border:1px solid var(--border-strong); border-radius:12px; background:#fff; overflow:hidden">
+            <summary style="display:flex; align-items:center; gap:18px; padding:16px 24px 16px 0; cursor:pointer">
+              <span aria-hidden="true" style="flex:none; width:64px; height:42px; display:flex; align-items:center; justify-content:center; background:var(--ec-copper); color:var(--ec-black-on-warm); font-weight:700; font-size:22px; border-radius:0 999px 999px 0">{{ g.id }}</span>
+              <span style="flex:1; font-size:20px; font-weight:600">{{ g.title }}</span>
+              <span style="flex:none; font-size:13px; color:var(--ec-grey-600)">{{ g.countLabel }}</span>
+              <span class="chev" aria-hidden="true" style="flex:none; font-size:13px; transition:transform .2s ease">▾</span>
+            </summary>
+            <div style="padding:6px 28px 28px 82px">
+              <p style="margin:0 0 10px; font-size:18px; font-weight:600; line-height:1.5">{{ g.framing }}</p>
+              <p style="margin:0; font-size:15px; line-height:1.65; color:var(--ec-grey-600)">{{ g.explanation }}</p>
+              <div style="margin-top:22px; display:flex; flex-direction:column; gap:20px">
+                <sc-for list="{{ g.statements }}" as="s" hint-placeholder-count="3">
+                  <div style="border-top:1px solid var(--border-default); padding-top:18px">
+                    <h3 style="display:flex; gap:12px; align-items:baseline; text-wrap:pretty; margin:0; font-size:16px">
+                      <span style="flex:none; font-size:13px; font-weight:700; background:var(--ec-black); color:var(--ec-copper); padding:3px 11px; border-radius:0 999px 999px 0">{{ s.id }}</span>
+                      <span style="font-weight:600; line-height:1.5">{{ s.text }}</span>
+                    </h3>
+                    <sc-if value="{{ showExamples }}" hint-placeholder-val="{{ true }}">
+                      <details style="margin:12px 0 0 0">
+                        <summary style="display:inline-flex; align-items:center; gap:8px; cursor:pointer; font-size:14px; font-weight:600; color:var(--ec-copper-strong)"><span class="chev" aria-hidden="true" style="font-size:11px; transition:transform .2s ease">▾</span>{{ s.exLabel }}</summary>
+                        <div style="margin-top:10px; background:var(--ec-copper-tint); border-radius:10px; padding:16px 20px">
+                          <p style="margin:0 0 10px; font-size:13px; font-style:italic; color:var(--ec-grey-700)">Illustrative, not a checklist – the most appropriate evidence varies with each individual role.</p>
+                          <ul style="margin:0; padding:0 0 0 18px; display:flex; flex-direction:column; gap:6px">
+                            <sc-for list="{{ s.illustrativeExamples }}" as="ex" hint-placeholder-count="4">
+                              <li style="font-size:14.5px; line-height:1.55">{{ ex }}</li>
+                            </sc-for>
+                          </ul>
+                        </div>
+                      </details>
+                    </sc-if>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </details>
+        </sc-for>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer style="background:var(--ec-black); color:var(--ec-grey-300); padding:36px 40px">
+  <div style="max-width:1000px; margin:0 auto; display:flex; align-items:center; gap:28px; flex-wrap:wrap">
+    <nav aria-label="Related" style="display:flex; gap:24px; flex:1; font-size:14px; flex-wrap:wrap">
+      <a href="#1a" style="color:var(--ec-copper); text-decoration:none">Read the full UK-SPEC (PDF)</a>
+      <a href="#1a" style="color:var(--ec-copper); text-decoration:none">Statement of Ethical Principles</a>
+      <a href="#1a" style="color:var(--ec-copper); text-decoration:none">Glossary of terms</a>
+    </nav>
+    <x-import component-from-global-scope="EngineeringCouncilDesignSystem_019dd8.Button" variant="secondary" size="sm" onClick="{{ printPage }}" hint-size="170px,36px">Print this standard</x-import>
+  </div>
+  <p style="max-width:1000px; margin:24px auto 0; padding-top:18px; border-top:1px solid rgba(255,255,255,.14); font-size:12px; color:var(--ec-grey-400)">© Engineering Council 2026. Registered Charity Number 286142</p>
+</footer>
+</div>
+</div>
+
+<!-- ============ 1b – Stack rail with sidebar ============ -->
+<div class="dv-opt" id="1b">
+<div class="dv-olabel"><a class="dv-oid" href="#1b">1b</a>Stack rail – white hero, sticky “on this page” sidebar, line-based accordions</div>
+<div class="dv-card" style="width:1180px" data-screen-label="1b CEng detail – Stack rail">
+
+<header style="background:var(--ec-black); color:#fff">
+  <div style="display:flex; align-items:center; gap:30px; padding:0 40px; height:72px">
+    <x-import component-from-global-scope="EngineeringCouncilDesignSystem_019dd8.Logo" tone="copper-on-black" height="{{ logoH }}" hint-size="150px,34px"></x-import>
+    <nav aria-label="Main" style="display:flex; gap:20px; flex:1; font-size:13.5px; font-weight:500; white-space:nowrap">
+      <a href="#1b" style="color:var(--ec-copper); text-decoration:none">Our role as regulator</a>
+      <a href="#1b" style="color:#fff; text-decoration:none">Registration</a>
+      <a href="#1b" style="color:#fff; text-decoration:none">Guidance</a>
+      <a href="#1b" style="color:#fff; text-decoration:none">Education &amp; skills</a>
+      <a href="#1b" style="color:#fff; text-decoration:none">International</a>
+      <a href="#1b" style="color:#fff; text-decoration:none">News &amp; insights</a>
+    </nav>
+    <span style="font-size:13px; color:var(--ec-grey-400)">UK-SPEC · fourth edition</span>
+  </div>
+</header>
+
+<div style="background:#fff; padding:64px 40px 48px; border-bottom:1px solid var(--border-default)">
+  <div style="max-width:1080px; margin:0 auto">
+    <nav aria-label="Breadcrumb" style="display:flex; flex-wrap:wrap; gap:8px; margin:0 0 26px; font-size:13px; color:var(--ec-grey-600)">
+      <span>Home Page</span><span aria-hidden="true">/</span><span>Setting Standards</span><span aria-hidden="true">/</span><a href="UK-SPEC Index - Options.dc.html" style="color:var(--ec-copper-strong); text-decoration:none">UK-SPEC</a><span aria-hidden="true">/</span><span style="color:var(--ec-ink); font-weight:600">Chartered Engineer (CEng)</span>
+    </nav>
+    <div style="display:flex; gap:8px; margin:0 0 26px" aria-hidden="true">
+      <span style="width:150px; height:16px; background:var(--ec-copper); border-radius:0 999px 999px 0"></span>
+      <span style="width:16px; height:16px; background:var(--ec-black)"></span>
+      <span style="width:44px; height:16px; background:var(--ec-grey-200); border-radius:0 999px 999px 0"></span>
+    </div>
+    <p style="margin:0 0 14px; font-size:13px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--ec-grey-600)">UK-SPEC · Professional registration standard</p>
+    <h1 style="margin:0 0 18px; font-size:64px; line-height:1.05; font-weight:700; text-transform:uppercase; color:var(--ec-black)">Chartered Engineer</h1>
+    <p style="margin:0; font-size:20px; line-height:1.5; max-width:640px; color:var(--ec-grey-700)">CEng – the standard for engineers who develop solutions to complex problems through innovation, creativity and technical analysis.</p>
+  </div>
+</div>
+
+<div style="background:#fff; padding:48px 40px 64px">
+  <div style="max-width:1080px; margin:0 auto; display:grid; grid-template-columns:260px 1fr; gap:56px; align-items:start">
+
+    <aside aria-label="On this page" style="position:sticky; top:24px; display:flex; flex-direction:column; gap:18px">
+      <p style="margin:0; font-size:12px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--ec-grey-600)">On this page</p>
+      <div style="display:flex; flex-direction:column; gap:10px; font-size:14px">
+        <a href="#b-what" onClick="{{ openTarget }}" style="font-weight:600; color:var(--ec-ink); text-decoration:none" style-hover="text-decoration:underline">What is a Chartered Engineer?</a>
+        <a href="#b-how" onClick="{{ openTarget }}" style="font-weight:600; color:var(--ec-ink); text-decoration:none" style-hover="text-decoration:underline">How to get registered</a>
+        <a href="#b-comp" onClick="{{ openTarget }}" style="font-weight:600; color:var(--ec-ink); text-decoration:none" style-hover="text-decoration:underline">The competence standard</a>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:8px; border-top:1px solid var(--border-default); padding-top:16px">
+        <sc-for list="{{ groupsB }}" as="g" hint-placeholder-count="5">
+          <a href="{{ g.hash }}" onClick="{{ openTarget }}" style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:var(--ec-grey-700); text-decoration:none" style-hover="color:var(--ec-ink)">
+            <span aria-hidden="true" style="flex:none; width:26px; height:18px; display:flex; align-items:center; justify-content:center; background:var(--ec-copper); color:var(--ec-black-on-warm); font-weight:700; font-size:11px; border-radius:0 999px 999px 0">{{ g.id }}</span>
+            <span>{{ g.title }}</span>
+          </a>
+        </sc-for>
+      </div>
+      <div style="border-top:1px solid var(--border-default); padding-top:16px; display:flex; flex-direction:column; gap:10px; font-size:13.5px">
+        <a href="#1b" style="color:var(--ec-copper-strong); font-weight:600; text-decoration:none">Full UK-SPEC (PDF)</a>
+        <a href="#1b" style="color:var(--ec-copper-strong); font-weight:600; text-decoration:none">Ethical Principles</a>
+        <a href="#1b" style="color:var(--ec-copper-strong); font-weight:600; text-decoration:none">Glossary</a>
+      </div>
+      <x-import component-from-global-scope="EngineeringCouncilDesignSystem_019dd8.Button" variant="outline" size="sm" onClick="{{ printPage }}" hint-size="150px,36px">Print / save PDF</x-import>
+    </aside>
+
+    <main style="display:flex; flex-direction:column; gap:44px; min-width:0">
+      <section aria-labelledby="b-what">
+        <h2 id="b-what" style="margin:0 0 14px; font-size:28px; font-weight:600">What is a Chartered Engineer?</h2>
+        <p style="margin:0 0 14px; font-size:18px; line-height:1.55">{{ lead }}</p>
+        <p style="margin:0 0 12px; font-size:15.5px; line-height:1.6">Chartered Engineers shall demonstrate:</p>
+        <ul style="list-style:none; margin:0; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:10px 24px">
+          <sc-for list="{{ demonstrates }}" as="d" hint-placeholder-count="7">
+            <li style="display:flex; gap:12px; font-size:14.5px; line-height:1.55"><span style="flex:none; width:18px; height:9px; margin-top:8px; background:var(--ec-copper); border-radius:0 999px 999px 0"></span><span>{{ d }}</span></li>
+          </sc-for>
+        </ul>
+      </section>
+
+      <section aria-labelledby="b-how" style="background:var(--ec-grey-050); border-radius:12px; padding:24px 28px">
+        <h2 id="b-how" style="margin:0 0 12px; font-size:22px; font-weight:600">How to get registered</h2>
+        <p style="margin:0 0 16px; font-size:15px; line-height:1.65">You apply and are assessed through a <button type="button" data-term="licensee" onClick="{{ openTerm }}" style="background:none; border:none; padding:0; font:inherit; cursor:pointer; color:var(--ec-copper-strong); font-weight:600; border-bottom:1.5px dotted currentColor">Professional Engineering Institution</button> relevant to your discipline – the institution is the awarding body, not the Engineering Council. The CEng Professional Review has two stages: written evidence, then an interview.</p>
+        <x-import component-from-global-scope="EngineeringCouncilDesignSystem_019dd8.Button" variant="primary" size="sm" hint-size="260px,36px">Find your Licensed PEI →</x-import>
+      </section>
+
+      <section aria-labelledby="b-comp">
+        <h2 id="b-comp" style="margin:0 0 12px; font-size:28px; font-weight:600">The competence standard</h2>
+        <p style="margin:0 0 24px; font-size:15.5px; line-height:1.65; max-width:620px">Five areas of <button type="button" data-term="competence" onClick="{{ openTerm }}" style="background:none; border:none; padding:0; font:inherit; cursor:pointer; color:var(--ec-copper-strong); font-weight:600; border-bottom:1.5px dotted currentColor">competence</button> and <button type="button" data-term="professionalCommitment" onClick="{{ openTerm }}" style="background:none; border:none; padding:0; font:inherit; cursor:pointer; color:var(--ec-copper-strong); font-weight:600; border-bottom:1.5px dotted currentColor">commitment</button>, A to E. Examples are guidance, not a checklist.</p>
+        <div style="display:flex; flex-direction:column">
+          <sc-for list="{{ groupsB }}" as="g" hint-placeholder-count="5">
+            <details id="{{ g.anchor }}" open="{{ groupsOpen }}" style="border-top:2px solid var(--ec-black)">
+              <summary style="display:flex; align-items:center; gap:18px; padding:20px 4px; cursor:pointer">
+                <span aria-hidden="true" style="flex:none; font-size:34px; font-weight:300; line-height:1; color:var(--ec-black); width:44px">{{ g.id }}</span>
+                <span style="flex:1; font-size:19px; font-weight:600">{{ g.title }}</span>
+                <span style="flex:none; font-size:13px; color:var(--ec-grey-600)">{{ g.countLabel }}</span>
+                <span class="chev" aria-hidden="true" style="flex:none; font-size:13px; transition:transform .2s ease">▾</span>
+              </summary>
+              <div style="padding:0 4px 28px 62px">
+                <div style="background:var(--ec-copper-tint); border-radius:0 999px 999px 0; padding:14px 28px 14px 20px; margin:0 0 12px; display:inline-block">
+                  <p style="margin:0; font-size:16px; font-weight:600; line-height:1.5; max-width:560px">{{ g.framing }}</p>
+                </div>
+                <p style="margin:0; font-size:14.5px; line-height:1.65; color:var(--ec-grey-600); max-width:640px">{{ g.explanation }}</p>
+                <div style="margin-top:20px; display:flex; flex-direction:column; gap:18px">
+                  <sc-for list="{{ g.statements }}" as="s" hint-placeholder-count="3">
+                    <div style="border-top:1px solid var(--border-default); padding-top:16px">
+                      <h3 style="display:flex; gap:12px; align-items:baseline; text-wrap:pretty; margin:0; font-size:15.5px">
+                        <span style="flex:none; font-size:12.5px; font-weight:700; background:var(--ec-black); color:var(--ec-copper); padding:3px 10px; border-radius:0 999px 999px 0">{{ s.id }}</span>
+                        <span style="font-weight:600; line-height:1.5">{{ s.text }}</span>
+                      </h3>
+                      <sc-if value="{{ showExamples }}" hint-placeholder-val="{{ true }}">
+                        <details style="margin:10px 0 0 0">
+                          <summary style="display:inline-flex; align-items:center; gap:8px; cursor:pointer; font-size:13.5px; font-weight:600; color:var(--ec-copper-strong)"><span class="chev" aria-hidden="true" style="font-size:10px; transition:transform .2s ease">▾</span>{{ s.exLabel }}</summary>
+                          <div style="margin-top:10px; border-left:none; background:var(--ec-grey-050); border-radius:10px; padding:14px 18px">
+                            <p style="margin:0 0 8px; font-size:12.5px; font-style:italic; color:var(--ec-grey-700)">Illustrative, not a checklist – the most appropriate evidence varies with each individual role.</p>
+                            <ul style="margin:0; padding:0 0 0 18px; display:flex; flex-direction:column; gap:5px">
+                              <sc-for list="{{ s.illustrativeExamples }}" as="ex" hint-placeholder-count="4">
+                                <li style="font-size:14px; line-height:1.55">{{ ex }}</li>
+                              </sc-for>
+                            </ul>
+                          </div>
+                        </details>
+                      </sc-if>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </details>
+          </sc-for>
+          <div style="border-top:2px solid var(--ec-black)"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<footer style="background:var(--ec-black); color:var(--ec-grey-400); padding:28px 40px; display:flex; align-items:center; gap:24px; flex-wrap:wrap">
+  <span style="font-size:12px; flex:1">© Engineering Council 2026. Registered Charity Number 286142</span>
+  <nav aria-label="Related" style="display:flex; gap:22px; font-size:13.5px">
+    <a href="#1b" style="color:var(--ec-copper); text-decoration:none">Full UK-SPEC (PDF)</a>
+    <a href="#1b" style="color:var(--ec-copper); text-decoration:none">Ethical Principles</a>
+    <a href="#1b" style="color:var(--ec-copper); text-decoration:none">Glossary</a>
+  </nav>
+</footer>
+</div>
+</div>
+
+<!-- ============ 1c – Dark editorial ============ -->
+<div class="dv-opt" id="1c">
+<div class="dv-olabel"><a class="dv-oid" href="#1c">1c</a>Dark editorial – full Copper-on-Black reading page, stat row, oversized letters</div>
+<div class="dv-card" style="width:1180px; background:var(--ec-black)" data-screen-label="1c CEng detail – Dark editorial">
+
+<header style="border-bottom:1px solid rgba(255,255,255,.14)">
+  <div style="display:flex; align-items:center; gap:30px; padding:0 40px; height:72px; color:#fff">
+    <x-import component-from-global-scope="EngineeringCouncilDesignSystem_019dd8.Logo" tone="copper-on-black" height="{{ logoH }}" hint-size="150px,34px"></x-import>
+    <nav aria-label="Main" style="display:flex; gap:20px; flex:1; font-size:13.5px; font-weight:500; white-space:nowrap">
+      <a href="#1c" style="color:var(--ec-copper); text-decoration:none">Our role as regulator</a>
+      <a href="#1c" style="color:#fff; text-decoration:none">Registration</a>
+      <a href="#1c" style="color:#fff; text-decoration:none">Guidance</a>
+      <a href="#1c" style="color:#fff; text-decoration:none">Education &amp; skills</a>
+      <a href="#1c" style="color:#fff; text-decoration:none">International</a>
+      <a href="#1c" style="color:#fff; text-decoration:none">News &amp; insights</a>
+    </nav>
+    <span style="font-size:13px; color:var(--ec-grey-400)">UK-SPEC · fourth edition</span>
+  </div>
+</header>
+
+<div style="color:#fff; padding:72px 40px 56px">
+  <div style="max-width:980px; margin:0 auto">
+    <nav aria-label="Breadcrumb" style="display:flex; flex-wrap:wrap; gap:8px; margin:0 0 24px; font-size:13px; color:var(--ec-grey-400)">
+      <span>Home Page</span><span aria-hidden="true">/</span><span>Setting Standards</span><span aria-hidden="true">/</span><a href="UK-SPEC Index - Options.dc.html" style="color:var(--ec-copper); text-decoration:none">UK-SPEC</a><span aria-hidden="true">/</span><span style="color:#fff">Chartered Engineer (CEng)</span>
+    </nav>
+    <p style="margin:0 0 20px; font-size:13px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--ec-grey-400)">UK-SPEC · UK standard for professional engineering competence and commitment</p>
+    <h1 style="margin:0 0 22px; font-size:84px; line-height:1.0; font-weight:700; text-transform:uppercase; color:var(--ec-copper)">Chartered<br>Engineer</h1>
+    <p style="margin:0 0 40px; font-size:20px; line-height:1.5; max-width:620px; color:var(--ec-grey-100)">{{ lead }}</p>
+    <div style="display:flex; gap:56px; border-top:1px solid rgba(255,255,255,.14); padding-top:28px">
+      <div><p style="margin:0; font-size:38px; font-weight:700; color:var(--ec-copper)">5</p><p style="margin:4px 0 0; font-size:13px; letter-spacing:.06em; text-transform:uppercase; color:var(--ec-grey-400)">Competence areas</p></div>
+      <div><p style="margin:0; font-size:38px; font-weight:700; color:var(--ec-copper)">{{ total }}</p><p style="margin:4px 0 0; font-size:13px; letter-spacing:.06em; text-transform:uppercase; color:var(--ec-grey-400)">Competences</p></div>
+      <div><p style="margin:0; font-size:38px; font-weight:700; color:var(--ec-copper)">2</p><p style="margin:4px 0 0; font-size:13px; letter-spacing:.06em; text-transform:uppercase; color:var(--ec-grey-400)">Stage professional review</p></div>
+      <div style="flex:1"></div>
+      <div style="align-self:center; display:flex; flex-direction:column; gap:10px">
+        <x-import component-from-global-scope="EngineeringCouncilDesignSystem_019dd8.Button" variant="secondary" size="sm" hint-size="260px,36px">Find your Licensed PEI →</x-import>
+        <p style="margin:0; font-size:12.5px; color:var(--ec-grey-400); text-align:center">Assessment is through a <button type="button" data-term="licensee" onClick="{{ openTerm }}" style="background:none; border:none; padding:0; font:inherit; cursor:pointer; color:var(--ec-copper); font-weight:600; border-bottom:1.5px dotted currentColor">Licensed PEI</button></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main style="color:#fff; padding:0 40px 72px">
+  <div style="max-width:980px; margin:0 auto">
+    <p style="margin:0 0 8px; font-size:13px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--ec-grey-400)">The competence standard</p>
+    <p style="margin:0 0 28px; font-size:15.5px; line-height:1.6; color:var(--ec-grey-300); max-width:640px">Five areas of <button type="button" data-term="competence" onClick="{{ openTerm }}" style="background:none; border:none; padding:0; font:inherit; cursor:pointer; color:var(--ec-copper); font-weight:600; border-bottom:1.5px dotted currentColor">competence</button> and <button type="button" data-term="professionalCommitment" onClick="{{ openTerm }}" style="background:none; border:none; padding:0; font:inherit; cursor:pointer; color:var(--ec-copper); font-weight:600; border-bottom:1.5px dotted currentColor">commitment</button>. Illustrative examples are guidance, not a checklist.</p>
+    <div style="display:flex; flex-direction:column">
+      <sc-for list="{{ groups }}" as="g" hint-placeholder-count="5">
+        <details open="{{ groupsOpen }}" style="border-top:1px solid rgba(255,255,255,.2)">
+          <summary style="display:flex; align-items:center; gap:26px; padding:24px 4px; cursor:pointer">
+            <span aria-hidden="true" style="flex:none; font-size:58px; font-weight:300; line-height:1; color:var(--ec-copper); width:64px">{{ g.id }}</span>
+            <span style="flex:1; font-size:22px; font-weight:600; color:#fff">{{ g.title }}</span>
+            <span style="flex:none; font-size:13px; color:var(--ec-grey-400)">{{ g.countLabel }}</span>
+            <span class="chev" aria-hidden="true" style="flex:none; font-size:13px; color:var(--ec-copper); transition:transform .2s ease">▾</span>
+          </summary>
+          <div style="padding:0 4px 36px 90px">
+            <p style="margin:0 0 12px; font-size:19px; font-weight:600; line-height:1.5; color:var(--ec-copper); max-width:640px">{{ g.framing }}</p>
+            <p style="margin:0; font-size:14.5px; line-height:1.65; color:var(--ec-grey-300); max-width:660px">{{ g.explanation }}</p>
+            <div style="margin-top:24px; display:flex; flex-direction:column; gap:20px">
+              <sc-for list="{{ g.statements }}" as="s" hint-placeholder-count="3">
+                <div style="border-top:1px solid rgba(255,255,255,.12); padding-top:18px">
+                  <h3 style="display:flex; gap:14px; align-items:baseline; text-wrap:pretty; margin:0; font-size:16px">
+                    <span style="flex:none; font-size:12.5px; font-weight:700; background:var(--ec-copper); color:var(--ec-black-on-warm); padding:3px 10px; border-radius:0 999px 999px 0">{{ s.id }}</span>
+                    <span style="font-weight:500; line-height:1.55; color:#fff">{{ s.text }}</span>
+                  </h3>
+                  <sc-if value="{{ showExamples }}" hint-placeholder-val="{{ true }}">
+                    <details style="margin:12px 0 0 0">
+                      <summary style="display:inline-flex; align-items:center; gap:8px; cursor:pointer; font-size:13.5px; font-weight:600; color:var(--ec-copper)"><span class="chev" aria-hidden="true" style="font-size:10px; transition:transform .2s ease">▾</span>{{ s.exLabel }}</summary>
+                      <div style="margin-top:10px; background:var(--ec-grey-900); border:1px solid rgba(255,255,255,.1); border-radius:10px; padding:14px 18px">
+                        <p style="margin:0 0 8px; font-size:12.5px; font-style:italic; color:var(--ec-grey-400)">Illustrative, not a checklist – the most appropriate evidence varies with each individual role.</p>
+                        <ul style="margin:0; padding:0 0 0 18px; display:flex; flex-direction:column; gap:5px">
+                          <sc-for list="{{ s.illustrativeExamples }}" as="ex" hint-placeholder-count="4">
+                            <li style="font-size:14px; line-height:1.55; color:var(--ec-grey-100)">{{ ex }}</li>
+                          </sc-for>
+                        </ul>
+                      </div>
+                    </details>
+                  </sc-if>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </details>
+      </sc-for>
+      <div style="border-top:1px solid rgba(255,255,255,.2)"></div>
+    </div>
+  </div>
+</main>
+
+<footer style="border-top:1px solid rgba(255,255,255,.14); color:var(--ec-grey-400); padding:28px 40px; display:flex; align-items:center; gap:24px; flex-wrap:wrap">
+  <span style="font-size:12px; flex:1">© Engineering Council 2026. Registered Charity Number 286142</span>
+  <nav aria-label="Related" style="display:flex; gap:22px; font-size:13.5px; align-items:center">
+    <a href="#1c" style="color:var(--ec-copper); text-decoration:none">Full UK-SPEC (PDF)</a>
+    <a href="#1c" style="color:var(--ec-copper); text-decoration:none">Ethical Principles</a>
+    <a href="#1c" style="color:var(--ec-copper); text-decoration:none">Glossary</a>
+    <button type="button" onClick="{{ printPage }}" style="background:none; border:1px solid var(--ec-copper); color:var(--ec-copper); font:inherit; font-size:13px; font-weight:600; padding:7px 16px; border-radius:999px; cursor:pointer">Print this standard</button>
+  </nav>
+</footer>
+</div>
+</div>
+
+<!-- ============ 1d – Mobile pattern ============ -->
+<div class="dv-opt" id="1d">
+<div class="dv-olabel"><a class="dv-oid" href="#1d">1d</a>Mobile pattern (of <a class="dv-oid" href="#1a">1a</a>) – 390px, examples omitted per spec §6</div>
+<div class="dv-card" style="width:390px" data-screen-label="1d CEng detail – Mobile">
+
+<header style="background:var(--ec-black); color:#fff; display:flex; align-items:center; gap:16px; padding:0 20px; height:60px">
+  <x-import component-from-global-scope="EngineeringCouncilDesignSystem_019dd8.Logo" tone="copper-on-black" height="{{ logoHsm }}" hint-size="120px,26px"></x-import>
+  <span style="flex:1"></span>
+  <button type="button" aria-label="Menu" style="background:none; border:none; cursor:pointer; display:flex; flex-direction:column; gap:5px; padding:8px">
+    <span style="width:22px; height:2px; background:#fff"></span>
+    <span style="width:22px; height:2px; background:#fff"></span>
+    <span style="width:22px; height:2px; background:#fff"></span>
+  </button>
+</header>
+
+<div style="background:var(--ec-black); color:#fff; padding:36px 20px 40px">
+  <p style="margin:0 0 12px; font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--ec-grey-400)">UK-SPEC · Registration standard</p>
+  <h1 style="margin:0 0 14px; font-size:40px; line-height:1.05; font-weight:700; text-transform:uppercase; color:var(--ec-copper)">Chartered Engineer</h1>
+  <p style="margin:0; font-size:16px; line-height:1.5; color:var(--ec-grey-100)">The standard for engineers who develop solutions to complex problems through innovation and creativity.</p>
+</div>
+
+<main style="background:#fff; padding:32px 20px 40px; display:flex; flex-direction:column; gap:32px">
+  <section aria-labelledby="d-what">
+    <h2 id="d-what" style="margin:0 0 10px; font-size:22px; font-weight:600">What is a Chartered Engineer?</h2>
+    <p style="margin:0; font-size:15px; line-height:1.6">{{ lead }}</p>
+  </section>
+  <section aria-labelledby="d-how">
+    <h2 id="d-how" style="margin:0 0 10px; font-size:22px; font-weight:600">How to get registered</h2>
+    <p style="margin:0 0 14px; font-size:14.5px; line-height:1.6">You apply through a <button type="button" data-term="licensee" onClick="{{ openTerm }}" style="background:none; border:none; padding:0; font:inherit; cursor:pointer; color:var(--ec-copper-strong); font-weight:600; border-bottom:1.5px dotted currentColor">Professional Engineering Institution</button> – the institution is the awarding body, not the Engineering Council.</p>
+    <x-import component-from-global-scope="EngineeringCouncilDesignSystem_019dd8.Button" variant="primary" size="sm" hint-size="230px,36px">Find your Licensed PEI →</x-import>
+  </section>
+  <section aria-labelledby="d-comp">
+    <h2 id="d-comp" style="margin:0 0 14px; font-size:22px; font-weight:600">The competence standard</h2>
+    <div style="display:flex; flex-direction:column; gap:10px">
+      <sc-for list="{{ groups }}" as="g" hint-placeholder-count="5">
+        <details style="border:1px solid var(--border-strong); border-radius:10px; overflow:hidden">
+          <summary style="display:flex; align-items:center; gap:12px; padding:12px 14px 12px 0; cursor:pointer; min-height:44px">
+            <span aria-hidden="true" style="flex:none; width:40px; height:30px; display:flex; align-items:center; justify-content:center; background:var(--ec-copper); color:var(--ec-black-on-warm); font-weight:700; font-size:15px; border-radius:0 999px 999px 0">{{ g.id }}</span>
+            <span style="flex:1; font-size:15px; font-weight:600; line-height:1.3">{{ g.title }}</span>
+            <span class="chev" aria-hidden="true" style="flex:none; font-size:11px; transition:transform .2s ease">▾</span>
+          </summary>
+          <div style="padding:2px 16px 18px 16px">
+            <p style="margin:0 0 8px; font-size:14.5px; font-weight:600; line-height:1.5">{{ g.framing }}</p>
+            <p style="margin:0 0 14px; font-size:13.5px; line-height:1.6; color:var(--ec-grey-600)">{{ g.explanation }}</p>
+            <div style="display:flex; flex-direction:column; gap:12px">
+              <sc-for list="{{ g.statements }}" as="s" hint-placeholder-count="3">
+                <div style="border-top:1px solid var(--border-default); padding-top:12px">
+                  <h3 style="display:flex; gap:10px; align-items:baseline; text-wrap:pretty; margin:0; font-size:13.5px">
+                    <span style="flex:none; font-size:11px; font-weight:700; background:var(--ec-black); color:var(--ec-copper); padding:2px 8px; border-radius:0 999px 999px 0">{{ s.id }}</span>
+                    <span style="font-weight:500; line-height:1.5">{{ s.text }}</span>
+                  </h3>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </details>
+      </sc-for>
+    </div>
+    <p style="margin:14px 0 0; font-size:12px; line-height:1.5; color:var(--ec-grey-500-solid)">Illustrative examples for each competence are available on larger screens and in the printable standard.</p>
+  </section>
+</main>
+
+<footer style="background:var(--ec-black); color:var(--ec-grey-400); padding:24px 20px; display:flex; flex-direction:column; gap:12px">
+  <a href="#1d" style="color:var(--ec-copper); text-decoration:none; font-size:14px">Read the full UK-SPEC (PDF)</a>
+  <a href="#1d" style="color:var(--ec-copper); text-decoration:none; font-size:14px">Statement of Ethical Principles</a>
+  <a href="#1d" style="color:var(--ec-copper); text-decoration:none; font-size:14px">Glossary of terms</a>
+  <span style="font-size:11px; margin-top:8px">© Engineering Council 2026. Registered Charity Number 286142</span>
+</footer>
+</div>
+</div>
+
+</div>
+<p class="dv-next">Try next: “build the index page in the style of <a class="dv-oid" href="#1a">1a</a>” · “make <a class="dv-oid" href="#1b">1b</a>’s sidebar collapsible” · “mix <a class="dv-oid" href="#1c">1c</a>’s hero with <a class="dv-oid" href="#1a">1a</a>’s body”</p>
+</section>
+
+<div id="term-popover" popover="auto" style="position:fixed; inset:auto; margin:0; width:360px; max-width:90vw; background:var(--ec-white); color:var(--ec-ink); border:2px solid var(--ec-black); border-radius:10px; padding:20px 22px; box-shadow:0 12px 32px rgba(0,0,0,.22); font-family:var(--font-brand)">
+  <p style="margin:0 0 8px; font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--ec-grey-600)">UK-SPEC definition · esc to close</p>
+  <h4 style="margin:0 0 8px; font-size:17px; font-weight:600">{{ termLabel }}</h4>
+  <p style="margin:0; font-size:14.5px; line-height:1.6">{{ termBody }}</p>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;groupsOpen&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: false, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Behaviour&quot;, &quot;description&quot;: &quot;Open all competence areas by default&quot;},
+  &quot;showExamples&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Behaviour&quot;, &quot;description&quot;: &quot;Render the nested Illustrative Examples disclosures&quot;}
+}">
+class Component extends DCLogic {
+  state = { data: null, et: null, ie: null, ict: null, term: null };
+
+  componentDidMount() {
+    fetch('data/ceng-standard.json')
+      .then((r) => r.json())
+      .then((data) => this.setState({ data }))
+      .catch((err) => console.error('Failed to load ceng-standard.json', err));
+    fetch('data/engtech-standard.json')
+      .then((r) => r.json())
+      .then((et) => this.setState({ et }))
+      .catch((err) => console.error('Failed to load engtech-standard.json', err));
+    fetch('data/ieng-standard.json')
+      .then((r) => r.json())
+      .then((ie) => this.setState({ ie }))
+      .catch((err) => console.error('Failed to load ieng-standard.json', err));
+    fetch('data/icttech-standard.json')
+      .then((r) => r.json())
+      .then((ict) => this.setState({ ict }))
+      .catch((err) => console.error('Failed to load icttech-standard.json', err));
+  }
+
+  // Opens the target <details> (and any ancestors) before the browser's own
+  // anchor scroll runs, so nav links to collapsed groups don't read as broken.
+  openTarget = (e) => {
+    const href = e.currentTarget.getAttribute('href') || '';
+    if (href.charAt(0) !== '#') return;
+    const el = document.getElementById(href.slice(1));
+    if (!el) return;
+    let n = el;
+    while (n) {
+      if (n.tagName === 'DETAILS') n.open = true;
+      n = n.parentElement;
+    }
+  };
+
+  openTerm = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const key = e.currentTarget.dataset.term;
+    const src = e.currentTarget.dataset.src || 'ceng';
+    this.setState({ term: { src, key } }, () => {
+      const el = document.getElementById('term-popover');
+      if (!el || !el.showPopover) return;
+      try { el.hidePopover(); } catch (_) { /* not open */ }
+      const left = Math.max(12, Math.min(rect.left, window.innerWidth - 392));
+      let top = rect.bottom + 10;
+      if (top > window.innerHeight - 280) top = Math.max(12, rect.top - 280);
+      el.style.left = left + 'px';
+      el.style.top = top + 'px';
+      el.showPopover();
+    });
+  };
+
+  renderVals() {
+    const d = this.state.data;
+    const stripNote = (t) => (t || '').replace(/\s*\[[^\]]*\]\s*$/, '');
+    const groups = d
+      ? d.groups.map((g) => ({
+          ...g,
+          count: g.statements.length,
+          countLabel: g.statements.length + ' competence' + (g.statements.length === 1 ? '' : 's'),
+          statements: g.statements.map((s) => ({
+            ...s,
+            exLabel: 'Illustrative examples (' + s.illustrativeExamples.length + ')',
+          })),
+        }))
+      : undefined;
+    const total = groups ? groups.reduce((n, g) => n + g.count, 0) : '';
+    const srcJs = { ceng: d, et: this.state.et, ie: this.state.ie };
+    const sel = this.state.term;
+    const tdata = sel ? srcJs[sel.src] : null;
+    const term = tdata && tdata.terms && sel ? tdata.terms[sel.key] : null;
+
+    const prep2 = (j, exWord) => j.groups.map((g) => ({
+      ...g,
+      count: g.statements.length,
+      countLabel: g.statements.length + ' competence' + (g.statements.length === 1 ? '' : 's'),
+      hasIntro: !!g.statementsIntro,
+      statements: g.statements.map((s) => ({ ...s, exLabel: exWord + ' (' + s.illustrativeExamples.length + ')' })),
+    }));
+
+    const itSplit = (s) => { const i = s.indexOf('ICTTech'); return i < 0 ? { a: s, it: '', b: '' } : { a: s.slice(0, i) + 'ICT', it: 'Tech', b: s.slice(i + 7) }; };
+    const PH = 'Professional Engineering Institution (a Licensee)';
+    const mkPage = (j, cfg) => {
+      const pgroups = prep2(j, cfg.exWord);
+      const tot = pgroups.reduce((n, g) => n + g.count, 0);
+      const fm = j.frontMatter;
+      const what = fm ? (fm.whatIsCEng || fm.whatIsEngTech || fm.whatIsIEng) : null;
+      const how = fm ? fm.howToRegister : '';
+      const ix = cfg.termSrc ? how.indexOf(PH) : -1;
+      const stats = [{ v: '5', l: 'Competence areas' }, { v: String(tot), l: 'Competences' }];
+      if (cfg.stat3) stats.push(cfg.stat3);
+      const eb = itSplit(cfg.eyebrow);
+      const cb = itSplit(cfg.crumb);
+      const anch = pgroups.map((g) => ({ ...g, anchor: cfg.aid + '-group-' + g.id, hash: '#' + cfg.aid + '-group-' + g.id }));
+      return {
+        ...cfg,
+        idWhat: cfg.aid + '-what', hashWhat: '#' + cfg.aid + '-what',
+        idHow: cfg.aid + '-how', hashHow: '#' + cfg.aid + '-how',
+        idComp: cfg.aid + '-comp', hashComp: '#' + cfg.aid + '-comp',
+        notVariant: !cfg.isVariant,
+        groups: anch,
+        eyebrowA: eb.a, eyebrowIt: eb.it, eyebrowB: eb.b,
+        crumbA: cb.a, crumbIt: cb.it, crumbB: cb.b,
+        hash: '#' + cfg.aid,
+        groups: pgroups,
+        stats,
+        hasFront: !!what,
+        lead: what ? what.lead : cfg.lead,
+        demonstrates: what ? what.demonstrates : [],
+        caption: fm ? fm.illustrativeExamplesCaption : '',
+        hasCaption: !!fm,
+        whatHead: what ? 'What is ' + (cfg.aOrAn || 'a') + ' ' + cfg.fullName + '?' : '',
+        howPre: ix >= 0 ? how.slice(0, ix) : how,
+        howMid: ix >= 0 ? PH : '',
+        howPost: ix >= 0 ? how.slice(ix + PH.length) : '',
+        hasTermBtn: ix >= 0,
+        screenLabel: cfg.aid + ' ' + cfg.tier + ' detail page',
+      };
+    };
+
+    const pages = (d && this.state.et && this.state.ie && this.state.ict)
+      ? [
+          mkPage(d, { aid: '3a', tier: 'CEng', fullName: 'Chartered Engineer', plural: 'Chartered Engineers', line1: 'Chartered', line2: 'Engineer', crumb: 'Chartered Engineer (CEng)', eyebrow: 'UK-SPEC · UK standard for professional engineering competence and commitment', exHead: 'About the illustrative examples', exWord: 'Illustrative examples', termSrc: 'ceng', underUkspec: true, isVariant: false, stat3: { v: '2', l: 'Stage professional review' } }),
+          mkPage(this.state.et, { aid: '3b', tier: 'EngTech', fullName: 'Engineering Technician', plural: 'Engineering Technicians', aOrAn: 'an', line1: 'Engineering', line2: 'Technician', crumb: 'Engineering Technician (EngTech)', eyebrow: 'UK-SPEC · UK standard for professional engineering competence and commitment', exHead: 'About the illustrative examples', exWord: 'Illustrative examples', termSrc: 'et', underUkspec: true, isVariant: false, stat3: null }),
+          mkPage(this.state.ie, { aid: '3c', tier: 'IEng', fullName: 'Incorporated Engineer', plural: 'Incorporated Engineers', aOrAn: 'an', line1: 'Incorporated', line2: 'Engineer', crumb: 'Incorporated Engineer (IEng)', eyebrow: 'UK-SPEC · UK standard for professional engineering competence and commitment', exHead: 'About the illustrative examples', exWord: 'Illustrative examples', termSrc: 'ie', underUkspec: true, isVariant: false, stat3: { v: '2', l: 'Stage professional review' } }),
+          mkPage(this.state.ict, { aid: '3d', tier: 'ICTTech', fullName: 'ICT Technician', plural: 'ICT Technicians', aOrAn: 'an', line1: 'ICT', line2: 'Technician', crumb: 'ICTTech Standard', eyebrow: 'ICTTech Standard · third edition', exHead: 'About the examples of evidence', exWord: 'Examples of evidence', termSrc: null, underUkspec: false, isVariant: true, stat3: null, lead: 'The professional title for ICT technicians. ICTTech is derived from the EngTech standard.' }),
+        ]
+      : undefined;
+    return {
+      groups,
+      total,
+      lead: d ? d.frontMatter.whatIsCEng.lead : undefined,
+      demonstrates: d ? d.frontMatter.whatIsCEng.demonstrates : undefined,
+      caption: d ? d.frontMatter.illustrativeExamplesCaption : undefined,
+      termLabel: term ? term.label : '',
+      termBody: term ? stripNote(term.html) : '',
+      openTerm: this.openTerm,
+      openTarget: this.openTarget,
+      groupsB: groups ? groups.map((g) => ({ ...g, anchor: 'b-group-' + g.id, hash: '#b-group-' + g.id })) : undefined,
+      groups2a: groups ? groups.map((g) => ({ ...g, anchor: 'c2-group-' + g.id, hash: '#c2-group-' + g.id })) : undefined,
+      pages,
+      printPage: () => window.print(),
+      groupsOpen: this.props.groupsOpen ?? false,
+      showExamples: this.props.showExamples ?? true,
+      logoH: 34,
+      logoHsm: 26,
+    };
+  }
+}
+
+</script>
+</body>
+</html>
