@@ -1,0 +1,1602 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RfR v5 Draft 7</title>
+<meta name="description" content="Prototype: Working Draft 7 of the Regulations for Registration (fifth edition) in a digital-first format. Not approved and not authoritative.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script>
+  /* Apply the stored theme before first paint (no flash). */
+  try { var t = localStorage.getItem('rfr02.theme'); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (_) {}
+</script>
+<style>
+/* ------------------------------------------------------------------
+   RfR v5 prototype (rfr0.2). Visual language forked from rfr0.1:
+   Engineering Council tokens (Copper hero colour on Black, Hanken
+   Grotesk standing in for Söhne), two-pane layout, hover chips.
+   Text colours are tuned for WCAG AA in both themes.
+   ------------------------------------------------------------------ */
+:root {
+  --ec-copper: #35ffdc;
+  --ec-orange: #ff9c3e;
+  --ec-blue: #4797f7;
+  --ec-black: #000;
+  --ec-on-warm: #1d1d1b;
+  --ec-on-blue: #010000;
+
+  --bg: #fff;
+  --bg-nav: #f9f9f6;
+  --bg-sunken: #f2f2ee;
+  --text: #111110;
+  --text-muted: #5c5c58;
+  --border: #e6e6e1;
+  --border-strong: #cfcfc9;
+  --accent: #00715f;            /* accessible copper for text on light */
+  --accent-line: rgba(0,113,95,.38);
+  --accent-tint: #e4fff9;
+  --unit-bg: #f6fdfb;
+  --unit-bar: var(--ec-copper);
+  --mark-bg: var(--ec-copper);
+  --mark-fg: var(--ec-on-warm);
+  --gn-bg: #eef5fe;
+  --gn-border: var(--ec-blue);
+  --gn-text: #1d1d1b;
+  --gn-strong: #0b4fa8;
+  --pop-bg: #fff;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.06);
+  --shadow-md: 0 4px 14px rgba(0,0,0,.08);
+  --shadow-lg: 0 14px 40px rgba(0,0,0,.24);
+  --ring: 0 0 0 3px rgba(71,151,247,.45);
+  --font: 'Hanken Grotesk', 'Söhne', 'Aptos', -apple-system, 'Segoe UI', system-ui, sans-serif;
+  --mono: ui-monospace, 'SFMono-Regular', Consolas, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121211; --bg-nav: #1a1a18; --bg-sunken: #222220;
+    --text: #f2f2ee; --text-muted: #b5b5ae;
+    --border: #2e2e2b; --border-strong: #44443f;
+    --accent: #35ffdc; --accent-line: rgba(53,255,220,.4); --accent-tint: rgba(53,255,220,.1);
+    --unit-bg: #16201e;
+    --gn-bg: #10213a; --gn-text: #e6eefc; --gn-strong: #8fc0ff;
+    --pop-bg: #1d1d1b;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,.4); --shadow-md: 0 4px 14px rgba(0,0,0,.5);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121211; --bg-nav: #1a1a18; --bg-sunken: #222220;
+  --text: #f2f2ee; --text-muted: #b5b5ae;
+  --border: #2e2e2b; --border-strong: #44443f;
+  --accent: #35ffdc; --accent-line: rgba(53,255,220,.4); --accent-tint: rgba(53,255,220,.1);
+  --unit-bg: #16201e;
+  --gn-bg: #10213a; --gn-text: #e6eefc; --gn-strong: #8fc0ff;
+  --pop-bg: #1d1d1b;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.4); --shadow-md: 0 4px 14px rgba(0,0,0,.5);
+  color-scheme: dark;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{font-family:var(--font);font-size:16px;line-height:1.5;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--ec-blue);outline-offset:2px}
+.rfr-sec[tabindex="-1"]:focus,.rfr-sub[tabindex="-1"]:focus,.rfr-fm[tabindex="-1"]:focus,.rfr-tbl[tabindex="-1"]:focus,.rfr-ex[tabindex="-1"]:focus,h3[tabindex="-1"]:focus{outline:none}
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.print-only{display:none}
+.rfr-app{display:flex;flex-direction:column;height:100vh;min-height:0}
+
+/* ---- top: header + toolbar + banner ---- */
+.rfr-top{flex:none;position:relative;z-index:40}
+.rfr-header{background:var(--ec-black);color:#fff;display:flex;align-items:center;gap:18px;padding:0 24px;min-height:62px;flex-wrap:wrap}
+.rfr-logo{display:inline-flex;height:28px;color:var(--ec-copper)}
+.rfr-logo svg{height:100%;width:auto}
+.rfr-header-ed{font-size:12.5px;color:#a3a39d;white-space:nowrap}
+.rfr-header-tools{margin-left:auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:8px 0}
+.rfr-menu-btn{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:8px;margin-left:-8px}
+.rfr-menu-btn span{width:22px;height:2px;background:#fff;display:block}
+.rfr-lens{display:flex;align-items:center;gap:6px;flex-wrap:wrap;border:0;margin:0;padding:0}
+.rfr-lens[hidden],.rfr-lens[hidden]+.rfr-tool-sep{display:none}
+.rfr-lens legend{float:left;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#a3a39d;margin-right:4px;padding:0}
+.rfr-pill{display:inline-flex;align-items:center;gap:6px;background:none;border:1.5px solid #5c5c58;color:#fff;font-size:12.5px;font-weight:600;padding:5px 11px;border-radius:999px;cursor:pointer;white-space:nowrap}
+.rfr-pill::before{content:"";width:9px;height:9px;border-radius:50%;border:1.5px solid currentColor}
+.rfr-pill[aria-pressed="true"]{background:var(--ec-copper);border-color:var(--ec-copper);color:var(--ec-on-warm)}
+.rfr-pill[aria-pressed="true"]::before{background:currentColor}
+.rfr-pill:disabled{cursor:default;opacity:.85}
+.rfr-pill:not(:disabled):hover{border-color:var(--ec-copper)}
+.rfr-tool-sep{width:1px;height:22px;background:#3a3a37}
+.rfr-banner{background:var(--ec-orange);color:var(--ec-on-warm);padding:8px 24px;font-size:13.5px;line-height:1.45;display:flex;gap:10px;align-items:baseline}
+.rfr-banner strong{font-weight:700;letter-spacing:.03em;text-transform:uppercase;font-size:12px;flex:none}
+
+/* ---- layout ---- */
+.rfr-row{display:flex;flex:1;min-height:0}
+
+/* ---- nav ---- */
+.rfr-nav{flex:none;width:330px;background:var(--bg-nav);border-right:1px solid var(--border);display:flex;flex-direction:column;min-height:0}
+.rfr-nav-scroll{flex:1;overflow:auto;padding:18px 14px 40px}
+.rfr-search{position:relative;display:flex;align-items:center;background:var(--bg);border:1.5px solid var(--border-strong);border-radius:999px;padding:0 12px;height:44px;margin-bottom:6px}
+.rfr-search:focus-within{border-color:var(--ec-blue);box-shadow:0 0 0 3px rgba(71,151,247,.25)}
+.rfr-search svg{flex:none;color:var(--text-muted)}
+.rfr-search input{flex:1;border:none;outline:none;background:none;font:inherit;font-size:15px;padding:0 8px;min-width:0;color:var(--text)}
+.rfr-search input::-webkit-search-cancel-button{display:none}
+.rfr-search-clear{display:none;background:none;border:none;cursor:pointer;color:var(--text-muted);font-size:20px;line-height:1;padding:4px}
+.rfr-search-clear.on{display:block}
+.rfr-status{margin:0 0 12px;padding:0 6px;font-size:12px;color:var(--text-muted);min-height:15px}
+.rfr-nav-h{margin:14px 6px 6px;font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)}
+.rfr-nav-link{display:flex;justify-content:space-between;gap:10px;align-items:baseline;color:var(--text-muted);padding:6px 10px;border-radius:7px;border-left:2px solid transparent;font-size:13.5px;line-height:1.4}
+.rfr-nav-link:hover{background:var(--accent-tint);text-decoration:none;color:var(--text)}
+.rfr-nav-link.active,.rfr-nav-sum.active{color:var(--text);font-weight:600;background:var(--bg);border-left-color:var(--ec-copper);box-shadow:var(--shadow-sm)}
+.rfr-nav-sec{margin-top:2px}
+.rfr-nav-row{display:flex;align-items:flex-start;gap:4px}
+.rfr-nav-sum{flex:1;display:flex;align-items:baseline;gap:10px;padding:8px 10px;border-radius:7px;border-left:2px solid transparent;color:var(--text)}
+.rfr-nav-sum:hover{background:var(--accent-tint);text-decoration:none}
+.rfr-nav-secnum{flex:none;min-width:24px;height:16px;padding:0 4px;display:flex;align-items:center;justify-content:center;background:var(--ec-copper);color:var(--ec-on-warm);font-weight:700;font-size:10.5px;border-radius:0 999px 999px 0}
+.rfr-nav-sectitle{flex:1;font-size:14px;font-weight:600;line-height:1.35}
+.rfr-nav-toggle{flex:none;background:none;border:none;cursor:pointer;padding:8px;border-radius:6px;color:var(--text-muted);line-height:1}
+.rfr-nav-toggle:hover{background:var(--bg-sunken);color:var(--text)}
+.rfr-nav-toggle .chev{display:block;font-size:11px;transition:transform .2s ease}
+.rfr-nav-toggle[aria-expanded="false"] .chev{transform:rotate(-90deg)}
+.rfr-nav-subs{padding:2px 0 6px 16px;display:flex;flex-direction:column;gap:1px}
+.rfr-nav-subs[hidden]{display:none}
+.rfr-nav-sec.lens-dim .rfr-nav-sum,.rfr-nav-sec.lens-dim .rfr-nav-subs{opacity:.45}
+.rfr-nav-link.dimmed,.rfr-nav-sec.dimmed .rfr-nav-sum{opacity:.35}
+.rfr-nav-count{flex:none;font:700 11px var(--mono);color:var(--accent)}
+.rfr-nav-foot{border-top:1px solid var(--border);padding:14px 20px;display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.rfr-btn{background:none;border:1.5px solid var(--text);color:var(--text);font-size:13px;font-weight:600;padding:8px 14px;border-radius:999px;cursor:pointer}
+.rfr-btn:hover{background:var(--text);color:var(--bg)}
+
+/* ---- main ---- */
+.rfr-main{flex:1;min-width:0;overflow:auto;position:relative;scroll-behavior:smooth;background:var(--bg)}
+.rfr-hero{background:var(--ec-black);color:#fff;padding:52px 48px 42px}
+.rfr-hero-inner{max-width:880px;margin:0 auto}
+.rfr-hero-kicker{margin:0 0 16px;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#a3a39d}
+.rfr-hero-title{margin:0 0 18px;font-size:62px;line-height:1;font-weight:700;text-transform:uppercase;color:var(--ec-copper)}
+.rfr-hero-lead{margin:0;font-size:19px;line-height:1.55;max-width:640px;color:#f2f2ee}
+.rfr-hero-stats{display:flex;gap:48px;border-top:1px solid rgba(255,255,255,.14);padding-top:22px;margin-top:30px;flex-wrap:wrap}
+.rfr-hero-stats .v{margin:0;font-size:32px;font-weight:700;color:var(--ec-copper)}
+.rfr-hero-stats .l{margin:4px 0 0;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:#a3a39d}
+.rfr-doc{max-width:880px;margin:0 auto;padding:40px 48px 80px}
+.rfr-loading{color:var(--text-muted);padding:40px 0}
+
+/* ---- front matter ---- */
+.rfr-fm{padding-bottom:30px;margin-bottom:30px;border-bottom:1px solid var(--border);scroll-margin-top:16px}
+.rfr-fm-title{margin:0 0 14px;font-size:28px;font-weight:600}
+.rfr-fm h3{margin:22px 0 8px;font-size:19px;font-weight:600}
+
+/* ---- section / subsection ---- */
+.rfr-sec{scroll-margin-top:16px;padding-bottom:12px}
+.rfr-sec-head{padding:30px 0 18px}
+.rfr-sec-kicker{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px}
+.rfr-sec-kicker::before{content:"";width:34px;height:12px;background:var(--ec-copper);border-radius:0 999px 999px 0}
+.rfr-sec-title{margin:0;font-size:34px;font-weight:700;line-height:1.1;letter-spacing:-.01em}
+.rfr-sub{scroll-margin-top:16px}
+.rfr-sub-title{margin:28px 0 10px;font-size:20px;font-weight:600;color:var(--accent)}
+
+/* ---- explanatory text: full weight, unnumbered, uncontained ---- */
+.rfr-ex{font-size:17px;line-height:1.68;margin:0 0 16px;scroll-margin-top:24px}
+.rfr-ex p{margin:0 0 12px}
+.rfr-ex p:last-child{margin-bottom:0}
+
+/* shared list style for prose */
+.rfr-prose ul{margin:10px 0 12px;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:7px}
+.rfr-prose ul ul{margin:8px 0 2px}
+.rfr-prose li{position:relative;padding-left:26px;line-height:1.6}
+.rfr-prose li::before{content:"";position:absolute;left:0;top:.62em;width:14px;height:7px;background:var(--ec-copper);border-radius:0 999px 999px 0}
+.rfr-prose li li::before{background:none;border:1.5px solid var(--accent);height:8px;width:12px}
+.rfr-prose{overflow-wrap:anywhere}
+
+/* ---- the regulation unit ---- */
+.rfr-cl{position:relative;display:grid;grid-template-columns:76px 1fr;gap:0 20px;margin:14px 0;padding:18px 20px 18px 0;background:var(--unit-bg);border-left:5px solid var(--unit-bar);border-radius:0 12px 12px 0;scroll-margin-top:24px}
+.rfr-cl:focus{outline:none}
+.rfr-cl:focus-visible{outline:3px solid var(--ec-blue);outline-offset:3px}
+.rfr-cl-gutter{text-align:right;user-select:none}
+.rfr-cl-num{display:block;font-size:30px;font-weight:600;line-height:1.05;color:var(--accent);letter-spacing:-.02em}
+.rfr-cl-id{display:none;margin-top:6px;font:600 11px var(--mono);color:var(--text-muted);word-break:break-all}
+.show-ids .rfr-cl-id{display:block}
+.rfr-cl-main{min-width:0}
+.rfr-cl-body{font-size:17px;line-height:1.68}
+.rfr-cl-body p{margin:0 0 12px}
+.rfr-cl-body p:last-child{margin-bottom:0}
+.rfr-defterm{margin:0 0 6px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.rfr-defterm .eb{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)}
+.rfr-defterm dfn{font-style:normal;font-size:20px;font-weight:700}
+.rfr-cl-foot{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.rfr-cl-foot:empty{display:none}
+.rfr-tblchip{background:none;border:1px solid var(--border-strong);color:var(--text-muted);font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px;cursor:pointer}
+.rfr-tblchip:hover{border-color:var(--accent);color:var(--accent)}
+.rfr-flash{animation:rfrflash 1.8s ease}
+@keyframes rfrflash{0%,25%{box-shadow:0 0 0 4px var(--ec-copper)}100%{box-shadow:0 0 0 4px transparent}}
+
+/* hover / focus chip */
+.rfr-chip{position:absolute;top:-14px;right:10px;display:flex;align-items:center;flex-wrap:wrap;gap:2px;background:var(--ec-black);border-radius:999px;padding:4px 6px 4px 12px;opacity:0;transform:translateY(-3px);transition:opacity .13s ease,transform .13s ease;pointer-events:none;box-shadow:var(--shadow-md);z-index:5;max-width:calc(100% - 20px)}
+.rfr-cl:hover .rfr-chip,.rfr-cl:focus-within .rfr-chip,.rfr-cl:focus .rfr-chip{opacity:1;transform:none;pointer-events:auto}
+.rfr-chip-id{font:600 11.5px var(--mono);color:var(--ec-copper);padding-right:6px}
+.rfr-chip-prov{font-size:11.5px;color:#cfcfc9;padding-right:6px;max-width:300px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rfr-chip-btn{background:none;border:none;cursor:pointer;color:#fff;font-size:11.5px;font-weight:600;line-height:1;padding:6px 9px;border-radius:999px}
+.rfr-chip-btn:hover,.rfr-chip-btn:focus-visible{background:rgba(255,255,255,.16)}
+
+/* inline enrichments */
+a.xref{color:var(--accent);font-weight:600;border-bottom:1px solid var(--accent-line)}
+a.xref:hover{text-decoration:none;border-bottom-color:currentColor}
+.t-def{background:none;border:none;padding:0;color:inherit;cursor:pointer;text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:3px;text-decoration-color:var(--accent);font:inherit}
+.t-def:hover{color:var(--accent)}
+.t-gl{background:none;border:none;padding:0;color:inherit;cursor:pointer;font:inherit;border-bottom:1.6px dotted var(--text-muted)}
+.t-gl:hover{border-bottom-color:var(--text)}
+.rfr-ext{color:var(--accent);border-bottom:1px solid var(--accent-line)}
+.rfr-ext:hover{text-decoration:none;border-bottom-color:currentColor}
+.rfr-ext-icon{font-size:.78em;vertical-align:.15em;margin-left:1px}
+.rfr-ext-stub{background:none;border:none;padding:0;font:inherit;color:inherit;cursor:help;border-bottom:1px dashed var(--text-muted)}
+mark{background:var(--mark-bg);color:var(--mark-fg);border-radius:2px;padding:0 1px}
+
+/* ---- applicant journey (provisional form, from journey.json) ---- */
+.jr{margin:0 0 36px;border:1px solid var(--border);border-radius:14px;background:var(--bg-nav);padding:18px 22px 20px}
+.jr-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.jr-head h2{margin:0;font-size:20px;font-weight:700;display:flex;align-items:center;gap:10px}
+.jr-head h2::before{content:"";width:28px;height:11px;background:var(--ec-copper);border-radius:0 999px 999px 0}
+.jr-toggle{margin-left:auto;background:none;border:1.5px solid var(--text);color:var(--text);font-size:12.5px;font-weight:600;padding:4px 12px;border-radius:999px;cursor:pointer}
+.jr-toggle:hover{background:var(--text);color:var(--bg)}
+.jr-note{margin:6px 0 0;font-size:13px;color:var(--text-muted);flex-basis:100%}
+.jr-body{margin-top:16px}
+.jr-body[hidden]{display:none}
+.jr-list{list-style:none;margin:0;padding:0}
+.jr-stage{display:grid;grid-template-columns:34px minmax(0,1fr) minmax(0,210px);gap:4px 14px;align-items:start}
+.jr-step{width:30px;height:24px;display:flex;align-items:center;justify-content:center;background:var(--ec-copper);color:var(--ec-on-warm);font-weight:700;font-size:13px;border-radius:0 999px 999px 0;margin-top:1px}
+.jr-go{display:block;text-align:left;background:none;border:none;padding:0;cursor:pointer;color:var(--text);font-size:16px;font-weight:700;line-height:1.35;border-bottom:1.5px solid transparent}
+.jr-go:hover{color:var(--accent);border-bottom-color:var(--accent-line)}
+.jr-what{margin:3px 0 0;font-size:14px;line-height:1.5}
+.jr-who{margin:2px 0 0;font-size:13px;color:var(--text-muted)}
+.jr-branches{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.jr-branch{display:flex;gap:6px;align-items:baseline;width:100%;text-align:left;background:var(--bg);border:1.5px dashed var(--border-strong);color:var(--text);font-size:13px;font-weight:600;padding:5px 12px;border-radius:999px;cursor:pointer}
+.jr-branch:hover{border-color:var(--accent);color:var(--accent)}
+.jr-gate{position:relative;margin:8px 0 8px 14px;padding:4px 0 4px 26px;border-left:2px dashed var(--border-strong);font-size:13.5px;line-height:1.45}
+.jr-gate::before{content:"";position:absolute;left:-8px;top:50%;width:13px;height:13px;margin-top:-7px;background:var(--ec-orange);transform:rotate(45deg)}
+.jr-gate b{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-right:8px;color:var(--text-muted)}
+@media (max-width:640px){
+  .jr{padding:16px}
+  .jr-stage{grid-template-columns:34px minmax(0,1fr)}
+  .jr-branches{grid-column:2}
+}
+
+/* ---- Guidance Note overlays: deliberately unlike regulation, prose or popovers ---- */
+.gn-btn{display:inline-flex;align-items:center;gap:7px;background:var(--gn-bg);border:1.5px solid var(--gn-border);color:var(--gn-text);font-size:12.5px;font-weight:700;padding:4px 12px 4px 9px;border-radius:999px;cursor:pointer}
+.gn-btn:hover{background:var(--gn-border);color:var(--ec-on-blue)}
+.gn-btn svg{flex:none}
+.gn-btn[aria-expanded="true"]{background:var(--gn-border);color:var(--ec-on-blue)}
+.t-gn{background:none;border:none;padding:0;font:inherit;color:var(--gn-strong);cursor:pointer;font-weight:600;border-bottom:2px solid var(--gn-border)}
+.t-gn::after{content:" ▤";font-size:.8em}
+.gn-panel{margin:16px 0 2px -4px;background:var(--gn-bg);color:var(--gn-text);border:1px solid var(--gn-border);border-top:6px solid var(--gn-border);border-radius:4px 4px 14px 14px;padding:16px 20px 18px;font-family:Georgia,'Times New Roman',serif;scroll-margin-top:30px}
+.gn-panel[hidden]{display:none}
+.gn-panel:focus{outline:none}
+.gn-panel:focus-visible{outline:3px solid var(--ec-blue);outline-offset:3px}
+.gn-badge{display:inline-block;font-family:var(--font);background:var(--ec-blue);color:var(--ec-on-blue);font-size:11px;font-weight:700;letter-spacing:.04em;padding:4px 11px;border-radius:999px;margin:0 0 10px}
+.gn-title{margin:0 0 10px;font-family:var(--font);font-size:17px;font-weight:700}
+.gn-extract{margin:0;padding:0;list-style:none;border-left:3px solid var(--gn-border);padding-left:14px}
+.gn-extract>li{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin:0 0 12px}
+.gn-extract>li:last-child{margin-bottom:0}
+.gn-ref{font-family:var(--font);font-size:12px;font-weight:700;color:var(--gn-strong);padding-top:3px;max-width:120px}
+.gn-extract p{margin:0 0 8px;font-size:15.5px;line-height:1.6}
+.gn-extract p:last-child{margin-bottom:0}
+.gn-extract .gn-q{font-weight:700;font-style:italic}
+.gn-extract ul{margin:6px 0 0;padding-left:20px;font-size:15px;line-height:1.55}
+.gn-extract ul li{margin-bottom:6px}
+.gn-source{margin:14px 0 0;font-family:var(--font);font-size:13px;line-height:1.5}
+.gn-source b{font-weight:700;text-transform:uppercase;font-size:11px;letter-spacing:.06em;margin-right:6px}
+.gn-caveat{margin:6px 0 0;font-family:var(--font);font-size:13px;font-style:italic;opacity:.9}
+
+/* ---- search filtering + licence lens ---- */
+@media screen { .f-hide{display:none!important} }
+.rfr-lens-stub{display:none;margin:0 0 8px;padding:14px 18px;border:1.5px dashed var(--border-strong);border-radius:12px;font-size:15px;color:var(--text-muted)}
+.rfr-sec.lens-off:not(.lens-peek) .rfr-lens-stub{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+.rfr-sec.lens-off:not(.lens-peek) .rfr-sec-body{display:none}
+.rfr-sec.lens-off:not(.lens-peek) .rfr-sec-title{color:var(--text-muted)}
+.rfr-lens-stub button{background:none;border:1.5px solid var(--text);color:var(--text);font-size:13px;font-weight:600;padding:4px 14px;border-radius:999px;cursor:pointer}
+.rfr-lens-stub button:hover{background:var(--text);color:var(--bg)}
+
+/* ---- tables ---- */
+.rfr-tbl{margin:22px 0 26px;scroll-margin-top:24px}
+.rfr-tbl figcaption{font-size:14px;font-weight:700;margin:0 0 10px;display:flex;align-items:center;gap:10px}
+.rfr-tbl figcaption::before{content:"";width:22px;height:10px;background:var(--ec-copper);border-radius:0 999px 999px 0;flex:none}
+.rfr-tbl table{width:100%;border-collapse:collapse;font-size:14.5px;line-height:1.5}
+.rfr-tbl th,.rfr-tbl td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--border)}
+.rfr-tbl thead th{background:var(--ec-black);color:#fff;font-size:12.5px;font-weight:700;letter-spacing:.02em}
+.rfr-tbl tbody th{font-weight:700}
+.rfr-tbl tbody tr:nth-child(even){background:var(--bg-nav)}
+.rfr-tbl tr.row-hit{background:var(--accent-tint)!important;box-shadow:inset 4px 0 0 var(--ec-copper)}
+.rfr-tbl td.cl-cell{font-size:13.5px}
+
+/* ---- popover (definitions, glossary, link stubs) ---- */
+.rfr-pop{position:fixed;inset:auto;margin:0;width:380px;max-width:calc(100vw - 24px);background:var(--pop-bg);color:var(--text);border:2px solid var(--text);border-radius:12px;padding:0;box-shadow:var(--shadow-lg);font-family:var(--font)}
+.rfr-pop:focus{outline:none}
+.rfr-pop-inner{padding:16px 20px 18px}
+.rfr-pop-band{display:none;background:var(--ec-copper);color:var(--ec-on-warm);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:7px 20px;border-radius:9px 9px 0 0}
+.rfr-pop.is-def .rfr-pop-band{display:block}
+.rfr-pop.is-gl{border-style:dashed;border-color:var(--text-muted)}
+.rfr-pop-kicker{margin:0 0 6px;font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--text-muted)}
+.rfr-pop-title{margin:0 0 8px;font-size:18px;font-weight:700}
+.rfr-pop-body{font-size:15px;line-height:1.6}
+.rfr-pop-body p{margin:0 0 8px}
+.rfr-pop-foot{margin-top:12px;font-size:13px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.rfr-pop-tag{display:inline-block;background:var(--bg-sunken);color:var(--text);font-size:11.5px;font-weight:600;padding:3px 10px;border-radius:999px}
+.rfr-pop-close{position:absolute;top:6px;right:8px;background:none;border:none;cursor:pointer;font-size:20px;line-height:1;padding:4px 8px;border-radius:6px;color:inherit}
+.rfr-pop.is-def .rfr-pop-close{color:var(--ec-on-warm)}
+
+/* tooltip for xrefs and journey stages */
+.rfr-tip{position:fixed;z-index:90;max-width:340px;background:var(--ec-black);color:#fff;font-size:13px;line-height:1.45;padding:8px 12px;border-radius:8px;box-shadow:var(--shadow-md);pointer-events:none}
+.rfr-tip[hidden]{display:none}
+.rfr-tip b{font-family:var(--mono);color:var(--ec-copper);font-weight:600}
+
+/* footer */
+.rfr-foot{background:var(--ec-black);color:#a3a39d;padding:28px 48px}
+.rfr-foot-inner{max-width:880px;margin:0 auto;display:flex;gap:22px;align-items:baseline;flex-wrap:wrap}
+.rfr-foot-inner span{flex:1;font-size:12px;min-width:220px}
+.rfr-foot-inner a{color:var(--ec-copper);font-size:13.5px}
+
+/* ---- mobile ---- */
+.rfr-backdrop{display:none}
+@media (max-width:880px){
+  .rfr-menu-btn{display:flex}
+  .rfr-header{padding:0 16px;gap:12px}
+  .rfr-header-ed{display:none}
+  .rfr-header-tools{margin-left:0;width:100%;padding:0 0 10px}
+  .rfr-banner{padding:8px 16px}
+  .rfr-nav{position:fixed;top:0;left:0;bottom:0;z-index:70;width:86%;max-width:350px;transform:translateX(-100%);transition:transform .22s ease;box-shadow:0 0 50px rgba(0,0,0,.35)}
+  .rfr-app.nav-open .rfr-nav{transform:none}
+  .rfr-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:65}
+  .rfr-app.nav-open .rfr-backdrop{display:block}
+  .rfr-hero{padding:34px 16px 30px}
+  .rfr-hero-title{font-size:40px}
+  .rfr-hero-stats{gap:28px}
+  .rfr-doc{padding:24px 16px 64px}
+  .rfr-sec-title{font-size:27px}
+  .rfr-cl{grid-template-columns:52px 1fr;gap:0 12px;padding:14px 14px 14px 0}
+  .rfr-cl-num{font-size:22px}
+  .rfr-cl-id{font-size:10px}
+  .rfr-chip{position:static;grid-column:1/-1;opacity:1;transform:none;pointer-events:auto;margin:12px 0 0 14px;background:var(--bg-sunken);box-shadow:none;border-radius:12px;max-width:none}
+  .rfr-chip-id{color:var(--accent)}
+  .rfr-chip-prov{color:var(--text-muted);white-space:normal}
+  .rfr-chip-btn{color:var(--text)}
+  .rfr-chip-btn:hover,.rfr-chip-btn:focus-visible{background:var(--border)}
+  .rfr-foot{padding:24px 16px}
+}
+.pl-short{display:none}
+@media (max-width:640px){
+  /* compact header: the toolbar and banner must not eat the reading pane */
+  .rfr-header{min-height:54px}
+  .rfr-logo{height:24px}
+  .rfr-header-tools{gap:6px;padding-bottom:8px}
+  .rfr-lens legend,.rfr-tool-sep,.rfr-pill:disabled{display:none}
+  .rfr-pill{font-size:12px;padding:4px 9px}
+  .pl-long{display:none}
+  .pl-short{display:inline}
+  .rfr-banner{font-size:12px;line-height:1.35;padding:6px 16px}
+  .rfr-banner strong{font-size:10.5px}
+  /* tables become stacked cards: no horizontal scroll */
+  .rfr-tbl table,.rfr-tbl tbody,.rfr-tbl tr,.rfr-tbl th,.rfr-tbl td{display:block;width:100%}
+  .rfr-tbl thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .rfr-tbl tbody tr{border:1px solid var(--border);border-left:4px solid var(--ec-copper);border-radius:0 10px 10px 0;margin:0 0 12px;padding:6px 0;background:var(--bg)!important}
+  .rfr-tbl th,.rfr-tbl td{border:none;padding:6px 14px}
+  .rfr-tbl td[data-label]::before{content:attr(data-label);display:block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);margin-bottom:2px}
+  .rfr-tbl tbody th{font-size:15.5px}
+}
+.rfr-theme::before{border-radius:50%;background:linear-gradient(90deg,currentColor 50%,transparent 50%)}
+
+/* ---- print / PDF: the whole draft, regardless of lens or search ---- */
+@media print {
+  :root,:root[data-theme="dark"]{
+    --bg:#fff;--bg-nav:#f9f9f6;--bg-sunken:#f2f2ee;--text:#000;--text-muted:#3a3a37;--border:#cfcfc9;--border-strong:#a3a39d;
+    --accent:#00715f;--accent-line:transparent;--accent-tint:#fff;--unit-bg:#fff;--gn-bg:#fff;--gn-text:#000;--gn-strong:#0b4fa8;
+    color-scheme:light;
+  }
+  @page{margin:18mm 16mm}
+  body{font-size:10.5pt}
+  .rfr-top,.rfr-nav,.rfr-backdrop,.rfr-chip,.rfr-foot,.jr,.rfr-lens-stub,.gn-btn,.gn-panel,.rfr-cl-foot,.rfr-pop,.rfr-tip,.rfr-hero-stats{display:none!important}
+  .print-only{display:block}
+  .rfr-app,.rfr-row,.rfr-main{display:block;height:auto;overflow:visible}
+  .rfr-print-head{margin:0 0 10px;padding:6px 0;border-bottom:2px solid var(--ec-orange);font-size:9pt;font-weight:600}
+  .rfr-hero{background:#fff;color:#000;padding:0 0 14px}
+  .rfr-hero-kicker{color:#3a3a37;margin-bottom:6px}
+  .rfr-hero-title{color:#000;font-size:28pt;margin-bottom:8px}
+  .rfr-hero-lead{color:#000;font-size:11pt}
+  .rfr-doc{max-width:none;padding:0}
+  .rfr-sec.lens-off .rfr-sec-body{display:block!important}
+  .rfr-sec.lens-off .rfr-sec-title{color:#000!important}
+  .rfr-sec-head,.rfr-sub-title,.rfr-fm h3{break-after:avoid}
+  .rfr-sec-head{padding-top:18px}
+  .rfr-sec-title{font-size:20pt}
+  .rfr-cl{grid-template-columns:62px 1fr;margin:8px 0;padding:8px 10px 8px 0;border-left-width:3px;break-inside:avoid}
+  .rfr-cl-num{font-size:16pt}
+  .rfr-cl-id{display:block!important}
+  .rfr-cl-body,.rfr-ex{font-size:10.5pt}
+  .t-def,.t-gl,.t-gn,.rfr-ext-stub,.rfr-ext,a.xref{color:inherit;text-decoration:none;border:none;font-weight:inherit}
+  .t-gn::after,.rfr-ext-icon{display:none}
+  .rfr-tbl{break-inside:avoid}
+  .rfr-tbl thead th{background:#fff;color:#000;border-bottom:2px solid #000}
+  .rfr-gn-note{font-size:9pt;font-style:italic;margin:6px 0 0}
+  .rfr-endnotes{break-before:page}
+  .rfr-endnotes ol>li{margin:0 0 14px;break-inside:avoid}
+  .rfr-endnotes .gn-extract{font-family:Georgia,serif}
+  mark{background:none;color:inherit}
+}
+@media (prefers-reduced-motion:reduce){
+  .rfr-main{scroll-behavior:auto}
+  .rfr-flash{animation:none}
+  .rfr-nav,.rfr-chip,.rfr-nav-toggle .chev{transition:none}
+}
+</style>
+</head>
+<body>
+<div class="rfr-app" id="rfr-app">
+  <div class="rfr-top">
+    <header class="rfr-header">
+      <button type="button" class="rfr-menu-btn" id="rfr-menu" aria-label="Open contents" aria-expanded="false" aria-controls="rfr-nav"><span></span><span></span><span></span></button>
+      <span class="rfr-logo" role="img" aria-label="Engineering Council"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" viewBox="0 0 563.44 128.02" fill="currentColor"><path d="M132.5,0h-66.58c-18.2,0-32.96,14.76-32.96,32.96h99.54V0Z"/><path d="M132.5,47.14h-55.91c-18.2,0-32.96,14.76-32.96,32.96h88.87v-32.96Z"/><path d="M132.5,127.22h-55.91c-18.2,0-32.96-14.76-32.96-32.96h88.87v32.96Z"/><path d="M0,80.1v-14.18h0c0-18.2,14.76-32.96,32.96-32.96v47.14H0Z"/><path d="M179.65,0h35.35v8.15h-26.18v13.09h22.04v8.15h-22.04v14.69h26.18v8.15h-35.35V0Z"/><path d="M221.76,52.22V14.04h8.73v4.07c1.36-1.55,2.92-2.74,4.69-3.56,1.77-.82,3.72-1.24,5.86-1.24,3.93,0,7.04,1.25,9.35,3.75,2.3,2.5,3.45,5.83,3.45,10v25.17h-8.73v-22.62c0-2.62-.57-4.63-1.71-6.04-1.14-1.41-2.8-2.11-4.98-2.11s-4.11.78-5.64,2.33c-1.53,1.55-2.29,3.56-2.29,6.04v22.4h-8.73Z"/><path d="M296.68,48.37c0,5.43-1.69,9.75-5.06,12.95-3.37,3.2-7.89,4.8-13.56,4.8-4.51,0-8.24-.95-11.2-2.84-2.96-1.89-5.02-4.65-6.18-8.29l8.15-2.91c.58,2.23,1.69,3.95,3.31,5.16s3.6,1.82,5.93,1.82c3.2,0,5.65-.84,7.35-2.51s2.55-4.13,2.55-7.38v-2.69c-1.12,1.5-2.63,2.68-4.55,3.53-1.92.85-3.99,1.27-6.22,1.27-2.52,0-4.85-.48-6.98-1.45-2.13-.97-3.95-2.4-5.46-4.29-1.41-1.7-2.47-3.69-3.2-5.96-.73-2.28-1.09-4.7-1.09-7.27s.36-4.99,1.09-7.27,1.79-4.27,3.2-5.96c1.5-1.89,3.32-3.32,5.46-4.29,2.13-.97,4.46-1.45,6.98-1.45,2.23,0,4.3.44,6.22,1.31,1.91.87,3.43,2.04,4.55,3.49v-4.07h8.73v34.33ZM288.09,31.93c0-3.39-.84-6.07-2.51-8.04-1.67-1.96-3.92-2.95-6.73-2.95-3.01,0-5.36.99-7.05,2.98-1.7,1.99-2.55,4.78-2.55,8.36s.85,6.32,2.55,8.33c1.7,2.01,4.05,3.02,7.05,3.02,2.81,0,5.06-.97,6.73-2.91,1.67-1.94,2.51-4.58,2.51-7.93v-.87Z"/><path d="M305.77,8.95V0h9.02v8.95h-9.02ZM314.64,14.04v38.18h-8.73V14.04h8.73Z"/><path d="M323.8,52.22V14.04h8.73v4.07c1.36-1.55,2.92-2.74,4.69-3.56,1.77-.82,3.72-1.24,5.86-1.24,3.93,0,7.04,1.25,9.35,3.75,2.3,2.5,3.45,5.83,3.45,10v25.17h-8.73v-22.62c0-2.62-.57-4.63-1.71-6.04-1.14-1.41-2.8-2.11-4.98-2.11s-4.11.78-5.64,2.33c-1.53,1.55-2.29,3.56-2.29,6.04v22.4h-8.73Z"/><path d="M373.33,51.53c-2.33-.99-4.34-2.41-6.04-4.25-1.6-1.79-2.82-3.89-3.67-6.29-.85-2.4-1.27-5.01-1.27-7.82,0-2.67.42-5.2,1.27-7.6.85-2.4,2.05-4.5,3.6-6.29,1.7-1.94,3.69-3.42,5.96-4.44,2.28-1.02,4.73-1.53,7.35-1.53,5.19,0,9.31,1.73,12.37,5.2,3.05,3.47,4.58,8.01,4.58,13.64v2.91h-26.77c.34,3.25,1.42,5.82,3.24,7.71,1.82,1.89,4.13,2.84,6.95,2.84,2.18,0,4.06-.55,5.64-1.64s2.65-2.58,3.24-4.47l7.49,2.84c-1.36,3.35-3.48,5.96-6.36,7.85-2.89,1.89-6.22,2.84-10,2.84-2.72,0-5.24-.5-7.56-1.49ZM374.53,22.69c-1.62,1.36-2.75,3.3-3.38,5.82h17.53c-.05-2.38-.8-4.28-2.25-5.71-1.45-1.43-3.44-2.15-5.96-2.15-2.33,0-4.3.68-5.93,2.04Z"/><path d="M412.61,51.53c-2.33-.99-4.34-2.41-6.04-4.25-1.6-1.79-2.82-3.89-3.67-6.29-.85-2.4-1.27-5.01-1.27-7.82,0-2.67.42-5.2,1.27-7.6.85-2.4,2.05-4.5,3.6-6.29,1.7-1.94,3.69-3.42,5.96-4.44,2.28-1.02,4.73-1.53,7.35-1.53,5.19,0,9.31,1.73,12.37,5.2,3.05,3.47,4.58,8.01,4.58,13.64v2.91h-26.77c.34,3.25,1.42,5.82,3.24,7.71,1.82,1.89,4.13,2.84,6.95,2.84,2.18,0,4.06-.55,5.64-1.64s2.65-2.58,3.24-4.47l7.49,2.84c-1.36,3.35-3.48,5.96-6.36,7.85-2.89,1.89-6.22,2.84-10,2.84-2.72,0-5.24-.5-7.56-1.49ZM413.81,22.69c-1.62,1.36-2.75,3.3-3.38,5.82h17.53c-.05-2.38-.8-4.28-2.25-5.71-1.45-1.43-3.44-2.15-5.96-2.15-2.33,0-4.3.68-5.93,2.04Z"/><path d="M463.67,13.86c.39.02.83.06,1.31.11v8.73c-.58-.1-1.12-.16-1.6-.18s-1.02-.04-1.6-.04c-2.91,0-5.26.89-7.06,2.65-1.79,1.77-2.69,4.11-2.69,7.02v20.07h-8.73V14.04h8.73v5.67c.87-1.79,2.24-3.22,4.11-4.29,1.87-1.07,3.99-1.6,6.36-1.6.39,0,.78.01,1.16.04Z"/><path d="M470.87,8.95V0h9.02v8.95h-9.02ZM479.74,14.04v38.18h-8.73V14.04h8.73Z"/><path d="M488.53,52.22V14.04h8.73v4.07c1.36-1.55,2.92-2.74,4.69-3.56,1.77-.82,3.72-1.24,5.85-1.24,3.93,0,7.04,1.25,9.35,3.75,2.3,2.5,3.45,5.83,3.45,10v25.17h-8.73v-22.62c0-2.62-.57-4.63-1.71-6.04-1.14-1.41-2.8-2.11-4.98-2.11s-4.11.78-5.64,2.33-2.29,3.56-2.29,6.04v22.4h-8.73Z"/><path d="M563.44,48.37c0,5.43-1.68,9.75-5.05,12.95s-7.89,4.8-13.56,4.8c-4.51,0-8.24-.95-11.2-2.84-2.96-1.89-5.02-4.65-6.18-8.29l8.15-2.91c.58,2.23,1.68,3.95,3.31,5.16,1.63,1.21,3.6,1.82,5.93,1.82,3.2,0,5.65-.84,7.35-2.51s2.55-4.13,2.55-7.38v-2.69c-1.12,1.5-2.63,2.68-4.55,3.53s-3.99,1.27-6.22,1.27c-2.52,0-4.85-.48-6.98-1.45-2.13-.97-3.95-2.4-5.45-4.29-1.41-1.7-2.47-3.69-3.2-5.96-.73-2.28-1.09-4.7-1.09-7.27s.36-4.99,1.09-7.27c.73-2.28,1.79-4.27,3.2-5.96,1.5-1.89,3.32-3.32,5.45-4.29,2.13-.97,4.46-1.45,6.98-1.45,2.23,0,4.3.44,6.22,1.31s3.43,2.04,4.55,3.49v-4.07h8.73v34.33ZM554.86,31.93c0-3.39-.84-6.07-2.51-8.04-1.67-1.96-3.92-2.95-6.73-2.95-3.01,0-5.36.99-7.05,2.98s-2.55,4.78-2.55,8.36.85,6.32,2.55,8.33c1.7,2.01,4.05,3.02,7.05,3.02,2.81,0,5.05-.97,6.73-2.91,1.67-1.94,2.51-4.58,2.51-7.93v-.87Z"/><path d="M187.14,94.16c-.58,2.16-.87,4.47-.87,6.95s.29,4.79.87,6.95c.58,2.16,1.45,4.06,2.62,5.71,1.31,1.94,2.93,3.43,4.87,4.47,1.94,1.04,4.05,1.56,6.33,1.56,3.01,0,5.58-.86,7.71-2.58,2.13-1.72,3.61-4.13,4.44-7.24l8.73,2.98c-1.6,4.8-4.21,8.51-7.82,11.13-3.61,2.62-7.96,3.93-13.06,3.93-3.54,0-6.84-.7-9.89-2.11-3.05-1.41-5.67-3.42-7.86-6.04-2.04-2.42-3.59-5.24-4.65-8.44-1.07-3.2-1.6-6.64-1.6-10.33s.53-7.13,1.6-10.33c1.07-3.2,2.62-6.01,4.65-8.44,2.18-2.62,4.8-4.63,7.86-6.04,3.05-1.41,6.35-2.11,9.89-2.11,5.09,0,9.44,1.31,13.06,3.93,3.61,2.62,6.22,6.33,7.82,11.13l-8.73,2.98c-.82-3.1-2.3-5.52-4.44-7.24-2.13-1.72-4.7-2.58-7.71-2.58-2.28,0-4.39.52-6.33,1.56-1.94,1.04-3.56,2.53-4.87,4.47-1.16,1.65-2.04,3.55-2.62,5.71Z"/><path d="M260.97,100.35c.82,2.4,1.24,5.01,1.24,7.82s-.41,5.42-1.24,7.82-2.04,4.47-3.64,6.22c-1.7,1.89-3.7,3.33-6,4.33-2.3.99-4.81,1.49-7.53,1.49s-5.22-.5-7.53-1.49c-2.3-.99-4.3-2.44-6-4.33-1.6-1.75-2.81-3.82-3.64-6.22s-1.24-5.01-1.24-7.82.41-5.42,1.24-7.82c.82-2.4,2.04-4.47,3.64-6.22,1.7-1.89,3.7-3.33,6-4.33s4.81-1.49,7.53-1.49,5.22.5,7.53,1.49,4.3,2.44,6,4.33c1.6,1.75,2.81,3.82,3.64,6.22ZM236.78,99c-1.72,2.23-2.58,5.28-2.58,9.16s.86,6.93,2.58,9.16,4.06,3.34,7.02,3.34,5.3-1.11,7.02-3.34,2.58-5.29,2.58-9.16-.86-6.93-2.58-9.16-4.06-3.35-7.02-3.35-5.3,1.12-7.02,3.35Z"/><path d="M300.75,89.04v38.18h-8.73v-4.07c-1.41,1.6-2.97,2.81-4.69,3.64-1.72.83-3.62,1.24-5.71,1.24-3.98,0-7.13-1.24-9.46-3.71-2.33-2.47-3.49-5.79-3.49-9.96v-25.31h8.73v23.42c0,2.47.57,4.36,1.71,5.67,1.14,1.31,2.82,1.96,5.05,1.96s4.1-.78,5.6-2.33c1.5-1.55,2.26-3.56,2.26-6.04v-22.69h8.73Z"/><path d="M309.91,127.22v-38.18h8.73v4.07c1.36-1.55,2.92-2.74,4.69-3.56,1.77-.82,3.72-1.24,5.86-1.24,3.93,0,7.04,1.25,9.35,3.75,2.3,2.5,3.45,5.83,3.45,10v25.17h-8.73v-22.62c0-2.62-.57-4.63-1.71-6.04-1.14-1.41-2.8-2.11-4.98-2.11s-4.11.78-5.64,2.33c-1.53,1.55-2.29,3.56-2.29,6.04v22.4h-8.73Z"/><path d="M359.92,99.14c-1.82,2.23-2.73,5.24-2.73,9.02s.91,6.78,2.73,8.98c1.82,2.21,4.25,3.31,7.31,3.31,2.13,0,3.95-.63,5.46-1.89,1.5-1.26,2.55-3.05,3.13-5.38l7.49,3.78c-1.07,3.34-3.04,6.02-5.93,8.04-2.88,2.01-6.27,3.02-10.15,3.02-2.72,0-5.25-.5-7.6-1.49-2.35-.99-4.38-2.41-6.07-4.25-1.65-1.79-2.91-3.89-3.78-6.29-.87-2.4-1.31-5.01-1.31-7.82s.44-5.42,1.31-7.82c.87-2.4,2.13-4.5,3.78-6.29,1.7-1.84,3.72-3.26,6.07-4.26,2.35-.99,4.89-1.49,7.6-1.49,3.83,0,7.16.97,10,2.91,2.84,1.94,4.81,4.56,5.93,7.85l-7.35,4c-.58-2.28-1.62-4.06-3.13-5.35-1.5-1.29-3.32-1.93-5.46-1.93-3.05,0-5.49,1.11-7.31,3.34Z"/><path d="M388.46,83.94v-8.95h9.02v8.95h-9.02ZM397.34,89.04v38.18h-8.73v-38.18h8.73Z"/><path d="M415.23,75v52.22h-8.73v-52.22h8.73Z"/></svg></span>
+      <span class="rfr-header-ed" id="rfr-edition">RfR · fifth edition</span>
+      <div class="rfr-header-tools">
+        <fieldset class="rfr-lens" id="rfr-lens" hidden>
+          <legend>Licence</legend>
+        </fieldset>
+        <span class="rfr-tool-sep" aria-hidden="true"></span>
+        <button type="button" class="rfr-pill" id="rfr-ids" aria-pressed="false" title="Show drafting IDs (e.g. UKU-003) beside clause numbers and in references">Drafting IDs</button>
+        <button type="button" class="rfr-pill rfr-theme" id="rfr-theme" aria-pressed="false" title="Switch between light and dark">Dark<span class="pl-long"> mode</span></button>
+      </div>
+    </header>
+    <div class="rfr-banner" role="note" aria-label="Prototype notice">
+      <strong>Prototype</strong>
+      <span id="rfr-banner-text">Presents a working draft of RfR v5 in a digital-first format. Not an authoritative version of the Regulations.</span>
+    </div>
+  </div>
+
+  <div class="rfr-row">
+    <aside class="rfr-nav" id="rfr-nav" aria-label="Contents and search">
+      <div class="rfr-nav-scroll">
+        <div class="rfr-search" role="search">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.5" y2="16.5"></line></svg>
+          <input id="rfr-q" type="search" autocomplete="off" spellcheck="false" placeholder="Search, e.g. peer, 6.5, UKU-011, para 22" aria-label="Search the regulations" aria-describedby="rfr-status">
+          <button type="button" class="rfr-search-clear" id="rfr-clear" aria-label="Clear search">×</button>
+        </div>
+        <p class="rfr-status" id="rfr-status" role="status" aria-live="polite"></p>
+        <nav aria-label="Document contents" id="rfr-toc"></nav>
+      </div>
+      <div class="rfr-nav-foot">
+        <a href="https://www.engc.org.uk/" target="_blank" rel="noopener">Engineering Council website ↗</a>
+        <button type="button" class="rfr-btn" id="rfr-print">Print / save as PDF</button>
+      </div>
+    </aside>
+
+    <main class="rfr-main" id="rfr-main" tabindex="-1">
+      <p class="print-only rfr-print-head" id="rfr-print-head"></p>
+      <div class="rfr-hero">
+        <div class="rfr-hero-inner">
+          <p class="rfr-hero-kicker">Engineering Council</p>
+          <h1 class="rfr-hero-title">Regulations for<br>Registration</h1>
+          <p class="rfr-hero-lead">The Regulations that Licensees of the Engineering Council must adhere to when registering applicants, recognising programmes of learning and development, and undertaking related processes.</p>
+          <div class="rfr-hero-stats" id="rfr-stats"></div>
+        </div>
+      </div>
+      <div class="rfr-doc" id="rfr-doc"><p class="rfr-loading">Loading the draft…</p></div>
+      <footer class="rfr-foot">
+        <div class="rfr-foot-inner">
+          <span>© Engineering Council 2026. Registered Charity Number 286142. This digital prototype is not an authoritative version of the Regulations for Registration.</span>
+          <a href="https://www.engc.org.uk/" target="_blank" rel="noopener">engc.org.uk ↗</a>
+        </div>
+      </footer>
+    </main>
+    <div class="rfr-backdrop" id="rfr-backdrop"></div>
+  </div>
+</div>
+
+<div id="rfr-pop" class="rfr-pop" popover="auto" tabindex="-1" role="dialog" aria-labelledby="rfr-pop-title">
+  <div class="rfr-pop-band" id="rfr-pop-band">Regulatory definition</div>
+  <button type="button" class="rfr-pop-close" id="rfr-pop-close" aria-label="Close">×</button>
+  <div class="rfr-pop-inner">
+    <p class="rfr-pop-kicker" id="rfr-pop-kicker"></p>
+    <h2 class="rfr-pop-title" id="rfr-pop-title"></h2>
+    <div class="rfr-pop-body" id="rfr-pop-body"></div>
+    <div class="rfr-pop-foot" id="rfr-pop-foot"></div>
+  </div>
+</div>
+<div id="rfr-tip" class="rfr-tip" role="tooltip" hidden></div>
+
+<script>
+'use strict';
+/* =====================================================================
+   Configuration
+   ===================================================================== */
+const DATA_DIR = 'rfr0.2-data/';
+const FILES = {
+  content: 'content.json',
+  definitions: 'definitions.json',
+  glossary: 'glossary.json',
+  overlays: 'gn-overlays.json',
+  links: 'links.json',
+  journey: 'journey.json',
+};
+// Default label for in-text cross-references: 'num' (display number, e.g. 6.6)
+// or 'id' (stable drafting ID, e.g. V5-072). The "Drafting IDs" switch flips it.
+const XREF_LABEL = 'num';
+
+/* Safe localStorage (private windows, blocked storage). */
+const store = {
+  get(k) { try { return localStorage.getItem(k); } catch (_) { return null; } },
+  set(k, v) { try { localStorage.setItem(k, v); } catch (_) {} },
+};
+
+const $ = (sel, root = document) => root.querySelector(sel);
+const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const S = {
+  data: null,
+  byId: {},          // stable ID -> { block, sec, sub }
+  numToId: {},       // display number -> stable ID
+  defs: {},          // DEF id -> definition
+  showIds: XREF_LABEL === 'id',
+  citePrefix: 'RfR v5',
+};
+
+/* =====================================================================
+   Data loading: live JSON (cache-busted) with an offline fallback bundle
+   ===================================================================== */
+function loadData() {
+  const grab = (f) => fetch(DATA_DIR + f + '?v=' + Date.now()).then((r) => {
+    if (!r.ok) throw new Error(f + ' ' + r.status);
+    return r.json();
+  });
+  const keys = Object.keys(FILES);
+  return Promise.all(keys.map((k) => grab(FILES[k])))
+    .then((vals) => Object.fromEntries(keys.map((k, i) => [k, vals[i]])))
+    .catch((err) => {
+      console.warn('Live data unavailable, using bundled copy:', err.message);
+      return new Promise((resolve, reject) => {
+        const s = document.createElement('script');
+        s.src = DATA_DIR + 'bundle.js';
+        s.onload = () => (window.__RFR02_DATA ? resolve(window.__RFR02_DATA) : reject(new Error('empty bundle')));
+        s.onerror = () => reject(new Error('no data'));
+        document.head.appendChild(s);
+      });
+    });
+}
+
+/* =====================================================================
+   Indexing
+   ===================================================================== */
+function eachBlock(cb) {
+  const c = S.data.content;
+  c.sections.forEach((sec) => {
+    sec.blocks.forEach((b) => cb(b, sec, null));
+    sec.subsections.forEach((sub) => sub.blocks.forEach((b) => cb(b, sec, sub)));
+  });
+}
+
+function buildIndex() {
+  const c = S.data.content;
+  eachBlock((b, sec, sub) => { S.byId[b.id] = { block: b, sec, sub }; });
+  Object.entries(c.index || {}).forEach(([id, num]) => { S.numToId[num] = id; });
+  (S.data.definitions.definitions || []).forEach((d) => { S.defs[d.id] = d; });
+  S.gnByTarget = {};
+  (S.data.overlays.overlays || [])
+    .filter((o) => S.byId[o.target])
+    .sort((a, b) => cmpNum(a.target, b.target))
+    .forEach((o, i) => { S.gnByTarget[o.target] = Object.assign({}, o, { n: i + 1 }); });
+  const m = /draft\s*(\d+)/i.exec(c.meta.edition || '');
+  S.citePrefix = m ? 'RfR v5 Draft ' + m[1] : 'RfR v5';
+}
+
+function firstLine(id) {
+  const e = S.byId[id];
+  if (!e) return '';
+  const b = e.block;
+  if (b.type === 'table') return b.caption;
+  const t = (b.text || '').trim();
+  return t.length > 110 ? t.slice(0, 107).replace(/\s+\S*$/, '') + '…' : t;
+}
+
+/* =====================================================================
+   Enrichment: definitions, Guidance Note triggers, links, glossary.
+   Matches run across inline markup (e.g. ICT<em>Tech</em>), longest term
+   first, first occurrence per block, never inside headings or links.
+   ===================================================================== */
+const SKIP_SEL = 'a,button,h1,h2,h3,h4,h5,h6,thead,dfn,.no-enrich';
+const BLOCK_SEL = 'p,li,td,th,figcaption,div';
+const isWordCh = (c) => !!c && /[A-Za-z0-9]/.test(c);
+
+// mode 'first': first letter case-insensitive both ways (regulatory definitions)
+// mode 'lowerfirst': a lower-case form may match a capitalised use, not the reverse
+// mode 'exact': exact case
+function formMatches(seg, form, mode) {
+  if (seg === form) return true;
+  if (mode === 'exact' || seg.slice(1) !== form.slice(1)) return false;
+  if (seg[0].toLowerCase() !== form[0].toLowerCase()) return false;
+  return mode === 'first' || form[0] === form[0].toLowerCase();
+}
+
+function applyPass(root, pass, used, skipKey) {
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+    acceptNode: (n) => (n.nodeValue && n.parentElement && !n.parentElement.closest(SKIP_SEL)
+      ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT),
+  });
+  const groups = new Map();
+  let n;
+  while ((n = walker.nextNode())) {
+    const blk = n.parentElement.closest(BLOCK_SEL) || root;
+    if (!groups.has(blk)) groups.set(blk, []);
+    groups.get(blk).push(n);
+  }
+  groups.forEach((nodes) => {
+    let str = '';
+    const spans = nodes.map((node) => { const s = str.length; str += node.nodeValue; return { node, s, e: str.length }; });
+    const hits = [];
+    let i = 0;
+    while (i < str.length) {
+      let hit = null;
+      if (!isWordCh(str[i - 1]) || !isWordCh(str[i])) {
+        for (const c of pass.cands) {
+          if (used.has(c.key) || c.key === skipKey) continue;
+          const seg = str.substr(i, c.form.length);
+          if (seg.length !== c.form.length || !formMatches(seg, c.form, pass.mode)) continue;
+          if (isWordCh(str[i + c.form.length]) && isWordCh(c.form[c.form.length - 1])) continue;
+          hit = { c, s: i, e: i + c.form.length };
+          break;
+        }
+      }
+      if (hit) { hits.push(hit); used.add(hit.c.key); i = hit.e; } else i++;
+    }
+    const locate = (pos, end) => {
+      for (const sp of spans) {
+        if (end ? pos > sp.s && pos <= sp.e : pos >= sp.s && pos < sp.e) return [sp.node, pos - sp.s];
+      }
+      return null;
+    };
+    for (let h = hits.length - 1; h >= 0; h--) {
+      const { c, s, e } = hits[h];
+      const a = locate(s, false), b = locate(e, true);
+      if (!a || !b) continue;
+      const range = document.createRange();
+      range.setStart(a[0], a[1]);
+      range.setEnd(b[0], b[1]);
+      const el = pass.make(c);
+      el.appendChild(range.extractContents());
+      range.insertNode(el);
+    }
+  });
+}
+
+let PASSES = [];
+function buildPasses() {
+  const byLen = (a, b) => b.form.length - a.form.length;
+  const gn = (S.data.overlays.overlays || []).filter((o) => o.trigger)
+    .map((o) => ({ key: 'gn:' + o.id, form: o.trigger, o })).sort(byLen);
+  const defs = [];
+  (S.data.definitions.definitions || []).forEach((d) => {
+    [d.term, ...(d.variants || [])].forEach((f) => f && defs.push({ key: d.id, form: f, d }));
+  });
+  defs.sort(byLen);
+  const ext = (S.data.links.links || []).map((l, i) => ({ key: 'ext:' + i, form: l.match, l })).sort(byLen);
+  const gl = [];
+  (S.data.glossary.terms || []).forEach((t, gi) => {
+    [t.term, ...(t.variants || [])].forEach((f) => {
+      if (!f) return;
+      gl.push({ key: 'gl:' + gi, form: f.replace(/\*/g, ''), gi });
+    });
+  });
+  gl.sort(byLen);
+  // Glossary names that contain a defined term (e.g. "Approval and Accreditation of
+  // Qualifications and Apprenticeships") are titles, not uses of the term: match them first.
+  const defForms = defs.map((c) => c.form.toLowerCase());
+  const containsDef = (f) => f.includes(' ') && defForms.some((d) => new RegExp('(^|\\W)' + d.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '(\\W|$)', 'i').test(f) && d !== f.toLowerCase());
+  const glTitles = gl.filter((c) => containsDef(c.form));
+  const makeGl = (c) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 't-gl'; b.dataset.gl = c.gi;
+    b.setAttribute('aria-haspopup', 'dialog');
+    return b;
+  };
+
+  PASSES = [
+    { name: 'gn', mode: 'exact', cands: gn, make: (c) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 't-gn'; b.dataset.gn = c.o.id;
+      b.setAttribute('aria-label', c.form + ': open the Guidance Note extract');
+      return b;
+    } },
+    { name: 'gl-titles', mode: 'lowerfirst', cands: glTitles, make: makeGl },
+    { name: 'def', mode: 'first', cands: defs, make: (c) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 't-def'; b.dataset.def = c.d.id;
+      b.setAttribute('aria-haspopup', 'dialog');
+      return b;
+    } },
+    { name: 'ext', mode: 'exact', cands: ext, make: (c) => {
+      if (c.l.url) {
+        const a = document.createElement('a');
+        a.className = 'rfr-ext'; a.href = c.l.url; a.target = '_blank'; a.rel = 'noopener noreferrer';
+        a.title = c.l.verified ? 'Opens in a new tab' : 'External link (unverified), opens in a new tab';
+        const ic = document.createElement('span');
+        ic.className = 'rfr-ext-icon'; ic.setAttribute('aria-hidden', 'true'); ic.textContent = '↗';
+        a.dataset.trail = '1';
+        a._icon = ic;
+        return a;
+      }
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'rfr-ext-stub'; b.dataset.stub = c.key.slice(4);
+      b.setAttribute('aria-haspopup', 'dialog');
+      return b;
+    } },
+    { name: 'gl', mode: 'lowerfirst', cands: gl, make: makeGl },
+  ];
+}
+
+function enrich(el, skipKey) {
+  const used = new Set();
+  PASSES.forEach((p) => applyPass(el, p, used, skipKey));
+  // external-link arrow goes after the matched text
+  $$('a.rfr-ext[data-trail]', el).forEach((a) => { if (a._icon) a.appendChild(a._icon); a.removeAttribute('data-trail'); });
+}
+
+/* Cross-reference labels follow the ID switch; tooltips carry the other form. */
+function labelXrefs(root) {
+  $$('a.xref', root).forEach((a) => {
+    const id = a.dataset.ref;
+    const e = S.byId[id];
+    if (!e) return;
+    if (e.block.type === 'table') { a.textContent = 'Table ' + id.slice(1); return; }
+    const num = e.block.num;
+    a.textContent = S.showIds ? id : num;
+    a.dataset.tip = '<b>' + esc(S.showIds ? num : id) + '</b> ' + esc(firstLine(id));
+    a.setAttribute('aria-label', (e.block.kind === 'definition' ? 'Definition ' : 'Clause ') + num + ' (' + id + ')');
+  });
+}
+
+/* =====================================================================
+   Rendering
+   ===================================================================== */
+function el(tag, cls, html) {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (html != null) e.innerHTML = html;
+  return e;
+}
+
+function renderExplanatory(b) {
+  const d = el('div', 'rfr-ex rfr-prose', b.html);
+  d.id = b.id;
+  d.dataset.unit = 'ex';
+  if (b.v44) d.dataset.v44 = b.v44;
+  if (b.status) d.dataset.status = b.status;
+  enrich(d);
+  return d;
+}
+
+function renderClause(b) {
+  const isDef = b.kind === 'definition';
+  const art = el('article', 'rfr-cl' + (isDef ? ' rfr-cl-def' : ''));
+  art.id = b.id;
+  art.tabIndex = -1;
+  art.dataset.unit = 'clause';
+  art.dataset.num = b.num;
+  // phase 2 fields travel with the element so later views are cheap
+  art.dataset.status = b.status || '';
+  art.dataset.modality = Object.keys(b.modality || {}).join(' ');
+  if (b.v44Paras) art.dataset.v44paras = b.v44Paras.join(' ');
+  art.setAttribute('aria-label', (isDef ? 'Definition ' : 'Regulation ') + b.num);
+
+  const gut = el('div', 'rfr-cl-gutter');
+  gut.innerHTML = '<span class="rfr-cl-num" aria-hidden="true">' + esc(b.num) + '</span><span class="rfr-cl-id">' + esc(b.id) + '</span>';
+  art.appendChild(gut);
+
+  const main = el('div', 'rfr-cl-main');
+  if (isDef && b.term) {
+    main.appendChild(el('p', 'rfr-defterm', '<span class="eb">Definition</span><dfn>' + esc(b.term) + '</dfn>'));
+  }
+  const body = el('div', 'rfr-cl-body rfr-prose', b.html);
+  enrich(body, isDef ? b.id : null);
+  main.appendChild(body);
+
+  const foot = el('div', 'rfr-cl-foot');
+  (b.tables || []).forEach((t) => {
+    const chip = el('button', 'rfr-tblchip', 'In Table ' + esc(t.slice(1)));
+    chip.type = 'button';
+    chip.dataset.table = t;
+    chip.dataset.for = b.id;
+    chip.setAttribute('aria-label', 'Show this clause in Table ' + t.slice(1));
+    foot.appendChild(chip);
+  });
+  main.appendChild(foot);
+  const gn = S.gnByTarget[b.id];
+  if (gn) {
+    const btn = el('button', 'gn-btn',
+      '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M4 4h10l6 6v10H4z"/><path d="M14 4v6h6M8 14h8M8 18h6"/></svg>Guidance');
+    btn.type = 'button';
+    btn.dataset.gnOpen = gn.id;
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-controls', 'gn-' + gn.id);
+    btn.setAttribute('aria-label', 'Current guidance for clause ' + b.num + ': ' + gn.title);
+    foot.appendChild(btn);
+    main.appendChild(renderGnPanel(gn));
+    main.appendChild(el('p', 'print-only rfr-gn-note', 'Guidance Note extract: see endnote ' + gn.n + '.'));
+  }
+  art.appendChild(main);
+
+  const prov = b.v44 ? 'From ' + b.v44 : 'New in v5';
+  const chip = el('div', 'rfr-chip');
+  chip.setAttribute('role', 'group');
+  chip.setAttribute('aria-label', 'Clause ' + b.num + ' tools');
+  chip.innerHTML =
+    '<span class="rfr-chip-id">' + esc(b.id) + '</span>' +
+    '<span class="rfr-chip-prov" title="' + esc(prov) + '">' + esc(prov) + '</span>' +
+    '<button type="button" class="rfr-chip-btn" data-act="link" data-id="' + esc(b.id) + '">Copy link</button>' +
+    '<button type="button" class="rfr-chip-btn" data-act="cite" data-id="' + esc(b.id) + '">Copy citation</button>';
+  art.appendChild(chip);
+  return art;
+}
+
+/* Guidance Note extract: verbatim text, numbered by its own refs, with source and caveat. */
+function gnExtractHTML(o) {
+  let h = '<ol class="gn-extract">';
+  (o.extract || []).forEach((x) => {
+    h += '<li><span class="gn-ref">' + esc(x.ref) + '</span><div>';
+    if (x.q) h += '<p class="gn-q">' + esc(x.q) + '</p>';
+    String(x.text || '').split(/\n\s*\n/).forEach((para) => { h += '<p>' + esc(para) + '</p>'; });
+    if (x.items && x.items.length) h += '<ul>' + x.items.map((it) => '<li>' + esc(it) + '</li>').join('') + '</ul>';
+    h += '</div></li>';
+  });
+  h += '</ol>';
+  const src = o.source || {};
+  h += '<p class="gn-source"><b>Source</b>' + [src.document, src.version, src.location].filter(Boolean).map(esc).join(' · ') + '</p>';
+  if (o.caveat) h += '<p class="gn-caveat">' + esc(o.caveat) + '</p>';
+  return h;
+}
+
+function renderGnPanel(o) {
+  const p = el('aside', 'gn-panel no-enrich');
+  p.id = 'gn-' + o.id;
+  p.hidden = true;
+  p.tabIndex = -1;
+  p.setAttribute('aria-label', 'Guidance Note extract: ' + o.title);
+  p.innerHTML = '<p class="gn-badge">Current guidance: Guidance Note text, not regulation</p>' +
+    '<h4 class="gn-title">' + esc(o.title) + '</h4><blockquote style="margin:0">' + gnExtractHTML(o) + '</blockquote>';
+  return p;
+}
+
+function toggleGn(id, open, focus) {
+  const panel = document.getElementById('gn-' + id);
+  const btn = $('[data-gn-open="' + id + '"]');
+  if (!panel || !btn) return;
+  const show = open == null ? panel.hidden : open;
+  panel.hidden = !show;
+  btn.setAttribute('aria-expanded', String(show));
+  if (show && focus) {
+    goTo(panel.id, false);
+    panel.focus({ preventScroll: true });
+  }
+}
+
+function renderEndnotes() {
+  const list = Object.values(S.gnByTarget).sort((a, b) => a.n - b.n);
+  if (!list.length) return;
+  const sec = el('section', 'print-only rfr-endnotes');
+  let h = '<h2 class="rfr-sec-title" style="font-size:24px">Endnotes: Guidance Note extracts</h2>' +
+    '<p>These are extracts from current Guidance Notes, shown beside the clauses they support. They are guidance, not regulation.</p><ol>';
+  list.forEach((o) => {
+    const b = S.byId[o.target].block;
+    h += '<li><p><strong>' + esc(o.title) + '</strong>. Supports clause ' + esc(b.num) + ' (' + esc(b.id) + ').</p>' + gnExtractHTML(o) + '</li>';
+  });
+  sec.innerHTML = h + '</ol>';
+  $('#rfr-doc').appendChild(sec);
+}
+
+function renderTable(b) {
+  const fig = el('figure', 'rfr-tbl');
+  fig.id = b.id;
+  fig.dataset.unit = 'table';
+  const rowHead = b.header[0] === '';
+  let h = '<figcaption>' + esc(b.caption) + '</figcaption><table><thead><tr>';
+  b.header.forEach((c, i) => { h += '<th scope="col">' + (c || (rowHead && i === 0 ? '<span class="vh">Aspect</span>' : '')) + '</th>'; });
+  h += '</tr></thead><tbody>';
+  b.rows.forEach((row, ri) => {
+    const applies = (b.rowAppliesTo && b.rowAppliesTo[ri]) || [];
+    h += '<tr data-applies="' + esc(applies.join(' ')) + '">';
+    row.forEach((cell, ci) => {
+      const label = b.header[ci];
+      let html = cell;
+      // "UKU-001 to UKU-018" is a range of IDs, not of display numbers:
+      // list the clauses the row actually covers instead.
+      if (label === 'Clauses' && / to <a class="xref"/.test(cell) && applies.length) {
+        html = applies.slice().sort(cmpNum).map((id) => '<a class="xref" href="#' + id + '" data-ref="' + id + '">' + id + '</a>').join(', ');
+      }
+      if (rowHead && ci === 0) h += '<th scope="row">' + html + '</th>';
+      else h += '<td' + (label ? ' data-label="' + esc(label) + '"' : '') + (label === 'Clauses' ? ' class="cl-cell"' : '') + '>' + html + '</td>';
+    });
+    h += '</tr>';
+  });
+  h += '</tbody></table>';
+  fig.innerHTML = h;
+  enrich(fig);
+  return fig;
+}
+
+function cmpNum(a, b) {
+  const pa = (S.byId[a].block.num || '0.0').split('.').map(Number);
+  const pb = (S.byId[b].block.num || '0.0').split('.').map(Number);
+  return pa[0] - pb[0] || pa[1] - pb[1];
+}
+
+function renderBlock(b) {
+  if (b.type === 'clause') return renderClause(b);
+  if (b.type === 'table') return renderTable(b);
+  return renderExplanatory(b);
+}
+
+/* Applicant journey: stages in order, gates between, branches off the side.
+   Provisional form until the WG's model diagram arrives in journey-models/. */
+function renderJourney() {
+  const j = S.data.journey;
+  if (!j || !j.stages || !j.stages.length) return null;
+  const sec = el('section', 'jr');
+  sec.id = 'journey';
+  sec.setAttribute('aria-labelledby', 'jr-h');
+  const open = store.get('rfr02.journey') !== 'closed';
+  let h = '<div class="jr-head"><h2 id="jr-h">The applicant’s journey</h2>' +
+    '<button type="button" class="jr-toggle" aria-expanded="' + open + '" aria-controls="jr-body">' + (open ? 'Hide' : 'Show') + '</button>' +
+    '<p class="jr-note">Stages of assessment, with the gate before each next stage. Select a stage to go to its regulations. ' +
+    'Provisional layout, generated from Table 1 until the Working Group’s journey diagram is ready.</p></div>' +
+    '<div class="jr-body" id="jr-body"' + (open ? '' : ' hidden') + '><ol class="jr-list">';
+  j.stages.forEach((st, i) => {
+    const branches = (j.branches || []).filter((br) => br.from === st.stage);
+    h += '<li class="jr-stage"><span class="jr-step" aria-hidden="true">' + (i + 1) + '</span><div>' +
+      '<button type="button" class="jr-go" data-goto="' + esc(st.anchor) + '" data-clauses="' + esc((st.clauses || []).join(' ')) + '" aria-describedby="jr-cl-' + i + '">' +
+      '<span class="vh">Stage ' + (i + 1) + ': </span>' + esc(st.stage) + '</button>' +
+      '<span class="vh" id="jr-cl-' + i + '"></span>' +
+      '<p class="jr-what">' + esc(st.what) + '</p><p class="jr-who">' + esc(st.who) + '</p></div>';
+    h += '<ul class="jr-branches" aria-label="Branches from this stage">';
+    branches.forEach((br) => {
+      h += '<li><button type="button" class="jr-branch" data-goto="' + esc(br.anchor) + '"><span aria-hidden="true">↳</span>' + esc(br.label) + '</button></li>';
+    });
+    h += '</ul></li>';
+    if (st.gate && st.gate.trim() !== '-' && i < j.stages.length - 1) {
+      h += '<li class="jr-gate"><b>Gate</b>' + esc(st.gate) + '</li>';
+    }
+  });
+  sec.innerHTML = h + '</ol></div>';
+  sec.addEventListener('click', (e) => {
+    const t = e.target.closest('.jr-toggle');
+    if (t) {
+      const isOpen = t.getAttribute('aria-expanded') === 'true';
+      t.setAttribute('aria-expanded', String(!isOpen));
+      t.textContent = isOpen ? 'Show' : 'Hide';
+      $('#jr-body').hidden = isOpen;
+      store.set('rfr02.journey', isOpen ? 'closed' : 'open');
+      return;
+    }
+    const g = e.target.closest('[data-goto]');
+    if (g) { hideTip(); goTo(g.dataset.goto, true); setHash(g.dataset.goto); }
+  });
+  return sec;
+}
+
+function labelJourney() {
+  $$('.jr-go').forEach((b, i) => {
+    const ids = (b.dataset.clauses || '').split(' ').filter((id) => S.byId[id]).sort(cmpNum);
+    const labels = ids.map((id) => (S.showIds ? id : S.byId[id].block.num)).join(', ');
+    b.dataset.tip = '<b>Clauses</b> ' + esc(labels);
+    const d = document.getElementById('jr-cl-' + i);
+    if (d) d.textContent = 'Clauses ' + labels;
+  });
+}
+
+function renderDoc() {
+  const c = S.data.content;
+  const doc = $('#rfr-doc');
+  doc.innerHTML = '';
+  const jr = renderJourney();
+  if (jr) doc.appendChild(jr);
+
+  c.frontmatter.forEach((fm) => {
+    const sec = el('section', 'rfr-fm');
+    sec.id = fm.anchor;
+    sec.dataset.spy = fm.anchor;
+    sec.appendChild(el('h2', 'rfr-fm-title', esc(fm.title)));
+    fm.blocks.forEach((b) => sec.appendChild(renderBlock(b)));
+    fm.subsections.forEach((sub) => {
+      const h = el('h3', null, esc(sub.title));
+      h.id = sub.anchor;
+      sec.appendChild(h);
+      sub.blocks.forEach((b) => sec.appendChild(renderBlock(b)));
+    });
+    doc.appendChild(sec);
+  });
+
+  c.sections.forEach((s) => {
+    const sec = el('section', 'rfr-sec');
+    sec.id = s.anchor;
+    sec.dataset.sec = s.id;
+    sec.dataset.licence = s.licence;
+    sec.dataset.spy = s.anchor;
+    sec.setAttribute('aria-labelledby', 'h-' + s.id);
+    const lic = (s.licence === 'recognition' || s.licence === 'ipd') ? ' · ' + c.meta.licences[s.licence] : '';
+    const head = el('header', 'rfr-sec-head',
+      '<span class="rfr-sec-kicker">Section ' + esc(s.num) + esc(lic) + '</span>' +
+      '<h2 class="rfr-sec-title" id="h-' + esc(s.id) + '">' + esc(s.title) + '</h2>');
+    sec.appendChild(head);
+    if (LENS[s.licence]) {
+      const stub = el('p', 'rfr-lens-stub',
+        '<span>' + esc(s.title) + ' applies to Licensees ' + esc(LENS[s.licence].who) + '.</span>' +
+        '<button type="button" data-lens-show="' + esc(s.licence) + '">Show</button>');
+      sec.appendChild(stub);
+    }
+    const body = el('div', 'rfr-sec-body');
+    s.blocks.forEach((b) => body.appendChild(renderBlock(b)));
+    s.subsections.forEach((sub) => {
+      const d = el('div', 'rfr-sub');
+      d.id = sub.anchor;
+      d.dataset.spy = sub.anchor;
+      d.dataset.sub = sub.id;
+      d.appendChild(el('h3', 'rfr-sub-title', esc(sub.title)));
+      sub.blocks.forEach((b) => d.appendChild(renderBlock(b)));
+      body.appendChild(d);
+    });
+    sec.appendChild(body);
+    doc.appendChild(sec);
+  });
+  labelXrefs(doc);
+  renderEndnotes();
+}
+
+function renderNav() {
+  const c = S.data.content;
+  let h = '<p class="rfr-nav-h">Front matter</p>';
+  c.frontmatter.forEach((fm) => {
+    h += '<a class="rfr-nav-link" href="#' + fm.anchor + '" data-nav="' + fm.anchor + '"><span>' + esc(fm.title) + '</span></a>';
+  });
+  h += '<p class="rfr-nav-h">The Regulations</p>';
+  c.sections.forEach((s) => {
+    const subs = s.subsections;
+    h += '<div class="rfr-nav-sec" data-sec="' + s.id + '"><div class="rfr-nav-row">' +
+      '<a class="rfr-nav-sum" href="#' + s.anchor + '" data-nav="' + s.anchor + '">' +
+      '<span class="rfr-nav-secnum" aria-hidden="true">' + s.num + '</span>' +
+      '<span class="rfr-nav-sectitle">' + esc(s.title) + '</span>' +
+      '<span class="rfr-nav-count" data-count-sec="' + s.id + '"></span></a>';
+    if (subs.length) {
+      h += '<button type="button" class="rfr-nav-toggle" aria-expanded="true" aria-controls="navsubs-' + s.id + '" aria-label="Show or hide subsections of ' + esc(s.title) + '"><span class="chev" aria-hidden="true">▾</span></button>';
+    }
+    h += '</div>';
+    if (subs.length) {
+      h += '<div class="rfr-nav-subs" id="navsubs-' + s.id + '">';
+      subs.forEach((sub) => {
+        h += '<a class="rfr-nav-link rfr-nav-sub" href="#' + sub.anchor + '" data-nav="' + sub.anchor + '" data-sub="' + sub.id + '"><span>' + esc(sub.title) + '</span><span class="rfr-nav-count" data-count-sub="' + sub.id + '"></span></a>';
+      });
+      h += '</div>';
+    }
+    h += '</div>';
+  });
+  $('#rfr-toc').innerHTML = h;
+}
+
+function renderChrome() {
+  const m = S.data.content.meta;
+  $('#rfr-banner-text').textContent = m.banner;
+  $('#rfr-print-head').textContent = 'PROTOTYPE · ' + S.citePrefix + ' · ' + m.banner;
+  $('#rfr-edition').textContent = 'RfR · ' + m.edition;
+  document.title = S.citePrefix;
+  let nClause = 0, nDef = 0;
+  eachBlock((b) => { if (b.type === 'clause') { nClause++; if (b.kind === 'definition') nDef++; } });
+  $('#rfr-stats').innerHTML =
+    '<div><p class="v">' + m.sections + '</p><p class="l">Sections</p></div>' +
+    '<div><p class="v">' + nClause + '</p><p class="l">Numbered clauses</p></div>' +
+    '<div><p class="v">' + nDef + '</p><p class="l">Definitions</p></div>' +
+    '<div><p class="v">' + esc((/draft\s*(\d+)/i.exec(m.edition) || [, '–'])[1]) + '</p><p class="l">Working draft</p></div>';
+}
+
+/* =====================================================================
+   Interactions
+   ===================================================================== */
+function scrollToEl(target, flash, instant) {
+  if (!target) return;
+  const main = $('#rfr-main');
+  const top = target.getBoundingClientRect().top - main.getBoundingClientRect().top + main.scrollTop - 18;
+  main.scrollTo({ top, behavior: instant || reduceMotion() ? 'auto' : 'smooth' });
+  if (flash) {
+    target.classList.remove('rfr-flash');
+    void target.offsetWidth;
+    target.classList.add('rfr-flash');
+  }
+  // move focus with the reader, so keyboard users continue from the target
+  if (target.tagName !== 'TR') {
+    if (!target.hasAttribute('tabindex')) target.tabIndex = -1;
+    target.focus({ preventScroll: true });
+  }
+}
+
+function resolveTarget(key) {
+  if (!key) return null;
+  return document.getElementById(key) || (S.numToId[key] ? document.getElementById(S.numToId[key]) : null);
+}
+
+function goTo(key, flash = true, instant = false) {
+  const t = resolveTarget(key);
+  if (!t) return false;
+  // a target inside a section the lens has collapsed is shown, not hidden
+  const sec = t.closest('.rfr-sec.lens-off');
+  if (sec && sec !== t) sec.classList.add('lens-peek');
+  scrollToEl(t, flash, instant);
+  return true;
+}
+
+function handleHash(e) {
+  const h = decodeURIComponent((location.hash || '').slice(1));
+  // arriving by link: jump straight there; in-page hash changes scroll smoothly
+  if (h) setTimeout(() => goTo(h, true, !e), 60);
+}
+
+function setHash(id) {
+  history.replaceState(null, '', location.pathname + location.search + '#' + id);
+}
+
+function copyText(text, btn) {
+  const done = () => {
+    const old = btn.textContent;
+    btn.textContent = 'Copied ✓';
+    setTimeout(() => { btn.textContent = old; }, 1400);
+  };
+  const fallback = () => {
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); done(); } catch (_) {}
+    ta.remove();
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback);
+  else fallback();
+}
+
+/* ---- popover ---- */
+let popReturn = null;
+function openPop(anchor, kind, fill) {
+  const pop = $('#rfr-pop');
+  pop.className = 'rfr-pop is-' + kind;
+  fill($('#rfr-pop-kicker'), $('#rfr-pop-title'), $('#rfr-pop-body'), $('#rfr-pop-foot'));
+  if (pop.matches && pop.hasAttribute('popover') && pop.showPopover) {
+    try { pop.hidePopover(); } catch (_) {}
+    pop.showPopover();
+  } else pop.style.display = 'block';
+  const r = anchor.getBoundingClientRect();
+  const w = pop.offsetWidth, hgt = pop.offsetHeight;
+  const left = Math.max(12, Math.min(r.left, window.innerWidth - w - 12));
+  let top = r.bottom + 8;
+  if (top + hgt > window.innerHeight - 12) top = Math.max(12, r.top - hgt - 8);
+  pop.style.left = left + 'px';
+  pop.style.top = top + 'px';
+  popReturn = anchor;
+  pop.focus({ preventScroll: true });
+}
+function closePop(refocus) {
+  const pop = $('#rfr-pop');
+  try { pop.hidePopover(); } catch (_) { pop.style.display = ''; }
+  if (refocus && popReturn) popReturn.focus({ preventScroll: true });
+}
+
+function openDefPop(btn) {
+  const d = S.defs[btn.dataset.def];
+  if (!d) return;
+  openPop(btn, 'def', (k, t, b, f) => {
+    k.textContent = 'Defined in these Regulations';
+    t.textContent = d.term;
+    b.innerHTML = d.html;
+    f.innerHTML = '<a href="#' + esc(d.id) + '" data-goto="' + esc(d.id) + '">Definition ' + esc(d.num) + ' (' + esc(d.id) + ')</a>';
+  });
+}
+function openGlPop(btn) {
+  const g = S.data.glossary.terms[+btn.dataset.gl];
+  if (!g) return;
+  openPop(btn, 'gl', (k, t, b, f) => {
+    k.textContent = 'Helpful term';
+    t.textContent = g.term;
+    b.innerHTML = '<p>' + esc(g.definition) + '</p>';
+    const src = g.source && !/^drafted$/i.test(g.source) ? 'Source: ' + g.source : 'Drafted for the prototype';
+    f.innerHTML = '<span class="rfr-pop-tag">Helpful term, not a regulatory definition</span><span style="color:var(--text-muted);font-size:12px">' + esc(src) + '</span>';
+  });
+}
+function openStubPop(btn) {
+  const l = S.data.links.links[+btn.dataset.stub];
+  if (!l) return;
+  openPop(btn, 'stub', (k, t, b, f) => {
+    k.textContent = 'External document · not linked yet';
+    t.textContent = l.match;
+    b.innerHTML = '<p>' + esc(l.note || 'Would link to this document once a public address is confirmed.') + '</p>';
+    f.innerHTML = '';
+  });
+}
+
+/* ---- tooltip ---- */
+function showTip(target) {
+  const tip = $('#rfr-tip');
+  tip.innerHTML = target.dataset.tip;
+  tip.hidden = false;
+  const r = target.getBoundingClientRect();
+  const w = tip.offsetWidth, h = tip.offsetHeight;
+  tip.style.left = Math.max(8, Math.min(r.left, window.innerWidth - w - 8)) + 'px';
+  tip.style.top = (r.top - h - 8 < 8 ? r.bottom + 8 : r.top - h - 8) + 'px';
+}
+function hideTip() { $('#rfr-tip').hidden = true; }
+
+/* ---- table back-links ---- */
+function showInTable(tableId, clauseId) {
+  const fig = document.getElementById(tableId);
+  if (!fig) return;
+  $$('tr.row-hit', fig).forEach((r) => r.classList.remove('row-hit'));
+  const rows = $$('tbody tr', fig).filter((r) => (r.dataset.applies || '').split(' ').includes(clauseId));
+  rows.forEach((r) => r.classList.add('row-hit'));
+  scrollToEl(rows[0] || fig, !rows.length);
+  setTimeout(() => rows.forEach((r) => r.classList.remove('row-hit')), 4000);
+}
+
+/* ---- drafting ID switch ---- */
+function setShowIds(on, persist) {
+  S.showIds = on;
+  document.documentElement.classList.toggle('show-ids', on);
+  $('#rfr-ids').setAttribute('aria-pressed', String(on));
+  labelXrefs($('#rfr-doc'));
+  labelJourney();
+  if (persist) {
+    store.set('rfr02.ids', on ? '1' : '0');
+    syncUrl();
+  }
+}
+
+function syncUrl() {
+  const p = new URLSearchParams(location.search);
+  if (S.showIds !== (XREF_LABEL === 'id')) p.set('ids', S.showIds ? '1' : '0'); else p.delete('ids');
+  if (S.lensTouched) p.set('lens', lensValue());
+  const q = p.toString();
+  history.replaceState(null, '', location.pathname + (q ? '?' + q.replace(/%2C/g, ',') : '') + location.hash);
+}
+
+function wire() {
+  const doc = $('#rfr-doc');
+  doc.addEventListener('click', (e) => {
+    const x = e.target.closest('a.xref');
+    if (x) { e.preventDefault(); hideTip(); if (goTo(x.dataset.ref)) setHash(x.dataset.ref); return; }
+    const d = e.target.closest('.t-def');
+    if (d) { openDefPop(d); return; }
+    const g = e.target.closest('.t-gl');
+    if (g) { openGlPop(g); return; }
+    const st = e.target.closest('.rfr-ext-stub');
+    if (st) { openStubPop(st); return; }
+    const gt = e.target.closest('.t-gn');
+    if (gt) { toggleGn(gt.dataset.gn, true, true); return; }
+    const gb = e.target.closest('[data-gn-open]');
+    if (gb) { toggleGn(gb.dataset.gnOpen); return; }
+    const tc = e.target.closest('.rfr-tblchip');
+    if (tc) { showInTable(tc.dataset.table, tc.dataset.for); return; }
+    const act = e.target.closest('.rfr-chip-btn');
+    if (act) {
+      const id = act.dataset.id;
+      const b = S.byId[id].block;
+      if (act.dataset.act === 'link') copyText(location.origin + location.pathname + '#' + id, act);
+      else copyText(S.citePrefix + ', ' + b.num + ' (' + id + ')', act);
+    }
+  });
+
+  // popover: links inside it, close button, focus return
+  const pop = $('#rfr-pop');
+  pop.addEventListener('click', (e) => {
+    const g = e.target.closest('[data-goto]');
+    if (g) { e.preventDefault(); closePop(); goTo(g.dataset.goto); setHash(g.dataset.goto); return; }
+    if (e.target.closest('#rfr-pop-close')) closePop(true);
+  });
+  // Esc closes natively (popover="auto"); send focus back to the term that opened it
+  pop.addEventListener('keydown', (e) => { if (e.key === 'Escape') { e.preventDefault(); closePop(true); } });
+  $('#rfr-main').addEventListener('scroll', () => { hideTip(); try { if (pop.matches(':popover-open')) closePop(); } catch (_) {} }, { passive: true });
+
+  // tooltips on hover and focus
+  document.addEventListener('pointerover', (e) => { const t = e.target.closest('[data-tip]'); if (t) showTip(t); });
+  document.addEventListener('pointerout', (e) => { if (e.target.closest('[data-tip]')) hideTip(); });
+  document.addEventListener('focusin', (e) => { const t = e.target.closest && e.target.closest('[data-tip]'); if (t) showTip(t); else hideTip(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') hideTip(); });
+
+  // nav
+  $('#rfr-toc').addEventListener('click', (e) => {
+    const tg = e.target.closest('.rfr-nav-toggle');
+    if (tg) {
+      const open = tg.getAttribute('aria-expanded') === 'true';
+      tg.setAttribute('aria-expanded', String(!open));
+      document.getElementById(tg.getAttribute('aria-controls')).hidden = open;
+      return;
+    }
+    const a = e.target.closest('[data-nav]');
+    if (a) {
+      e.preventDefault();
+      goTo(a.dataset.nav, false);
+      setHash(a.dataset.nav);
+      setNavOpen(false);
+    }
+  });
+  $('#rfr-menu').addEventListener('click', () => setNavOpen(!$('#rfr-app').classList.contains('nav-open')));
+  $('#rfr-backdrop').addEventListener('click', () => setNavOpen(false));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && $('#rfr-app').classList.contains('nav-open')) { setNavOpen(false); $('#rfr-menu').focus(); } });
+
+  $('#rfr-ids').addEventListener('click', () => setShowIds(!S.showIds, true));
+  $('#rfr-theme').addEventListener('click', () => {
+    const next = isDark() ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    store.set('rfr02.theme', next);
+    syncThemeBtn();
+  });
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', syncThemeBtn);
+  syncThemeBtn();
+  $('#rfr-print').addEventListener('click', () => window.print());
+  window.addEventListener('hashchange', handleHash);
+}
+
+function isDark() {
+  const t = document.documentElement.getAttribute('data-theme');
+  return t ? t === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+}
+function syncThemeBtn() {
+  const b = $('#rfr-theme');
+  b.setAttribute('aria-pressed', String(isDark()));
+}
+
+function setNavOpen(open) {
+  $('#rfr-app').classList.toggle('nav-open', open);
+  $('#rfr-menu').setAttribute('aria-expanded', String(open));
+  if (open) setTimeout(() => $('#rfr-q').focus(), 50);
+}
+
+/* =====================================================================
+   Licence lens
+   ===================================================================== */
+const LENS = {
+  recognition: { key: 'rec', label: 'Programme recognition', short: 'Recognition', who: 'licensed to recognise programmes' },
+  ipd: { key: 'ipd', label: 'IPD accreditation', short: 'IPD', who: 'licensed to accredit IPD schemes' },
+};
+
+function initLens() {
+  const p = new URLSearchParams(location.search);
+  let list = p.has('lens') ? p.get('lens') : store.get('rfr02.lens');
+  const on = list == null ? null : list.split(',').map((x) => x.trim());
+  S.lens = {};
+  Object.entries(LENS).forEach(([lic, L]) => { S.lens[lic] = on ? on.includes(L.key) : true; });
+
+  const fs = $('#rfr-lens');
+  let h = '<legend>Licence</legend>' +
+    '<button type="button" class="rfr-pill" aria-pressed="true" disabled title="Every Licensee holds the registration licence">Registration</button>';
+  Object.entries(LENS).forEach(([lic, L]) => {
+    h += '<button type="button" class="rfr-pill" data-lens="' + lic + '" aria-pressed="' + S.lens[lic] + '" aria-label="' + esc(L.label) + '">' +
+      '<span class="pl-long">' + esc(L.label) + '</span><span class="pl-short" aria-hidden="true">' + esc(L.short) + '</span></button>';
+  });
+  fs.innerHTML = h;
+  fs.hidden = false;
+  fs.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-lens]');
+    if (b) setLens(b.dataset.lens, !S.lens[b.dataset.lens]);
+  });
+  $('#rfr-doc').addEventListener('click', (e) => {
+    const b = e.target.closest('[data-lens-show]');
+    if (b) setLens(b.dataset.lensShow, true);
+  });
+  applyLens();
+}
+
+function setLens(lic, on) {
+  S.lens[lic] = on;
+  S.lensTouched = true;
+  store.set('rfr02.lens', lensValue());
+  syncUrl();
+  applyLens();
+}
+
+function lensValue() {
+  return Object.entries(LENS).filter(([l]) => S.lens[l]).map(([, L]) => L.key).join(',');
+}
+
+function applyLens() {
+  $$('[data-lens]', $('#rfr-lens')).forEach((b) => b.setAttribute('aria-pressed', String(S.lens[b.dataset.lens])));
+  S.data.content.sections.forEach((s) => {
+    const off = LENS[s.licence] ? !S.lens[s.licence] : false;
+    const sec = document.getElementById(s.anchor);
+    sec.classList.toggle('lens-off', off);
+    sec.classList.remove('lens-peek');
+    $('.rfr-nav-sec[data-sec="' + s.id + '"]').classList.toggle('lens-dim', off);
+  });
+  if (S.query) applySearch(S.query);
+  updateSpy();
+}
+
+/* =====================================================================
+   Search: filters the content itself; ignores the lens
+   ===================================================================== */
+function textOf(html) { const d = document.createElement('div'); d.innerHTML = html; return d.textContent; }
+
+function buildSearchIndex() {
+  S.units = [];
+  $$('[data-unit]', $('#rfr-doc')).forEach((u) => {
+    const id = u.id;
+    const e = S.byId[id];
+    const b = e ? e.block : null;
+    const box = u.dataset.unit === 'clause' ? $('.rfr-cl-body', u) : u;
+    let hay;
+    if (b && b.type === 'table') {
+      hay = [b.caption, ...b.header, ...b.rows.flat().map(textOf), (b.appliesTo || []).join(' ')].join(' ');
+    } else {
+      hay = [u.textContent, id, b && b.num, b && b.v44].filter(Boolean).join(' ');
+    }
+    S.units.push({
+      el: u, box, id,
+      kind: u.dataset.unit,
+      num: b && b.num,
+      paras: (b && b.v44Paras) || [],
+      hay: hay.toLowerCase(),
+      base: box.innerHTML,
+    });
+  });
+  S.clauseTotal = S.units.filter((x) => x.kind === 'clause').length;
+}
+
+function highlight(box, q) {
+  const rx = new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+  const walker = document.createTreeWalker(box, NodeFilter.SHOW_TEXT, {
+    acceptNode: (n) => (n.nodeValue && !n.parentElement.closest('mark') && rx.test(n.nodeValue)
+      ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT),
+  });
+  const nodes = [];
+  let w;
+  while ((w = walker.nextNode())) nodes.push(w);
+  nodes.forEach((n) => {
+    const frag = document.createDocumentFragment();
+    let last = 0;
+    n.nodeValue.replace(rx, (m, off) => {
+      frag.appendChild(document.createTextNode(n.nodeValue.slice(last, off)));
+      const mk = document.createElement('mark');
+      mk.textContent = m;
+      frag.appendChild(mk);
+      last = off + m.length;
+    });
+    frag.appendChild(document.createTextNode(n.nodeValue.slice(last)));
+    n.parentNode.replaceChild(frag, n);
+  });
+}
+
+function restoreUnit(u) {
+  if (!u.marked) return;
+  u.box.innerHTML = u.base;
+  labelXrefs(u.box);
+  u.marked = false;
+}
+
+function applySearch(raw) {
+  const q = raw.trim();
+  S.query = q;
+  const doc = $('#rfr-doc');
+  const status = $('#rfr-status');
+  S.units.forEach(restoreUnit);
+  $$('.f-hide', doc).forEach((x) => x.classList.remove('f-hide'));
+  $$('.rfr-sec.lens-peek', doc).forEach((x) => x.classList.remove('lens-peek'));
+  $$('.rfr-nav-count').forEach((c) => { c.textContent = ''; });
+  $$('.dimmed', $('#rfr-toc')).forEach((x) => x.classList.remove('dimmed'));
+  if (!q) { status.textContent = ''; updateSpy(); return; }
+
+  // "para 22" finds clauses descended from v4.4 para 22; "6.5" is an exact clause number
+  const pm = /^(?:v?4\.4\s*)?para(?:graph)?s?\.?\s*(\d+)$/i.exec(q);
+  const nm = /^\d+\.\d+$/.test(q);
+  const ql = q.toLowerCase();
+  let nClause = 0, nOther = 0;
+  S.units.forEach((u) => {
+    let hit;
+    if (pm) hit = u.paras.includes(+pm[1]);
+    else if (nm) hit = u.num === q;
+    else hit = u.hay.indexOf(ql) !== -1;
+    if (!hit) { u.el.classList.add('f-hide'); return; }
+    if (u.kind === 'clause') nClause++; else nOther++;
+    if (!pm && !nm) { highlight(u.box, q); u.marked = true; }
+  });
+
+  const visible = (c) => $$('[data-unit]', c).some((x) => !x.classList.contains('f-hide'));
+  $$('.rfr-sub', doc).forEach((sub) => sub.classList.toggle('f-hide', !visible(sub)));
+  $$('.rfr-fm', doc).forEach((fm) => fm.classList.toggle('f-hide', !visible(fm)));
+  $$('.rfr-fm h3', doc).forEach((h) => {
+    // a front-matter subheading stays only if a following unit (up to the next h3) is visible
+    let n = h.nextElementSibling, any = false;
+    while (n && n.tagName !== 'H3') { if (n.dataset.unit && !n.classList.contains('f-hide')) any = true; n = n.nextElementSibling; }
+    h.classList.toggle('f-hide', !any);
+  });
+  S.data.content.sections.forEach((s) => {
+    const sec = document.getElementById(s.anchor);
+    const units = $$('[data-unit]', sec).filter((x) => !x.classList.contains('f-hide'));
+    const n = units.filter((x) => x.dataset.unit === 'clause').length || units.length;
+    sec.classList.toggle('f-hide', !units.length);
+    if (units.length && sec.classList.contains('lens-off')) sec.classList.add('lens-peek');
+    const c = $('[data-count-sec="' + s.id + '"]');
+    if (c) c.textContent = units.length ? String(n) : '';
+    $('.rfr-nav-sec[data-sec="' + s.id + '"]').classList.toggle('dimmed', !units.length);
+    s.subsections.forEach((sub) => {
+      const subEl = document.getElementById(sub.anchor);
+      const su = $$('[data-unit]', subEl).filter((x) => !x.classList.contains('f-hide'));
+      const sc = su.filter((x) => x.dataset.unit === 'clause').length || su.length;
+      const cc = $('[data-count-sub="' + sub.id + '"]');
+      if (cc) cc.textContent = su.length ? String(sc) : '';
+      const link = $('.rfr-nav-sub[data-sub="' + sub.id + '"]');
+      if (link) link.classList.toggle('dimmed', !su.length);
+    });
+  });
+  $$('.rfr-nav-link[data-nav]', $('#rfr-toc')).forEach((l) => {
+    const fm = S.data.content.frontmatter.find((f) => f.anchor === l.dataset.nav);
+    if (fm) l.classList.toggle('dimmed', document.getElementById(fm.anchor).classList.contains('f-hide'));
+  });
+
+  status.textContent = (nClause || nOther)
+    ? nClause + ' of ' + S.clauseTotal + ' clauses' + (nOther ? ', plus ' + nOther + ' other passage' + (nOther > 1 ? 's' : '') : '') + ' match'
+    : 'No matches';
+  updateSpy();
+}
+
+function wireSearch() {
+  const input = $('#rfr-q');
+  const clear = $('#rfr-clear');
+  let tmr = null;
+  input.addEventListener('input', () => {
+    clear.classList.toggle('on', !!input.value);
+    clearTimeout(tmr);
+    tmr = setTimeout(() => applySearch(input.value), 140);
+  });
+  const reset = () => { input.value = ''; clear.classList.remove('on'); applySearch(''); };
+  input.addEventListener('keydown', (e) => { if (e.key === 'Escape' && input.value) { e.stopPropagation(); reset(); } });
+  clear.addEventListener('click', () => { reset(); input.focus(); });
+}
+
+/* ---- scroll-spy ---- */
+function wireSpy() {
+  const main = $('#rfr-main');
+  let ticking = false;
+  main.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => { updateSpy(); ticking = false; });
+  }, { passive: true });
+  updateSpy();
+}
+function updateSpy() {
+  const main = $('#rfr-main');
+  const mTop = main.getBoundingClientRect().top;
+  const els = $$('[data-spy]', $('#rfr-doc')).filter((x) => x.offsetParent !== null);
+  if (!els.length) return;
+  let cur = null;
+  for (const x of els) { if (x.getBoundingClientRect().top - mTop <= 140) cur = x; }
+  $$('.rfr-nav-link.active,.rfr-nav-sum.active').forEach((l) => l.classList.remove('active'));
+  if (!cur) return;
+  const link = $('[data-nav="' + cur.dataset.spy + '"]', $('#rfr-toc'));
+  if (link) link.classList.add('active');
+}
+
+/* =====================================================================
+   Boot
+   ===================================================================== */
+loadData().then((data) => {
+  S.data = data;
+  buildIndex();
+  buildPasses();
+  renderChrome();
+  renderNav();
+  renderDoc();
+  wire();
+  initLens();
+  const urlIds = new URLSearchParams(location.search).get('ids');
+  const pref = urlIds != null ? urlIds : store.get('rfr02.ids');
+  setShowIds(pref != null ? pref === '1' : XREF_LABEL === 'id', false);
+  buildSearchIndex();
+  wireSearch();
+  wireSpy();
+  handleHash();
+}).catch((err) => {
+  console.error('RfR data load failed', err);
+  $('#rfr-doc').innerHTML = '<p class="rfr-loading">The draft could not be loaded. Serve this page alongside the <code>rfr0.2-data/</code> folder.</p>';
+});
+</script>
+</body>
+</html>

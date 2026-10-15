@@ -1,0 +1,111 @@
+{
+ "note": "Proof of concept: a Guidance Note clause shown in place, in an overlay on the regulation it supports. Extracts are VERBATIM from the current published Guidance Notes, so they are real guidance, not drafted. Show the source document, version and location on every overlay. The GN corpus will later move onto this minisite; for now the overlay stands in for a footnote pointing at a PDF.",
+ "overlays": [
+  {
+   "id": "GN-RS-4",
+   "target": "V5-012",
+   "trigger": "Guidance Note on Recognised Standards",
+   "title": "What “fully meeting UK-SPEC” means",
+   "source": {
+    "document": "Guidance Note on Recognised Standards",
+    "version": "Version 1, approved by RSC 12 May 2022",
+    "location": "Section 4: Fully/partially meeting UK-SPEC",
+    "file": "07 Reference/Guidance Note on Recognised Standards.pdf"
+   },
+   "extract": [
+    {
+     "ref": "§4",
+     "text": "Derived and Proprietary Standards must fully meet UK-SPEC. This means that every competence statement in the applicable UK-SPEC category (CEng, IEng, EngTech) must be met or exceeded by a competence statement in the Derived or Proprietary Standard."
+    }
+   ],
+   "caveat": "The Guidance Note quotes RfR v4.4 paragraph 12, which V5-012 replaces. The Recognised Standards Framework is an annex to this Guidance Note."
+  },
+  {
+   "id": "GN-PR-A11-12",
+   "target": "V5-078",
+   "trigger": null,
+   "title": "Conducting the interview: length and remote interviews",
+   "source": {
+    "document": "Guidance Note on the Professional Review",
+    "version": "v1.3, August 2020",
+    "location": "Annex A: The Professional Review Interview, Q11 and Q12",
+    "file": "07 Reference/guidance-note-on-the-professional-review-issue-13-post-2017-standards-review.pdf"
+   },
+   "extract": [
+    {
+     "ref": "Q11",
+     "q": "What is the ideal length of the interview?",
+     "text": "Ideally between 60 and 90 minutes. Thorough preparation including assessment of the application and briefing of the assessors should have been completed prior to the interview."
+    },
+    {
+     "ref": "Q12",
+     "q": "Can the interview be conducted remotely?",
+     "text": "Yes. Applicants should have agreed to this type of interview. Robust arrangements must be made to confirm the identity of the applicant, to authenticate any evidence, and to ensure that the interview environment is appropriate and is demonstrably not open to abuse. It is essential that voice and vision contact are maintained throughout the interview. The PRI record should indicate that it was performed remotely.\n\nRecords of the number of remote PRIs should be maintained. When developing, documenting and approving detailed processes, Licensees should base them on this guidance, specifying the technology employed and procedures to be taken in the event of any break in transmission."
+    }
+   ],
+   "caveat": "Elsewhere this Guidance Note cites the Registration Code of Practice (an earlier title of RfR) by paragraph number."
+  },
+  {
+   "id": "GN-INTL-WA",
+   "target": "V5-071",
+   "trigger": null,
+   "title": "Applying the Washington Accord (CEng)",
+   "source": {
+    "document": "Using international education agreements: the Accords, EUR-ACE and the ENGINEERS EUROPE EEED",
+    "version": "v3.7, February 2025",
+    "location": "Washington Accord",
+    "file": "07 Reference/Using international engineering education agreements Accords EUR-ACE EEED_.pdf"
+   },
+   "extract": [
+    {
+     "ref": "Before full membership",
+     "text": "Programmes accredited by a signatory prior to the date of its admission to full membership of the Accord may be recognised at the discretion of the assessing PEI and if successful the applicant should be registered as ‘Individual Route’."
+    },
+    {
+     "ref": "Treatment for CEng",
+     "text": "For the purposes of Chartered Engineer registration programmes recognised under the Washington Accord should be treated in the same way as an ‘Engineering Council CEng accredited’ programmes, subject to the following:",
+     "items": [
+      "Graduates of Washington Accord programmes with intake dates up to and including 30/06/2015 may be treated as meeting the educational requirements and classified as Standard Route for CEng registration.",
+      "Graduates of Washington Accord programmes with an intake date of 1 July 2015 or later should be assessed for learning to European Master’s level and classified as Standard or Individual route, depending on any identified further learning requirement and, where applicable, whether this is deemed to have been met through an accredited or approved programme of further learning."
+     ]
+    },
+    {
+     "ref": "Outside national boundaries",
+     "text": "Programmes accredited by Accord signatories outside their national or territorial boundaries should be assessed by PEIs in accordance with their normal procedures and recorded as ‘Individual Route’."
+    }
+   ],
+   "caveat": "Quoted verbatim, including the source’s own grammar. The note covers the Dublin and Sydney Accords and EUR-ACE in parallel sections; a full build would offer each."
+  },
+  {
+   "id": "GN-AA-K",
+   "target": "V5-040",
+   "trigger": null,
+   "title": "Risk-based approach to accreditation visits",
+   "source": {
+    "document": "Guidance Note on Academic Accreditation",
+    "version": "v3.4, August 2024",
+    "location": "Annex K: Risk-based approach to accreditation visits, policy summary, paras 3 to 6",
+    "file": "07 Reference/Guidance Note on Academic Accreditation Issue 3.4.pdf"
+   },
+   "extract": [
+    {
+     "ref": "3",
+     "text": "The risk-based approach permits some accreditation activity to be completed through a virtual visit or a hybrid visit (involving some in-person and some virtual activity), at the discretion of the PEI(s). In the context of this policy a ‘visit’ refers to visit activity whether conducted in-person (on site), entirely virtually (with no in-person element) or through a hybrid approach (with a mix of virtual and in-person activity)."
+    },
+    {
+     "ref": "4",
+     "text": "In some circumstances a visit containing a significant in-person element is mandatory."
+    },
+    {
+     "ref": "5",
+     "text": "Individual PEIs may decide to complete all or a majority of their accreditation activity in-person."
+    },
+    {
+     "ref": "6",
+     "text": "PEIs must decide and confirm to all participants whether a visit will be in-person, virtual or hybrid at least six weeks in advance of a visit."
+    }
+   ],
+   "caveat": "The full Risk Based Accreditation Visits Policy is on the Partner Portal."
+  }
+ ]
+}

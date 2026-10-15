@@ -1,0 +1,114 @@
+{
+ "note": "Regulatory definitions, generated from the DEF clauses in content.json. Do not edit here; edit the master draft and regenerate. Match longest term first, so \"peer review\" wins over \"peer\".",
+ "definitions": [
+  {
+   "id": "DEF-001",
+   "num": "1.1",
+   "term": "peer",
+   "variants": [
+    "peers"
+   ],
+   "html": "<p>A <em>peer</em> is a professionally registered individual whose experience and training enable them to make an informed professional judgment about the professional review, programme recognition, or other matters.</p>",
+   "text": "A peer is a professionally registered individual whose experience and training enable them to make an informed professional judgment about the professional review, programme recognition, or other matters."
+  },
+  {
+   "id": "DEF-002",
+   "num": "1.2",
+   "term": "peer review",
+   "variants": [
+    "peer reviews"
+   ],
+   "html": "<p>A <em>peer review</em> is an assessment in which one or more peers consider appropriate evidence against defined requirements and make a documented professional judgment.</p>",
+   "text": "A peer review is an assessment in which one or more peers consider appropriate evidence against defined requirements and make a documented professional judgment."
+  },
+  {
+   "id": "DEF-003",
+   "num": "1.4",
+   "term": "committee responsible for registration",
+   "variants": [],
+   "html": "<p>The <em>committee responsible for registration</em> is the body appointed by a Licensee to oversee its registration activity and make or authorise decisions on applications for registration.</p>",
+   "text": "The committee responsible for registration is the body appointed by a Licensee to oversee its registration activity and make or authorise decisions on applications for registration."
+  },
+  {
+   "id": "DEF-004",
+   "num": "1.5",
+   "term": "committee responsible for recognition",
+   "variants": [],
+   "html": "<p>A <em>committee responsible for recognition</em> is the body appointed by a Licensee to oversee its programme-recognition activity and its accreditation of IPD schemes, and to make or authorise decisions on the recognition of programmes and the accreditation of schemes. This may be one and the same as the committee responsible for registration.</p>",
+   "text": "A committee responsible for recognition is the body appointed by a Licensee to oversee its programme-recognition activity and its accreditation of IPD schemes, and to make or authorise decisions on the recognition of programmes and the accreditation of schemes. This may be one and the same as the committee responsible for registration."
+  },
+  {
+   "id": "DEF-005",
+   "num": "1.7",
+   "term": "recognition",
+   "variants": [
+    "Recognition"
+   ],
+   "html": "<p><em>Recognition</em> is the umbrella term for approval and accreditation.</p>",
+   "text": "Recognition is the umbrella term for approval and accreditation."
+  },
+  {
+   "id": "DEF-006",
+   "num": "1.8",
+   "term": "approval",
+   "variants": [
+    "Approval"
+   ],
+   "html": "<p>Approval of a programme of learning attests to its content: its overall design, depth and range of coverage, and the validity and reliability of the assessment of the learner.</p>",
+   "text": "Approval of a programme of learning attests to its content: its overall design, depth and range of coverage, and the validity and reliability of the assessment of the learner."
+  },
+  {
+   "id": "DEF-007",
+   "num": "1.9",
+   "term": "accreditation",
+   "variants": [
+    "Accreditation"
+   ],
+   "html": "<p>Accreditation confirms that the delivery of a programme of learning, or of an IPD scheme, is recognised at a specific site or sites, or at a specific provider. Accreditation incorporates approval: if delivery is accredited, approval of the underlying content is implicit.</p>",
+   "text": "Accreditation confirms that the delivery of a programme of learning, or of an IPD scheme, is recognised at a specific site or sites, or at a specific provider. Accreditation incorporates approval: if delivery is accredited, approval of the underlying content is implicit."
+  },
+  {
+   "id": "DEF-008",
+   "num": "1.10",
+   "term": "joint board",
+   "variants": [
+    "joint boards",
+    "joint board arrangement"
+   ],
+   "html": "<p>A <em>joint board</em> is a single decision-making body established by two or more Licensees to recognise programmes on their behalf, such as the Joint Board of Moderators.</p>",
+   "text": "A joint board is a single decision-making body established by two or more Licensees to recognise programmes on their behalf, such as the Joint Board of Moderators."
+  },
+  {
+   "id": "DEF-009",
+   "num": "1.11",
+   "term": "joint visit",
+   "variants": [
+    "joint visits"
+   ],
+   "html": "<p>A <em>joint visit</em> is an accreditation visit carried out by two or more Licensees together, each of which makes its own recognition decision.</p>",
+   "text": "A joint visit is an accreditation visit carried out by two or more Licensees together, each of which makes its own recognition decision."
+  },
+  {
+   "id": "DEF-010",
+   "num": "1.12",
+   "term": "interim registrant",
+   "variants": [
+    "interim registrants",
+    "interim registration",
+    "Interim registration"
+   ],
+   "html": "<p>An interim registrant is a person whose underpinning knowledge and understanding have been assessed as meeting the Standard, but who has not yet demonstrated the necessary competence for final-stage registration.</p>",
+   "text": "An interim registrant is a person whose underpinning knowledge and understanding have been assessed as meeting the Standard, but who has not yet demonstrated the necessary competence for final-stage registration."
+  },
+  {
+   "id": "DEF-011",
+   "num": "1.13",
+   "term": "final-stage registrant",
+   "variants": [
+    "final-stage registrants"
+   ],
+   "html": "<p>A final-stage registrant is a person who has successfully completed the Professional Review and holds registered status that is not interim.</p>",
+   "text": "A final-stage registrant is a person who has successfully completed the Professional Review and holds registered status that is not interim."
+  }
+ ]
+}

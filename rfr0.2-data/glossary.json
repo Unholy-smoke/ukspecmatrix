@@ -1,0 +1,230 @@
+{
+ "note": "Helpful terms: NOT regulation. Shown with a distinct style and a \"not a regulatory definition\" tag. Drafted for the prototype except where the source says otherwise. Regulatory definitions live in definitions.json and win on any clash. Editable: the app re-renders from this file.",
+ "terms": [
+  {
+   "term": "Licensee",
+   "variants": [
+    "Licensees",
+    "Licensee's",
+    "Licensees’",
+    "Licensee’s"
+   ],
+   "definition": "An organisation licensed by the Engineering Council Board to assess individuals for professional registration. Licensees may also be licensed to recognise programmes of learning and to accredit IPD schemes. Sometimes known informally as Professional Engineering Institutions, or PEIs.",
+   "source": "RfR front matter (Welcome)"
+  },
+  {
+   "term": "Engineering Council",
+   "variants": [],
+   "definition": "The UK regulatory body for the engineering profession, operating under Royal Charter. It sets the standards for professional registration, licenses Licensees and holds the national Register.",
+   "source": "drafted"
+  },
+  {
+   "term": "the Register",
+   "variants": [
+    "Register"
+   ],
+   "definition": "The national register of professionally registered engineers and technicians held by the Engineering Council. Its categories are CEng, IEng, EngTech and ICTTech, each with final-stage and interim sections.",
+   "source": "drafted"
+  },
+  {
+   "term": "registrant",
+   "variants": [
+    "registrants",
+    "Engineering Council registrants",
+    "Engineering Council registrant"
+   ],
+   "definition": "An individual holding registration with the Engineering Council in any category. See also the defined terms interim registrant and final-stage registrant.",
+   "source": "drafted"
+  },
+  {
+   "term": "underpinning knowledge and understanding",
+   "variants": [
+    "UKU"
+   ],
+   "definition": "The knowledge and understanding an applicant needs to underpin competent professional practice in the category sought. Assessed before, or alongside, the Professional Review, against the Knowledge Benchmark.",
+   "source": "drafted"
+  },
+  {
+   "term": "Knowledge Benchmark",
+   "variants": [
+    "Knowledge Benchmarks"
+   ],
+   "definition": "The Engineering Council reference against which Licensees decide whether an applicant’s underpinning knowledge and understanding meet the requirement. Its final name and publication date depend on the Knowledge Statement project.",
+   "source": "drafted; pending the Knowledge Statement project (M5 asked for a fuller description)"
+  },
+  {
+   "term": "initial assessment",
+   "variants": [],
+   "definition": "A clerical check that an application is complete and the evidence submitted is genuine. It is not peer review; it makes the application ready for peer review.",
+   "source": "RfR section 4 explanatory text"
+  },
+  {
+   "term": "Professional Review",
+   "variants": [],
+   "definition": "The peer assessment of an applicant’s competence and commitment. It has two components, a review of documentary evidence and an interview, and Licensees may add others.",
+   "source": "drafted from section 6"
+  },
+  {
+   "term": "competence and commitment",
+   "variants": [],
+   "definition": "What an applicant must demonstrate for registration, as set out for each category in UK-SPEC or the ICTTech Standard.",
+   "source": "drafted"
+  },
+  {
+   "term": "UK-SPEC",
+   "variants": [],
+   "definition": "The UK Standard for Professional Engineering Competence and Commitment: the Prescribed Standard for CEng, IEng and EngTech registration.",
+   "source": "drafted"
+  },
+  {
+   "term": "ICTTech Standard",
+   "variants": [
+    "ICT*Tech* Standard"
+   ],
+   "definition": "The Information and Communications Technology Technician Standard: the Prescribed Standard for ICTTech registration.",
+   "source": "drafted"
+  },
+  {
+   "term": "Prescribed Standards",
+   "variants": [
+    "Prescribed Standard"
+   ],
+   "definition": "Standards owned by the Engineering Council that set the competence and commitment required for each category of registration: UK-SPEC and the ICTTech Standard. The term comes from the Code of Practice on Document Hierarchy.",
+   "source": "drafted"
+  },
+  {
+   "term": "Recognised Standards",
+   "variants": [
+    "Recognised Standard"
+   ],
+   "definition": "The collective name for Proprietary Standards and Derived Standards (see Table 2).",
+   "source": "RfR section 3 explanatory text"
+  },
+  {
+   "term": "Proprietary Standard",
+   "variants": [
+    "Proprietary Standards"
+   ],
+   "definition": "A standard developed by the Engineering Council with Licensees, based on and fully meeting UK-SPEC, such as a sector-specific or specialist standard.",
+   "source": "Table 2"
+  },
+  {
+   "term": "Derived Standard",
+   "variants": [
+    "Derived Standards"
+   ],
+   "definition": "A Licensee’s own standard, based on and fully meeting UK-SPEC or a Proprietary Standard, authorised by QAC.",
+   "source": "Table 2"
+  },
+  {
+   "term": "AHEP",
+   "variants": [
+    "Accreditation of Higher Education Programmes"
+   ],
+   "definition": "Accreditation of Higher Education Programmes: the learning outcomes for accredited higher education programmes.",
+   "source": "drafted"
+  },
+  {
+   "term": "AAQA",
+   "variants": [
+    "Approval and Accreditation of Qualifications and Apprenticeships"
+   ],
+   "definition": "Approval and Accreditation of Qualifications and Apprenticeships: the learning outcomes and competence framework for approved and accredited qualifications and apprenticeships.",
+   "source": "drafted"
+  },
+  {
+   "term": "Registration Standards Committee",
+   "variants": [
+    "RSC"
+   ],
+   "definition": "The Engineering Council committee responsible for registration standards. It recommends changes to these Regulations and authorises certain arrangements under them.",
+   "source": "drafted"
+  },
+  {
+   "term": "Quality Assurance Committee",
+   "variants": [
+    "QAC"
+   ],
+   "definition": "The Engineering Council committee that audits Licensees’ application of these Regulations, including through licence review, and authorises Derived Standards.",
+   "source": "drafted"
+  },
+  {
+   "term": "Regulations for Licensing",
+   "variants": [
+    "RfL"
+   ],
+   "definition": "The Engineering Council’s regulations governing the licensing of Licensees: a sibling document to these Regulations.",
+   "source": "drafted"
+  },
+  {
+   "term": "Regulations Explanatory Notes",
+   "variants": [],
+   "definition": "Engineering Council publications that Licensees must follow, explaining how a regulation is to be applied. Their standing is set by the Code of Practice on Document Hierarchy.",
+   "source": "drafted"
+  },
+  {
+   "term": "CEng",
+   "variants": [
+    "Chartered Engineer"
+   ],
+   "definition": "Chartered Engineer: a category of the Register.",
+   "source": "drafted"
+  },
+  {
+   "term": "IEng",
+   "variants": [
+    "Incorporated Engineer"
+   ],
+   "definition": "Incorporated Engineer: a category of the Register.",
+   "source": "drafted"
+  },
+  {
+   "term": "EngTech",
+   "variants": [
+    "Engineering Technician"
+   ],
+   "definition": "Engineering Technician: a category of the Register.",
+   "source": "drafted"
+  },
+  {
+   "term": "ICTTech",
+   "variants": [
+    "ICT*Tech*",
+    "ICT Technician"
+   ],
+   "definition": "Information and Communications Technology Technician: a category of the Register.",
+   "source": "drafted"
+  },
+  {
+   "term": "IPD",
+   "variants": [
+    "Initial Professional Development"
+   ],
+   "definition": "Initial Professional Development: the development of competence and commitment that prepares an engineer or technician for Professional Review.",
+   "source": "drafted"
+  },
+  {
+   "term": "CPD",
+   "variants": [
+    "continuing professional development",
+    "Continuing Professional Development"
+   ],
+   "definition": "Continuing Professional Development: the maintenance and enhancement of professional competence throughout a registrant’s career.",
+   "source": "drafted"
+  },
+  {
+   "term": "technical report",
+   "variants": [
+    "technical reports"
+   ],
+   "definition": "A report an applicant may be asked to submit to demonstrate underpinning knowledge and understanding, assessed by peer review and, for IEng and CEng, followed by a technical report interview.",
+   "source": "drafted from UKU-017, UKU-018"
+  },
+  {
+   "term": "recognised programmes database",
+   "variants": [],
+   "definition": "The Engineering Council’s public listing of approved and accredited programmes (the course search).",
+   "source": "drafted"
+  }
+ ]
+}

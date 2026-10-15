@@ -1,0 +1,92 @@
+{
+ "note": "Seed only, generated from Table 1. M5: Table 1 is not the applicant-journey map. Ben will add model diagrams (MP's and the Institute of Water's, per M4) in journey-models/; follow those for form. Interim registration branches off after the UKU stage; appeals branch off after the decision.",
+ "branches": [
+  {
+   "from": "Assessment of underpinning knowledge and understanding",
+   "label": "Interim registration",
+   "anchor": "interim-registration"
+  },
+  {
+   "from": "Registration decision",
+   "label": "Appeal",
+   "anchor": "appeals"
+  },
+  {
+   "from": "Professional Review: interview",
+   "label": "Exemption under an international agreement",
+   "anchor": "applicants-covered-by-international-agreements"
+  }
+ ],
+ "stages": [
+  {
+   "stage": "Initial assessment",
+   "what": "Clerical check that the application is complete and the evidence is genuine",
+   "who": "Licensee staff, under the committee responsible for registration",
+   "gate": "Application complete and verified before any peer review",
+   "clauses": [
+    "V5-017",
+    "V5-018",
+    "V5-076"
+   ],
+   "anchor": "initial-assessment"
+  },
+  {
+   "stage": "Assessment of underpinning knowledge and understanding",
+   "what": "Determination that UKU meets the requirement, and any gap identified and addressed",
+   "who": "Peers, drawing on verified evidence; supported by staff for clerical checks",
+   "gate": "UKU met before final-stage registration. Interim registration is possible from this point",
+   "clauses": [
+    "UKU-001",
+    "UKU-003",
+    "UKU-004",
+    "UKU-006",
+    "UKU-007",
+    "UKU-008",
+    "UKU-009",
+    "UKU-011",
+    "UKU-012",
+    "UKU-014",
+    "UKU-016",
+    "UKU-017",
+    "UKU-018"
+   ],
+   "anchor": "assessment-of-underpinning-knowledge-and-understanding"
+  },
+  {
+   "stage": "Professional Review: review of documentary evidence",
+   "what": "First peer assessment of competence and commitment",
+   "who": "Two peers",
+   "gate": "Recommendation from the assessors of the documentary evidence before interview",
+   "clauses": [
+    "V5-019",
+    "V5-020",
+    "V5-022",
+    "V5-077"
+   ],
+   "anchor": "review-of-documentary-evidence"
+  },
+  {
+   "stage": "Professional Review: interview",
+   "what": "Second peer assessment of competence and commitment",
+   "who": "Two peers",
+   "gate": "Both assessors recommend registration",
+   "clauses": [
+    "V5-022",
+    "V5-024",
+    "V5-078"
+   ],
+   "anchor": "interview"
+  },
+  {
+   "stage": "Registration decision",
+   "what": "The committee decides whether to register",
+   "who": "Committee responsible for registration",
+   "gate": "-",
+   "clauses": [
+    "V5-025",
+    "V5-026"
+   ],
+   "anchor": "registration-decision"
+  }
+ ]
+}
