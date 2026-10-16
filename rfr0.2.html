@@ -46,6 +46,7 @@
   --gn-text: #1d1d1b;
   --gn-strong: #0b4fa8;
   --pop-bg: #fff;
+  --th-bg: #000;
   --shadow-sm: 0 1px 2px rgba(0,0,0,.06);
   --shadow-md: 0 4px 14px rgba(0,0,0,.08);
   --shadow-lg: 0 14px 40px rgba(0,0,0,.24);
@@ -62,7 +63,7 @@
     --accent: #35ffdc; --accent-line: rgba(53,255,220,.4); --accent-tint: rgba(53,255,220,.1);
     --unit-bg: #16201e;
     --gn-bg: #10213a; --gn-text: #e6eefc; --gn-strong: #8fc0ff;
-    --pop-bg: #1d1d1b;
+    --pop-bg: #1d1d1b; --th-bg: #2c2c29;
     --shadow-sm: 0 1px 2px rgba(0,0,0,.4); --shadow-md: 0 4px 14px rgba(0,0,0,.5);
     color-scheme: dark;
   }
@@ -74,7 +75,7 @@
   --accent: #35ffdc; --accent-line: rgba(53,255,220,.4); --accent-tint: rgba(53,255,220,.1);
   --unit-bg: #16201e;
   --gn-bg: #10213a; --gn-text: #e6eefc; --gn-strong: #8fc0ff;
-  --pop-bg: #1d1d1b;
+  --pop-bg: #1d1d1b; --th-bg: #2c2c29;
   --shadow-sm: 0 1px 2px rgba(0,0,0,.4); --shadow-md: 0 4px 14px rgba(0,0,0,.5);
   color-scheme: dark;
 }
@@ -139,7 +140,7 @@ button{font:inherit;color:inherit}
 .rfr-nav-sectitle{flex:1;font-size:14px;font-weight:600;line-height:1.35}
 .rfr-nav-toggle{flex:none;background:none;border:none;cursor:pointer;padding:8px;border-radius:6px;color:var(--text-muted);line-height:1}
 .rfr-nav-toggle:hover{background:var(--bg-sunken);color:var(--text)}
-.rfr-nav-toggle .chev{display:block;font-size:11px;transition:transform .2s ease}
+.rfr-nav-toggle .chev{display:block;width:16px;height:16px;transition:transform .2s ease}
 .rfr-nav-toggle[aria-expanded="false"] .chev{transform:rotate(-90deg)}
 .rfr-nav-subs{padding:2px 0 6px 16px;display:flex;flex-direction:column;gap:1px}
 .rfr-nav-subs[hidden]{display:none}
@@ -298,16 +299,21 @@ mark{background:var(--mark-bg);color:var(--mark-fg);border-radius:2px;padding:0 
 .rfr-lens-stub button:hover{background:var(--text);color:var(--bg)}
 
 /* ---- tables ---- */
-.rfr-tbl{margin:22px 0 26px;scroll-margin-top:24px}
+.rfr-tbl{margin:24px 0 28px;scroll-margin-top:24px}
 .rfr-tbl figcaption{font-size:14px;font-weight:700;margin:0 0 10px;display:flex;align-items:center;gap:10px}
 .rfr-tbl figcaption::before{content:"";width:22px;height:10px;background:var(--ec-copper);border-radius:0 999px 999px 0;flex:none}
+.rfr-tbl-box{border:1px solid var(--border-strong);border-radius:12px;overflow:hidden}
 .rfr-tbl table{width:100%;border-collapse:collapse;font-size:14.5px;line-height:1.5}
-.rfr-tbl th,.rfr-tbl td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--border)}
-.rfr-tbl thead th{background:var(--ec-black);color:#fff;font-size:12.5px;font-weight:700;letter-spacing:.02em}
-.rfr-tbl tbody th{font-weight:700}
+.rfr-tbl th,.rfr-tbl td{text-align:left;vertical-align:top;padding:12px 14px;border-bottom:1px solid var(--border);overflow-wrap:normal;word-break:normal;hyphens:manual}
+.rfr-tbl tbody tr:last-child>*{border-bottom:none}
+.rfr-tbl thead th{background:var(--th-bg);color:#fff;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;vertical-align:bottom;border-bottom:3px solid var(--ec-copper)}
+.rfr-tbl tbody th{font-weight:700;font-size:14.5px;width:22%}
 .rfr-tbl tbody tr:nth-child(even){background:var(--bg-nav)}
 .rfr-tbl tr.row-hit{background:var(--accent-tint)!important;box-shadow:inset 4px 0 0 var(--ec-copper)}
-.rfr-tbl td.cl-cell{font-size:13.5px}
+.rfr-tbl .cl-cell{width:118px}
+.rfr-tbl td.cl-cell{font-size:13.5px;line-height:1.7}
+.rfr-tbl .cl-cell a.xref{white-space:nowrap}
+.rfr-tbl .t-def{text-underline-offset:2px}
 
 /* ---- popover (definitions, glossary, link stubs) ---- */
 .rfr-pop{position:fixed;inset:auto;margin:0;width:380px;max-width:calc(100vw - 24px);background:var(--pop-bg);color:var(--text);border:2px solid var(--text);border-radius:12px;padding:0;box-shadow:var(--shadow-lg);font-family:var(--font)}
@@ -381,7 +387,9 @@ mark{background:var(--mark-bg);color:var(--mark-fg);border-radius:2px;padding:0 
   .rfr-tbl tbody tr{border:1px solid var(--border);border-left:4px solid var(--ec-copper);border-radius:0 10px 10px 0;margin:0 0 12px;padding:6px 0;background:var(--bg)!important}
   .rfr-tbl th,.rfr-tbl td{border:none;padding:6px 14px}
   .rfr-tbl td[data-label]::before{content:attr(data-label);display:block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);margin-bottom:2px}
-  .rfr-tbl tbody th{font-size:15.5px}
+  .rfr-tbl tbody th{font-size:15.5px;width:100%}
+  .rfr-tbl .cl-cell{width:100%}
+  .rfr-tbl-box{border:none;border-radius:0;overflow:visible}
 }
 .rfr-theme::before{border-radius:50%;background:linear-gradient(90deg,currentColor 50%,transparent 50%)}
 
@@ -416,6 +424,7 @@ mark{background:var(--mark-bg);color:var(--mark-fg);border-radius:2px;padding:0 
   .t-gn::after,.rfr-ext-icon{display:none}
   .rfr-tbl{break-inside:avoid}
   .rfr-tbl thead th{background:#fff;color:#000;border-bottom:2px solid #000}
+  .rfr-tbl-box{border-radius:0;border-color:#000}
   .rfr-gn-note{font-size:9pt;font-style:italic;margin:6px 0 0}
   .rfr-endnotes{break-before:page}
   .rfr-endnotes ol>li{margin:0 0 14px;break-inside:avoid}
@@ -442,7 +451,7 @@ mark{background:var(--mark-bg);color:var(--mark-fg);border-radius:2px;padding:0 
         </fieldset>
         <span class="rfr-tool-sep" aria-hidden="true"></span>
         <button type="button" class="rfr-pill" id="rfr-ids" aria-pressed="false" title="Show drafting IDs (e.g. UKU-003) beside clause numbers and in references">Drafting IDs</button>
-        <button type="button" class="rfr-pill rfr-theme" id="rfr-theme" aria-pressed="false" title="Switch between light and dark">Dark<span class="pl-long"> mode</span></button>
+        <button type="button" class="rfr-pill rfr-theme" id="rfr-theme" aria-pressed="false" title="Switch between light and dark"><span>Dark<span class="pl-long"> mode</span></span></button>
       </div>
     </header>
     <div class="rfr-banner" role="note" aria-label="Prototype notice">
@@ -602,7 +611,7 @@ function firstLine(id) {
    Matches run across inline markup (e.g. ICT<em>Tech</em>), longest term
    first, first occurrence per block, never inside headings or links.
    ===================================================================== */
-const SKIP_SEL = 'a,button,h1,h2,h3,h4,h5,h6,thead,dfn,.no-enrich';
+const SKIP_SEL = 'a,button,[role="button"],h1,h2,h3,h4,h5,h6,thead,figcaption,dfn,.no-enrich';
 const BLOCK_SEL = 'p,li,td,th,figcaption,div';
 const isWordCh = (c) => !!c && /[A-Za-z0-9]/.test(c);
 
@@ -691,27 +700,27 @@ function buildPasses() {
   const defForms = defs.map((c) => c.form.toLowerCase());
   const containsDef = (f) => f.includes(' ') && defForms.some((d) => new RegExp('(^|\\W)' + d.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '(\\W|$)', 'i').test(f) && d !== f.toLowerCase());
   const glTitles = gl.filter((c) => containsDef(c.form));
-  const makeGl = (c) => {
-    const b = document.createElement('button');
-    b.type = 'button'; b.className = 't-gl'; b.dataset.gl = c.gi;
-    b.setAttribute('aria-haspopup', 'dialog');
+  // Inline triggers are spans with role="button", not <button>s: a button is an
+  // atomic inline box, so a long term can't wrap mid-phrase (see the table cells).
+  const trigger = (cls, data, popup) => {
+    const b = document.createElement('span');
+    b.className = cls;
+    b.setAttribute('role', 'button');
+    b.tabIndex = 0;
+    Object.assign(b.dataset, data);
+    if (popup) b.setAttribute('aria-haspopup', 'dialog');
     return b;
   };
+  const makeGl = (c) => trigger('t-gl', { gl: c.gi }, true);
 
   PASSES = [
     { name: 'gn', mode: 'exact', cands: gn, make: (c) => {
-      const b = document.createElement('button');
-      b.type = 'button'; b.className = 't-gn'; b.dataset.gn = c.o.id;
+      const b = trigger('t-gn', { gn: c.o.id });
       b.setAttribute('aria-label', c.form + ': open the Guidance Note extract');
       return b;
     } },
-    { name: 'gl-titles', mode: 'lowerfirst', cands: glTitles, make: makeGl },
-    { name: 'def', mode: 'first', cands: defs, make: (c) => {
-      const b = document.createElement('button');
-      b.type = 'button'; b.className = 't-def'; b.dataset.def = c.d.id;
-      b.setAttribute('aria-haspopup', 'dialog');
-      return b;
-    } },
+    { name: 'gl-titles', mode: 'lowerfirst', cands: glTitles, make: makeGl, glossary: true },
+    { name: 'def', mode: 'first', cands: defs, make: (c) => trigger('t-def', { def: c.d.id }, true) },
     { name: 'ext', mode: 'exact', cands: ext, make: (c) => {
       if (c.l.url) {
         const a = document.createElement('a');
@@ -723,18 +732,26 @@ function buildPasses() {
         a._icon = ic;
         return a;
       }
-      const b = document.createElement('button');
-      b.type = 'button'; b.className = 'rfr-ext-stub'; b.dataset.stub = c.key.slice(4);
-      b.setAttribute('aria-haspopup', 'dialog');
-      return b;
+      return trigger('rfr-ext-stub', { stub: c.key.slice(4) }, true);
     } },
-    { name: 'gl', mode: 'lowerfirst', cands: gl, make: makeGl },
+    { name: 'gl', mode: 'lowerfirst', cands: gl, make: makeGl, glossary: true },
   ];
 }
 
-function enrich(el, skipKey) {
+// Helpful-term (glossary) underlines appear once per section or subsection, not
+// once per block: they are reading aids, and per-block repetition was noise.
+// Regulatory definitions stay first-use-per-block, as the brief asks.
+// Set to 'block' to go back to per-block glossary triggers.
+const GLOSSARY_ONCE_PER = 'section';
+let glScope = new Set();
+function newGlossaryScope() { glScope = new Set(); }
+
+function enrich(el, skipKey, opts = {}) {
   const used = new Set();
-  PASSES.forEach((p) => applyPass(el, p, used, skipKey));
+  PASSES.forEach((p) => {
+    if (p.glossary && opts.noGlossary) return;
+    applyPass(el, p, p.glossary && GLOSSARY_ONCE_PER === 'section' ? glScope : used, skipKey);
+  });
   // external-link arrow goes after the matched text
   $$('a.rfr-ext[data-trail]', el).forEach((a) => { if (a._icon) a.appendChild(a._icon); a.removeAttribute('data-trail'); });
 }
@@ -895,9 +912,9 @@ function renderTable(b) {
   const fig = el('figure', 'rfr-tbl');
   fig.id = b.id;
   fig.dataset.unit = 'table';
-  const rowHead = b.header[0] === '';
-  let h = '<figcaption>' + esc(b.caption) + '</figcaption><table><thead><tr>';
-  b.header.forEach((c, i) => { h += '<th scope="col">' + (c || (rowHead && i === 0 ? '<span class="vh">Aspect</span>' : '')) + '</th>'; });
+  const rowHead = true;   // the first column names each row (stage, standard, category, aspect)
+  let h = '<figcaption>' + esc(b.caption) + '</figcaption><div class="rfr-tbl-box"><table><thead><tr>';
+  b.header.forEach((c, i) => { h += '<th scope="col"' + (c === 'Clauses' ? ' class="cl-cell"' : '') + '>' + (c || (i === 0 ? '<span class="vh">Aspect</span>' : '')) + '</th>'; });
   h += '</tr></thead><tbody>';
   b.rows.forEach((row, ri) => {
     const applies = (b.rowAppliesTo && b.rowAppliesTo[ri]) || [];
@@ -909,15 +926,19 @@ function renderTable(b) {
       // list the clauses the row actually covers instead.
       if (label === 'Clauses' && / to <a class="xref"/.test(cell) && applies.length) {
         html = applies.slice().sort(cmpNum).map((id) => '<a class="xref" href="#' + id + '" data-ref="' + id + '">' + id + '</a>').join(', ');
+      } else if (label === 'Clauses' && /^(\s*<a class="xref"[^>]*>[^<]*<\/a>\s*,?)+$/.test(cell)) {
+        // a plain list of references reads in clause order
+        const ids = Array.from(cell.matchAll(/data-ref="([^"]+)"/g), (m) => m[1]).filter((id) => S.byId[id]);
+        html = ids.sort(cmpNum).map((id) => '<a class="xref" href="#' + id + '" data-ref="' + id + '">' + id + '</a>').join(', ');
       }
       if (rowHead && ci === 0) h += '<th scope="row">' + html + '</th>';
       else h += '<td' + (label ? ' data-label="' + esc(label) + '"' : '') + (label === 'Clauses' ? ' class="cl-cell"' : '') + '>' + html + '</td>';
     });
     h += '</tr>';
   });
-  h += '</tbody></table>';
+  h += '</tbody></table></div>';
   fig.innerHTML = h;
-  enrich(fig);
+  enrich(fig, null, { noGlossary: true });   // tables: definitions and links only
   return fig;
 }
 
@@ -956,7 +977,7 @@ function renderJourney() {
       '<p class="jr-what">' + esc(st.what) + '</p><p class="jr-who">' + esc(st.who) + '</p></div>';
     h += '<ul class="jr-branches" aria-label="Branches from this stage">';
     branches.forEach((br) => {
-      h += '<li><button type="button" class="jr-branch" data-goto="' + esc(br.anchor) + '"><span aria-hidden="true">↳</span>' + esc(br.label) + '</button></li>';
+      h += '<li><button type="button" class="jr-branch" data-goto="' + esc(br.anchor) + '"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;align-self:center"><path d="M6 4v8a4 4 0 0 0 4 4h9"/><path d="M15 12l4 4-4 4"/></svg>' + esc(br.label) + '</button></li>';
     });
     h += '</ul></li>';
     if (st.gate && st.gate.trim() !== '-' && i < j.stages.length - 1) {
@@ -1002,11 +1023,13 @@ function renderDoc() {
     sec.id = fm.anchor;
     sec.dataset.spy = fm.anchor;
     sec.appendChild(el('h2', 'rfr-fm-title', esc(fm.title)));
+    newGlossaryScope();
     fm.blocks.forEach((b) => sec.appendChild(renderBlock(b)));
     fm.subsections.forEach((sub) => {
       const h = el('h3', null, esc(sub.title));
       h.id = sub.anchor;
       sec.appendChild(h);
+      newGlossaryScope();
       sub.blocks.forEach((b) => sec.appendChild(renderBlock(b)));
     });
     doc.appendChild(sec);
@@ -1031,6 +1054,7 @@ function renderDoc() {
       sec.appendChild(stub);
     }
     const body = el('div', 'rfr-sec-body');
+    newGlossaryScope();
     s.blocks.forEach((b) => body.appendChild(renderBlock(b)));
     s.subsections.forEach((sub) => {
       const d = el('div', 'rfr-sub');
@@ -1038,6 +1062,7 @@ function renderDoc() {
       d.dataset.spy = sub.anchor;
       d.dataset.sub = sub.id;
       d.appendChild(el('h3', 'rfr-sub-title', esc(sub.title)));
+      newGlossaryScope();
       sub.blocks.forEach((b) => d.appendChild(renderBlock(b)));
       body.appendChild(d);
     });
@@ -1063,7 +1088,7 @@ function renderNav() {
       '<span class="rfr-nav-sectitle">' + esc(s.title) + '</span>' +
       '<span class="rfr-nav-count" data-count-sec="' + s.id + '"></span></a>';
     if (subs.length) {
-      h += '<button type="button" class="rfr-nav-toggle" aria-expanded="true" aria-controls="navsubs-' + s.id + '" aria-label="Show or hide subsections of ' + esc(s.title) + '"><span class="chev" aria-hidden="true">▾</span></button>';
+      h += '<button type="button" class="rfr-nav-toggle" aria-expanded="true" aria-controls="navsubs-' + s.id + '" aria-label="Show or hide subsections of ' + esc(s.title) + '"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>';
     }
     h += '</div>';
     if (subs.length) {
@@ -1283,6 +1308,14 @@ function wire() {
     }
   });
 
+  // inline span triggers behave like buttons from the keyboard
+  doc.addEventListener('keydown', (e) => {
+    if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('span[role="button"]')) {
+      e.preventDefault();
+      e.target.click();
+    }
+  });
+
   // popover: links inside it, close button, focus return
   const pop = $('#rfr-pop');
   pop.addEventListener('click', (e) => {
@@ -1425,7 +1458,8 @@ function buildSearchIndex() {
     if (b && b.type === 'table') {
       hay = [b.caption, ...b.header, ...b.rows.flat().map(textOf), (b.appliesTo || []).join(' ')].join(' ');
     } else {
-      hay = [u.textContent, id, b && b.num, b && b.v44].filter(Boolean).join(' ');
+      // the block's own text, not the element's: chips and buttons ('In Table 1', 'Copy link') aren't content
+      hay = [b ? b.text : u.textContent, b && b.term, id, b && b.num, b && b.v44].filter(Boolean).join(' ');
     }
     S.units.push({
       el: u, box, id,
@@ -1548,6 +1582,9 @@ function wireSearch() {
   const reset = () => { input.value = ''; clear.classList.remove('on'); applySearch(''); };
   input.addEventListener('keydown', (e) => { if (e.key === 'Escape' && input.value) { e.stopPropagation(); reset(); } });
   clear.addEventListener('click', () => { reset(); input.focus(); });
+  // ?q= opens the page with a search already applied (shareable searches)
+  const q0 = new URLSearchParams(location.search).get('q');
+  if (q0) { input.value = q0; clear.classList.add('on'); applySearch(q0); }
 }
 
 /* ---- scroll-spy ---- */
