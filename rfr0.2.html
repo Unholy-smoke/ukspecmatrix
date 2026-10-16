@@ -287,6 +287,17 @@ mark{background:var(--mark-bg);color:var(--mark-fg);border-radius:2px;padding:0 
 .gn-extract ul li{margin-bottom:6px}
 .gn-source{margin:14px 0 0;font-family:var(--font);font-size:13px;line-height:1.5}
 .gn-source b{font-weight:700;text-transform:uppercase;font-size:11px;letter-spacing:.06em;margin-right:6px}
+.gn-tabs{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px;font-family:var(--font)}
+.gn-tab{display:flex;flex-direction:column;align-items:flex-start;gap:1px;text-align:left;background:transparent;border:1.5px solid var(--gn-border);color:var(--gn-text);font-size:13px;font-weight:600;line-height:1.3;padding:6px 12px;border-radius:10px;cursor:pointer;max-width:min(100%,260px)}
+.gn-tab:hover{background:rgba(71,151,247,.14)}
+.gn-tab[aria-selected="true"]{background:var(--gn-border);color:var(--ec-on-blue)}
+.gn-tab-kind{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;opacity:.8}
+.gn-quote{margin:0}
+.gn-extract ul.gn-lettered{list-style:none;padding-left:4px}
+.gn-panel.is-planned{background:transparent;border-style:dashed}
+.gn-panel.is-planned .gn-badge{background:transparent;color:var(--gn-strong);border:1.5px dashed var(--gn-border)}
+.gn-planned{margin:0;font-family:var(--font);font-size:15px;line-height:1.6}
+.gn-btn.is-planned{background:transparent;border-style:dashed}
 .gn-caveat{margin:6px 0 0;font-family:var(--font);font-size:13px;font-style:italic;opacity:.9}
 
 /* ---- search filtering + licence lens ---- */
@@ -588,11 +599,17 @@ function buildIndex() {
   eachBlock((b, sec, sub) => { S.byId[b.id] = { block: b, sec, sub }; });
   Object.entries(c.index || {}).forEach(([id, num]) => { S.numToId[num] = id; });
   (S.data.definitions.definitions || []).forEach((d) => { S.defs[d.id] = d; });
+  // Overlays grouped by the clause they support, numbered in reading order (for endnotes)
   S.gnByTarget = {};
+  S.gnById = {};
   (S.data.overlays.overlays || [])
     .filter((o) => S.byId[o.target])
-    .sort((a, b) => cmpNum(a.target, b.target))
-    .forEach((o, i) => { S.gnByTarget[o.target] = Object.assign({}, o, { n: i + 1 }); });
+    .sort((x, y) => cmpNum(x.target, y.target))
+    .forEach((o, i) => {
+      const ov = Object.assign({}, o, { n: i + 1 });
+      (S.gnByTarget[o.target] = S.gnByTarget[o.target] || []).push(ov);
+      S.gnById[o.id] = ov;
+    });
   const m = /draft\s*(\d+)/i.exec(c.meta.edition || '');
   S.citePrefix = m ? 'RfR v5 Draft ' + m[1] : 'RfR v5';
 }
@@ -825,18 +842,21 @@ function renderClause(b) {
     foot.appendChild(chip);
   });
   main.appendChild(foot);
-  const gn = S.gnByTarget[b.id];
-  if (gn) {
-    const btn = el('button', 'gn-btn',
-      '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M4 4h10l6 6v10H4z"/><path d="M14 4v6h6M8 14h8M8 18h6"/></svg>Guidance');
+  const gns = S.gnByTarget[b.id];
+  if (gns) {
+    const planned = gns.every((o) => o.status === 'planned');
+    const btn = el('button', 'gn-btn' + (planned ? ' is-planned' : ''),
+      '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M4 4h10l6 6v10H4z"/><path d="M14 4v6h6M8 14h8M8 18h6"/></svg>' +
+      (planned ? 'Guidance (planned)' : 'Guidance' + (gns.length > 1 ? ' · ' + gns.length : '')));
     btn.type = 'button';
-    btn.dataset.gnOpen = gn.id;
+    btn.dataset.gnOpen = b.id;
     btn.setAttribute('aria-expanded', 'false');
-    btn.setAttribute('aria-controls', 'gn-' + gn.id);
-    btn.setAttribute('aria-label', 'Current guidance for clause ' + b.num + ': ' + gn.title);
+    btn.setAttribute('aria-controls', 'gn-' + b.id);
+    btn.setAttribute('aria-label', (planned ? 'Planned guidance' : gns.length + ' guidance extract' + (gns.length > 1 ? 's' : '')) + ' for clause ' + b.num);
     foot.appendChild(btn);
-    main.appendChild(renderGnPanel(gn));
-    main.appendChild(el('p', 'print-only rfr-gn-note', 'Guidance Note extract: see endnote ' + gn.n + '.'));
+    main.appendChild(renderGnPanel(b.id, gns));
+    main.appendChild(el('p', 'print-only rfr-gn-note',
+      'Guidance and policy extracts: see endnote' + (gns.length > 1 ? 's ' : ' ') + gns.map((o) => o.n).join(', ') + '.'));
   }
   art.appendChild(main);
 
@@ -853,41 +873,89 @@ function renderClause(b) {
   return art;
 }
 
-/* Guidance Note extract: verbatim text, numbered by its own refs, with source and caveat. */
+/* Overlay kinds: what the reader is looking at, said plainly on every panel. */
+const GN_KIND = {
+  guidance: { badge: 'Current guidance: Guidance Note text, not regulation', tab: 'Guidance Note' },
+  policy: { badge: 'Current policy: Policy Statement text, not regulation', tab: 'Policy Statement' },
+  regulations: { badge: 'Engineering Council Regulations: governance rules, not part of RfR', tab: 'EngC Regulations' },
+  planned: { badge: 'Planned guidance: not yet written', tab: 'Planned' },
+};
+const gnKind = (o) => GN_KIND[o.status === 'planned' ? 'planned' : (o.kind || 'guidance')] || GN_KIND.guidance;
+
+/* An extract: verbatim text, numbered by its own refs, with source and caveat. */
 function gnExtractHTML(o) {
-  let h = '<ol class="gn-extract">';
-  (o.extract || []).forEach((x) => {
-    h += '<li><span class="gn-ref">' + esc(x.ref) + '</span><div>';
-    if (x.q) h += '<p class="gn-q">' + esc(x.q) + '</p>';
-    String(x.text || '').split(/\n\s*\n/).forEach((para) => { h += '<p>' + esc(para) + '</p>'; });
-    if (x.items && x.items.length) h += '<ul>' + x.items.map((it) => '<li>' + esc(it) + '</li>').join('') + '</ul>';
-    h += '</div></li>';
-  });
-  h += '</ol>';
+  let h = '';
+  if (o.status === 'planned') {
+    h += '<p class="gn-planned">This guidance has not been written yet. When it is, its relevant clauses will appear here, in place, as they do for current Guidance Notes.</p>';
+  } else {
+    h += '<blockquote class="gn-quote"><ol class="gn-extract">';
+    (o.extract || []).forEach((x) => {
+      h += '<li><span class="gn-ref">' + esc(x.ref) + '</span><div>';
+      if (x.q) h += '<p class="gn-q">' + esc(x.q) + '</p>';
+      String(x.text || '').split(/\n\s*\n/).forEach((para) => { if (para) h += '<p>' + esc(para) + '</p>'; });
+      if (x.items && x.items.length) {
+        const lettered = x.items.every((it) => /^[a-z]\.\s/.test(it));
+        h += '<ul' + (lettered ? ' class="gn-lettered"' : '') + '>' + x.items.map((it) => '<li>' + esc(it) + '</li>').join('') + '</ul>';
+      }
+      h += '</div></li>';
+    });
+    h += '</ol></blockquote>';
+  }
   const src = o.source || {};
-  h += '<p class="gn-source"><b>Source</b>' + [src.document, src.version, src.location].filter(Boolean).map(esc).join(' · ') + '</p>';
+  h += '<p class="gn-source"><b>Source</b>' + [src.document, src.version, src.location].filter((x) => x && x !== '—').map(esc).join(' · ') + '</p>';
   if (o.caveat) h += '<p class="gn-caveat">' + esc(o.caveat) + '</p>';
   return h;
 }
 
-function renderGnPanel(o) {
-  const p = el('aside', 'gn-panel no-enrich');
-  p.id = 'gn-' + o.id;
+function gnBodyHTML(o) {
+  return '<p class="gn-badge">' + esc(gnKind(o).badge) + '</p><h4 class="gn-title">' + esc(o.title) + '</h4>' + gnExtractHTML(o);
+}
+
+/* One panel per clause. Several overlays become tabs (arrow keys move between them). */
+function renderGnPanel(clauseId, gns) {
+  const p = el('aside', 'gn-panel no-enrich' + (gns.every((o) => o.status === 'planned') ? ' is-planned' : ''));
+  p.id = 'gn-' + clauseId;
   p.hidden = true;
   p.tabIndex = -1;
-  p.setAttribute('aria-label', 'Guidance Note extract: ' + o.title);
-  p.innerHTML = '<p class="gn-badge">Current guidance: Guidance Note text, not regulation</p>' +
-    '<h4 class="gn-title">' + esc(o.title) + '</h4><blockquote style="margin:0">' + gnExtractHTML(o) + '</blockquote>';
+  p.setAttribute('aria-label', 'Guidance for clause ' + S.byId[clauseId].block.num);
+  if (gns.length === 1) {
+    p.innerHTML = '<div class="gn-pane" id="gnp-' + esc(gns[0].id) + '">' + gnBodyHTML(gns[0]) + '</div>';
+    return p;
+  }
+  let tabs = '<div class="gn-tabs" role="tablist" aria-label="Guidance for this clause">';
+  let panes = '';
+  gns.forEach((o, i) => {
+    tabs += '<button type="button" role="tab" class="gn-tab" id="gnt-' + esc(o.id) + '" aria-controls="gnp-' + esc(o.id) + '" aria-selected="' + (i === 0) + '" tabindex="' + (i === 0 ? 0 : -1) + '">' +
+      '<span class="gn-tab-kind">' + esc(gnKind(o).tab) + '</span>' + esc(o.title) + '</button>';
+    panes += '<div class="gn-pane" role="tabpanel" id="gnp-' + esc(o.id) + '" aria-labelledby="gnt-' + esc(o.id) + '"' + (i === 0 ? '' : ' hidden') + '>' + gnBodyHTML(o) + '</div>';
+  });
+  p.innerHTML = tabs + '</div>' + panes;
   return p;
 }
 
-function toggleGn(id, open, focus) {
-  const panel = document.getElementById('gn-' + id);
-  const btn = $('[data-gn-open="' + id + '"]');
+function selectGnTab(tab, focus) {
+  const list = tab.closest('.gn-tabs');
+  $$('.gn-tab', list).forEach((t) => {
+    const on = t === tab;
+    t.setAttribute('aria-selected', String(on));
+    t.tabIndex = on ? 0 : -1;
+    document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+  });
+  if (focus) tab.focus();
+}
+
+// open/close a clause's guidance; overlayId (from an in-text trigger) picks its tab
+function toggleGn(clauseId, open, focus, overlayId) {
+  const panel = document.getElementById('gn-' + clauseId);
+  const btn = $('[data-gn-open="' + clauseId + '"]');
   if (!panel || !btn) return;
   const show = open == null ? panel.hidden : open;
   panel.hidden = !show;
   btn.setAttribute('aria-expanded', String(show));
+  if (show && overlayId) {
+    const tab = document.getElementById('gnt-' + overlayId);
+    if (tab) selectGnTab(tab, false);
+  }
   if (show && focus) {
     goTo(panel.id, false);
     panel.focus({ preventScroll: true });
@@ -895,14 +963,14 @@ function toggleGn(id, open, focus) {
 }
 
 function renderEndnotes() {
-  const list = Object.values(S.gnByTarget).sort((a, b) => a.n - b.n);
+  const list = Object.values(S.gnById).sort((a, b) => a.n - b.n);
   if (!list.length) return;
   const sec = el('section', 'print-only rfr-endnotes');
-  let h = '<h2 class="rfr-sec-title" style="font-size:24px">Endnotes: Guidance Note extracts</h2>' +
-    '<p>These are extracts from current Guidance Notes, shown beside the clauses they support. They are guidance, not regulation.</p><ol>';
+  let h = '<h2 class="rfr-sec-title" style="font-size:24px">Endnotes: guidance and policy extracts</h2>' +
+    '<p>Extracts from current Guidance Notes, Policy Statements and Engineering Council Regulations, shown on screen beside the clauses they support. None of them is part of these Regulations.</p><ol>';
   list.forEach((o) => {
     const b = S.byId[o.target].block;
-    h += '<li><p><strong>' + esc(o.title) + '</strong>. Supports clause ' + esc(b.num) + ' (' + esc(b.id) + ').</p>' + gnExtractHTML(o) + '</li>';
+    h += '<li><p><strong>' + esc(o.title) + '</strong> (' + esc(gnKind(o).tab) + '). Supports clause ' + esc(b.num) + ' (' + esc(b.id) + ').</p>' + gnExtractHTML(o) + '</li>';
   });
   sec.innerHTML = h + '</ol>';
   $('#rfr-doc').appendChild(sec);
@@ -1294,7 +1362,9 @@ function wire() {
     const st = e.target.closest('.rfr-ext-stub');
     if (st) { openStubPop(st); return; }
     const gt = e.target.closest('.t-gn');
-    if (gt) { toggleGn(gt.dataset.gn, true, true); return; }
+    if (gt) { const o = S.gnById[gt.dataset.gn]; if (o) toggleGn(o.target, true, true, o.id); return; }
+    const tab = e.target.closest('.gn-tab');
+    if (tab) { selectGnTab(tab, false); return; }
     const gb = e.target.closest('[data-gn-open]');
     if (gb) { toggleGn(gb.dataset.gnOpen); return; }
     const tc = e.target.closest('.rfr-tblchip');
@@ -1310,6 +1380,14 @@ function wire() {
 
   // inline span triggers behave like buttons from the keyboard
   doc.addEventListener('keydown', (e) => {
+    if (e.target.matches('.gn-tab') && ['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(e.key)) {
+      const tabs = $$('.gn-tab', e.target.closest('.gn-tabs'));
+      const i = tabs.indexOf(e.target);
+      const j = e.key === 'Home' ? 0 : e.key === 'End' ? tabs.length - 1 : (i + (e.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
+      e.preventDefault();
+      selectGnTab(tabs[j], true);
+      return;
+    }
     if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('span[role="button"]')) {
       e.preventDefault();
       e.target.click();

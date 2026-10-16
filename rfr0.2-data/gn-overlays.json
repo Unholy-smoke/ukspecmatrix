@@ -1,5 +1,5 @@
 {
- "note": "Proof of concept: a Guidance Note clause shown in place, in an overlay on the regulation it supports. Extracts are VERBATIM from the current published Guidance Notes, so they are real guidance, not drafted. Show the source document, version and location on every overlay. The GN corpus will later move onto this minisite; for now the overlay stands in for a footnote pointing at a PDF.",
+ "note": "Guidance shown in place, in an overlay on the regulation it supports. Extracts are VERBATIM from current Guidance Notes, Policy Statements (kind: policy) and the Engineering Council governance Regulations (kind: regulations), so they are real text, not drafted. status planned = placeholder for guidance not yet written. Show the source document, version and location on every overlay. Edit tools/gn_overlays_src.json, not this file.",
  "overlays": [
   {
    "id": "GN-RS-4",
@@ -19,31 +19,6 @@
     }
    ],
    "caveat": "The Guidance Note quotes RfR v4.4 paragraph 12, which V5-012 replaces. The Recognised Standards Framework is an annex to this Guidance Note."
-  },
-  {
-   "id": "GN-PR-A11-12",
-   "target": "V5-078",
-   "trigger": null,
-   "title": "Conducting the interview: length and remote interviews",
-   "source": {
-    "document": "Guidance Note on the Professional Review",
-    "version": "v1.3, August 2020",
-    "location": "Annex A: The Professional Review Interview, Q11 and Q12",
-    "file": "07 Reference/guidance-note-on-the-professional-review-issue-13-post-2017-standards-review.pdf"
-   },
-   "extract": [
-    {
-     "ref": "Q11",
-     "q": "What is the ideal length of the interview?",
-     "text": "Ideally between 60 and 90 minutes. Thorough preparation including assessment of the application and briefing of the assessors should have been completed prior to the interview."
-    },
-    {
-     "ref": "Q12",
-     "q": "Can the interview be conducted remotely?",
-     "text": "Yes. Applicants should have agreed to this type of interview. Robust arrangements must be made to confirm the identity of the applicant, to authenticate any evidence, and to ensure that the interview environment is appropriate and is demonstrably not open to abuse. It is essential that voice and vision contact are maintained throughout the interview. The PRI record should indicate that it was performed remotely.\n\nRecords of the number of remote PRIs should be maintained. When developing, documenting and approving detailed processes, Licensees should base them on this guidance, specifying the technology employed and procedures to be taken in the event of any break in transmission."
-    }
-   ],
-   "caveat": "Elsewhere this Guidance Note cites the Registration Code of Practice (an earlier title of RfR) by paragraph number."
   },
   {
    "id": "GN-INTL-WA",
@@ -77,35 +52,674 @@
    "caveat": "Quoted verbatim, including the source’s own grammar. The note covers the Dublin and Sydney Accords and EUR-ACE in parallel sections; a full build would offer each."
   },
   {
-   "id": "GN-AA-K",
-   "target": "V5-040",
+   "id": "REG-6C",
+   "target": "V5-007",
+   "kind": "regulations",
    "trigger": null,
-   "title": "Risk-based approach to accreditation visits",
+   "title": "What Guidance Notes are, and how much weight they carry",
    "source": {
-    "document": "Guidance Note on Academic Accreditation",
-    "version": "v3.4, August 2024",
-    "location": "Annex K: Risk-based approach to accreditation visits, policy summary, paras 3 to 6",
-    "file": "07 Reference/Guidance Note on Academic Accreditation Issue 3.4.pdf"
+    "document": "Engineering Council Regulations",
+    "version": "v16, approved by the Board June 2025",
+    "file": "07 Reference/engc-regulations-v16-june-2025.pdf",
+    "location": "Regulation 6C: Engineering Council Guidance, paras 1 and 2"
    },
    "extract": [
     {
+     "ref": "6C.1",
+     "text": "Guidance Notes are published by the Engineering Council’s committees under the powers delegated by the Board. Guidance Notes produced by the panels may require Board approval before publication unless explicit delegation has already been given to do so. Such Guidance Notes should comprise:",
+     "items": [
+      "a. Documents produced under an express authority in Regulations, e.g. the Regulations for Licensing. Unless otherwise stated, these carry the same authority as the parent Regulation;",
+      "b. External Directives and other documents reproduced for convenience, particularly in the International area. These have varying degrees of authority, normally apparent from the text;",
+      "c. Guidance Notes, produced by Engineering Council committees and panels which are endorsed by the Board. Guidance Notes are complementary to Regulations: in simplistic terms, Regulations are ‘shall’ whereas Guidance Notes are ‘should’."
+     ]
+    },
+    {
+     "ref": "6C.2",
+     "text": "Guidance Notes should reflect a consensus view of best practice across, or in some cases beyond, the profession. Some could be described as firmer than others. During Licensing Reviews, material shortcomings in a Licensee’s procedures or practices compared with relevant guidance could be evidence of a need for improvement."
+    }
+   ],
+   "caveat": "Engineering Council governance Regulations, not RfR. Shown here because 2.3 relies on the distinction it draws."
+  },
+  {
+   "id": "GN-RS-3",
+   "target": "V5-014",
+   "trigger": null,
+   "title": "Requirements a Recognised Standard may add",
+   "source": {
+    "document": "Guidance Note on Recognised Standards",
+    "version": "Version 1, approved by RSC 12 May 2022",
+    "file": "07 Reference/Guidance Note on Recognised Standards.pdf",
+    "location": "Section 3: Renewal, Revalidation, and other requirements"
+   },
+   "extract": [
+    {
+     "ref": "§3",
+     "text": "Recognised Standards may be subject to requirements additional to those in the Regulations for Registration or other Engineering Council guidance or regulations. For instance, regarding the renewal or revalidation of registration, or requirements for the submission of CPD samples.\n\nLicensees should consider each published Recognised Standard’s requirements the authorititative source. Unless specifically extended by the specific requirements of the Recognised Standard, the Regulations for Registration and attached Engineering Council guidance and regulation continue to apply."
+    }
+   ],
+   "caveat": "Quoted verbatim, including the source’s typing slip (“authorititative”). This is the guidance v4.4 para 14 footnoted."
+  },
+  {
+   "id": "REG-7A",
+   "target": "V5-009",
+   "kind": "regulations",
+   "trigger": null,
+   "title": "Registering through an additional Licensee",
+   "source": {
+    "document": "Engineering Council Regulations",
+    "version": "v16, approved by the Board June 2025",
+    "file": "07 Reference/engc-regulations-v16-june-2025.pdf",
+    "location": "Regulation 7A: Payment of Fees, paras 6 to 8"
+   },
+   "extract": [
+    {
+     "ref": "7A.6",
+     "text": "Should any Registrants elect to become registered through another Licensee or Professional Affiliate as well as the body to which they pay their Registration Fee then the new Licensee or Professional Affiliate may offer such registration subject to the Registrant paying an appropriate Registration Fee,"
+    },
+    {
+     "ref": "7A.7",
+     "text": "For both Registrants who elect to change the body to which they pay their Registration Fee and Registrants who elect to become registered through an additional Licensee or Professional Affiliate, the new and/or additional registering body shall then assure itself that the individual meets the Regulations for Registration’s requirements for that category of registration. This shall include a review of the Registrant’s most recent CPD record, the Licensee also having the discretion to request further evidence (e.g. demonstration against specific competences). Such applications shall be subject to the approval of the Licensee’s committee(s) responsible for decisions for registration."
+    },
+    {
+     "ref": "7A.8",
+     "text": "Where multiple Principal registrations are held by the same individual, additional registration certificates may be applied for but would attract an Additional Certificate Fee, set by the Engineering Council. Each such certificate would be dated as of the date the additional registration was entered on to the Register."
+    }
+   ],
+   "caveat": "Engineering Council governance Regulations, not RfR. This governs registration in the same category through a second body; it says nothing about the exceptional circumstances 3.3 mentions."
+  },
+  {
+   "id": "GN-PR-Q3",
+   "target": "V5-009",
+   "trigger": null,
+   "title": "Holding full registration in more than one section of the Register",
+   "source": {
+    "document": "Guidance Note on the Professional Review",
+    "version": "v1.4, October 2023",
+    "file": "07 Reference/guidance-note-on-the-professional-review.pdf",
+    "location": "Assessment, Q3"
+   },
+   "extract": [
+    {
+     "ref": "Q3",
+     "q": "Can an application be considered from an individual who wishes to hold full registered status in more than one section of the Register with the same Licensee?",
+     "text": "Yes, in certain circumstances, and the two applications must be considered individually. Separate guidance is available on this on the Partner Portal."
+    }
+   ],
+   "caveat": "The “separate guidance” this answer points to has not been found; colleagues believe none exists. 3.3’s sentence “Guidance about the exceptional circumstances is available” may need to go."
+  },
+  {
+   "id": "GN-TR-PLANNED",
+   "target": "UKU-017",
+   "status": "planned",
+   "trigger": null,
+   "title": "Guidance on the technical report",
+   "source": {
+    "document": "Guidance Note on the technical report (planned)",
+    "version": "not yet drafted",
+    "location": "—"
+   },
+   "extract": [],
+   "caveat": "Placeholder. WG02 agreed that much of the v4.4 technical-report material is guidance rather than regulation and should move to a new Guidance Note. When it exists, its relevant clauses will show here."
+  },
+  {
+   "id": "GN-PR-Q18",
+   "target": "V5-023",
+   "trigger": null,
+   "title": "Using another language at interview",
+   "source": {
+    "document": "Guidance Note on the Professional Review",
+    "version": "v1.4, October 2023",
+    "file": "07 Reference/guidance-note-on-the-professional-review.pdf",
+    "location": "The Professional Review Interview, Q18"
+   },
+   "extract": [
+    {
+     "ref": "Q18",
+     "q": "Can part of the interview be conducted in a language other than English?",
+     "text": "Paragraph 23 of the Regulations for Registration (RfR) applies. Another language may be used purely for the clarification of a word or point, to enable the interview to continue."
+    }
+   ],
+   "caveat": "Draft 7 has brought this answer’s second sentence into 6.3 itself, so the guidance and the regulation now say the same thing. One of them can go."
+  },
+  {
+   "id": "GN-PR-Q15-16",
+   "target": "V5-078",
+   "trigger": null,
+   "title": "Conducting the interview: length and remote interviews",
+   "source": {
+    "document": "Guidance Note on the Professional Review",
+    "version": "v1.4, October 2023",
+    "file": "07 Reference/guidance-note-on-the-professional-review.pdf",
+    "location": "The Professional Review Interview, Q15 and Q16"
+   },
+   "extract": [
+    {
+     "ref": "Q15",
+     "q": "What is the ideal length of the interview?",
+     "text": "Ideally between 60 and 90 minutes. Thorough preparation, including assessment of the application and briefing of the assessors, should be completed prior to the interview."
+    },
+    {
+     "ref": "Q16",
+     "q": "Can the interview be conducted remotely?",
+     "text": "Yes. Applicants should have agreed to this type of interview. Robust arrangements must be made to verify the identity of the applicant, to authenticate any evidence, and to ensure that the interview environment is appropriate and is demonstrably not open to abuse. It is essential that voice and vision contact are maintained throughout the interview. The PRI record should indicate that it was performed remotely.\n\nLicensees should clearly communicate the systems to be used during the interview to the applicant ahead of time, and ensure those systems are robust. Licensees should make clear to applicants whether a remote or in-person interview is the default.\n\nRecords of the how many PRIs are conducted remotely and in person should be maintained. When developing, documenting and approving detailed processes, Licensees should base them on this guidance, specifying the technology employed and procedures to be taken in the event of any break in transmission."
+    }
+   ],
+   "caveat": "Updated from v1.3 to v1.4 (October 2023), which renumbered the questions and added guidance on communicating the systems used."
+  },
+  {
+   "id": "GN-PR-ASSESSORS",
+   "target": "V5-022",
+   "trigger": null,
+   "title": "Choosing and training assessors",
+   "source": {
+    "document": "Guidance Note on the Professional Review",
+    "version": "v1.4, October 2023",
+    "file": "07 Reference/guidance-note-on-the-professional-review.pdf",
+    "location": "The Professional Review Interview, Q7, Q10, Q12 and Q13"
+   },
+   "extract": [
+    {
+     "ref": "Q7",
+     "q": "Do the assessors require training?",
+     "text": "Yes, it is essential that the assessors undergo initial training and maintain their competence, and that PRI assessors conduct interviews regularly."
+    },
+    {
+     "ref": "Q10",
+     "q": "Should the relationship between assessors and applicants be considered?",
+     "text": "Licensees should wherever possible appoint assessors who do not have a working or other relationship with the applicant. When this is impossible, any working or other relationship needs to be made transparent, and there must be appropriate procedures in place for declarations of interest for both parties. Interview assessors should always be from outside the applicant’s immediate organisation."
+    },
+    {
+     "ref": "Q12",
+     "q": "Is it acceptable to use assessors from other Licensees?",
+     "text": "Yes, providing they met the requirements of paragraph 22 of the Regulations for Registration"
+    },
+    {
+     "ref": "Q13",
+     "q": "May we use fixed pairings of assessors?",
+     "text": "This is not encouraged. If circumstances require it, then a suitable moderation process should be in place."
+    }
+   ],
+   "caveat": "Q12 refers to v4.4 paragraph 22, which 6.7 and 1.3 now carry between them."
+  },
+  {
+   "id": "GN-PR-REPORT",
+   "target": "V5-024",
+   "trigger": null,
+   "title": "The assessors’ report",
+   "source": {
+    "document": "Guidance Note on the Professional Review",
+    "version": "v1.4, October 2023",
+    "file": "07 Reference/guidance-note-on-the-professional-review.pdf",
+    "location": "Reporting, Recommendations and Decisions, Q19 and Q20"
+   },
+   "extract": [
+    {
+     "ref": "Q19",
+     "q": "What is the purpose of the report on the PRI?",
+     "text": "Reports are essential to show the reasons for the assessors’ recommendations and ensure transparency, as well as to facilitate moderation within the Licensee, and to provide evidence of process for Engineering Council licensing. They also provide essential evidence in the case of an appeal by an applicant against a decision, or in the case of any subsequent challenge to the suitability of a successful applicant. Assessors must therefore complete a report on each applicant."
+    },
+    {
+     "ref": "Q20",
+     "q": "What needs to be in the report?",
+     "text": "The report should record the assessors’ judgements and recommendation, and these should be justified by appropriate evidential statements, that show whether the applicant has demonstrated all of the competence and commitment requirements for the category of registration which is sought. The statements should reflect any evidence which the assessors may have from any assessment of the applicant carried out before the PRI, as well as from the PRI itself. The report should only contain matters relating to the assessment of competence and commitment, and extraneous statements about the applicant should be avoided."
+    }
+   ],
+   "caveat": null
+  },
+  {
+   "id": "GN-PR-DECISION",
+   "target": "V5-025",
+   "trigger": null,
+   "title": "The committee’s decision",
+   "source": {
+    "document": "Guidance Note on the Professional Review",
+    "version": "v1.4, October 2023",
+    "file": "07 Reference/guidance-note-on-the-professional-review.pdf",
+    "location": "Reporting, Recommendations and Decisions, Q23; After the interview, Q28 and Q29"
+   },
+   "extract": [
+    {
+     "ref": "Q23",
+     "q": "Do the assessors decide an applicant may be registered?",
+     "text": "No, they make recommendations to the committee responsible for registration."
+    },
+    {
+     "ref": "Q28",
+     "q": "Can the committee responsible for registration decide not to accept a recommendation?",
+     "text": "Yes, but this should only happen in exceptional circumstances, and only if the committee’s decision is not to accept the assessors’ recommendations to award a title to an individual. The reasons for such a decision should be recorded and there should be a review of the process."
+    },
+    {
+     "ref": "Q29",
+     "q": "Where the assessors’ recommendation is not to award a title, can a committee decide to reject that decision and award the title (or a different title) to the individual?",
+     "text": "No. This is not a fail-safe decision. The committee, following a review of all the evidence and the interview assessors’ report, has only two options: to accept the recommendation or direct that the individual be offered a second interview.\n\nThe reasons for such a decision should be recorded and there should be a review of processes, especially the decision to send to interview and the assessors’ findings. RfR paragraph 25 states that the Committee “may recommend that the applicant be invited to repeat one or more components of the Professional Review”. However, particular attention should be paid to the possibility of interview assessor bias having played any part in the recommendation not to award a title, and steps taken to ensure a new assessment is not subject to bias."
+    }
+   ],
+   "caveat": "Q29 quotes v4.4 paragraph 25."
+  },
+  {
+   "id": "GN-PR-Q30",
+   "target": "V5-027",
+   "trigger": null,
+   "title": "When an appeal is upheld",
+   "source": {
+    "document": "Guidance Note on the Professional Review",
+    "version": "v1.4, October 2023",
+    "file": "07 Reference/guidance-note-on-the-professional-review.pdf",
+    "location": "After the interview, Q30 (closing paragraph)"
+   },
+   "extract": [
+    {
+     "ref": "Q30",
+     "q": "Can an unsuccessful applicant make an appeal against the committee’s decision?",
+     "text": "Where an appeal against the process followed is upheld by an Appeals Committee, the Appeals Committee should inform the Committee responsible for registration of the decision, the reason for the decision, and a recommendation on the process to be followed for re-assessment of the elements on the process determined not to be legitimate."
+    }
+   ],
+   "caveat": "The rest of the answer quotes v4.4 paragraph 27, which 8.1 carries forward, so only the guidance itself is shown."
+  },
+  {
+   "id": "GN-AA-F",
+   "target": "V5-044",
+   "trigger": null,
+   "title": "Accrediting where the Licensee has an interest",
+   "source": {
+    "document": "Guidance Note on Academic Accreditation",
+    "version": "v3.4, August 2024",
+    "file": "07 Reference/Guidance Note on Academic Accreditation Issue 3.4.pdf",
+    "location": "Annex F: Accreditation where Licensees may have an interest"
+   },
+   "extract": [
+    {
+     "ref": "Annex F",
+     "text": "Licensees may occasionally be asked to accredit programmes in which they or their partner organisations have an interest. To safeguard accreditation standards and avoid any reputational risk arising from perceived conflict of interest Licensees will usually be expected to demonstrate independence from awarding and delivery institutions when accrediting.\n\nOn occasions where a potential conflict of interest exists where a Licensee wishes to accredit a programme that they or a partner organisation have an involvement with, the following conditions must be met:",
+     "items": [
+      "The visit must be conducted with at least one other Licensee.",
+      "Another Licensee must take the lead and appoint the Chair.",
+      "The Chair will be responsible for ensuring no conflict of interest impacts upon the accreditation decision.",
+      "The Chair will be responsible for achieving agreement on the accreditation decision with the Licensee that has the potential conflict of interest.",
+      "If agreement cannot be reached the Chair must refer the matter to RSC."
+     ]
+    }
+   ],
+   "caveat": "9.5 covers the narrower case where the Licensee is itself the awarding institution; this annex covers any interest."
+  },
+  {
+   "id": "GN-AA-H",
+   "target": "V5-046",
+   "trigger": null,
+   "title": "Limits on compensation and condonement",
+   "source": {
+    "document": "Guidance Note on Academic Accreditation",
+    "version": "v3.4, August 2024",
+    "file": "07 Reference/Guidance Note on Academic Accreditation Issue 3.4.pdf",
+    "location": "Annex H: Guidance on Compensation and Condonement (the policy requirements)"
+   },
+   "extract": [
+    {
+     "ref": "Definitions",
+     "text": "The Engineering Council defines compensation as: “The practice of allowing marginal failure (ie not more than ten percentage points below the nominal pass mark) of one or more modules and awarding credit for them, often on the basis of good overall academic performance.”\n\nThe Engineering Council defines condonement as: “The practice of allowing students to fail one or more module(s) with a fail mark of more than ten percentage points below the nominal pass mark, yet still qualify for the award of the degree.”"
+    },
+    {
+     "ref": "1",
+     "text": "Evidence that all AHEP 4.0 learning outcomes are met by all variants of each programme must be provided before accreditation can be granted."
+    },
+    {
+     "ref": "2",
+     "text": "No condonement of modules delivering AHEP 4.0 learning outcomes is allowed."
+    },
+    {
      "ref": "3",
-     "text": "The risk-based approach permits some accreditation activity to be completed through a virtual visit or a hybrid visit (involving some in-person and some virtual activity), at the discretion of the PEI(s). In the context of this policy a ‘visit’ refers to visit activity whether conducted in-person (on site), entirely virtually (with no in-person element) or through a hybrid approach (with a mix of virtual and in-person activity)."
+     "text": "A maximum of 30 credits in a Bachelors or integrated Masters degree programme can be compensated, and a maximum of 20 credits in a Masters degree other than the integrated Masters degree."
     },
     {
      "ref": "4",
-     "text": "In some circumstances a visit containing a significant in-person element is mandatory."
+     "text": "Major individual and group-based project modules must not be compensated."
     },
     {
      "ref": "5",
-     "text": "Individual PEIs may decide to complete all or a majority of their accreditation activity in-person."
-    },
-    {
-     "ref": "6",
-     "text": "PEIs must decide and confirm to all participants whether a visit will be in-person, virtual or hybrid at least six weeks in advance of a visit."
+     "text": "The minimum module mark for which compensation is allowed is no more than ten percentage points below the nominal module pass mark (or equivalent if a grade-based marking scheme is used)."
     }
    ],
-   "caveat": "The full Risk Based Accreditation Visits Policy is on the Partner Portal."
+   "caveat": "This is v4.4 footnote 7. The numbered requirements are the policy itself, shown in bold in the Guidance Note; the Note adds worked explanation after each."
+  },
+  {
+   "id": "GN-AA-4",
+   "target": "V5-047",
+   "trigger": null,
+   "title": "Accreditation outcomes, and “partial accreditation”",
+   "source": {
+    "document": "Guidance Note on Academic Accreditation",
+    "version": "v3.4, August 2024",
+    "file": "07 Reference/Guidance Note on Academic Accreditation Issue 3.4.pdf",
+    "location": "Section 4: Accreditation Decisions"
+   },
+   "extract": [
+    {
+     "ref": "§4",
+     "text": "Qualifying phrases such as ‘provisional accreditation’ and ‘partial accreditation’ are not used."
+    },
+    {
+     "ref": "§4",
+     "q": "Are programmes still able to be ‘partially accredited’?",
+     "text": "The term was discontinued some time ago. Programmes may be accredited as partially delivering the knowledge and understanding for a professional title, eg accredited with further learning required or as further learning This means that a programme delivers the learning outcomes required for the accreditation (for example an Honours degree for CEng) but further learning is required to demonstrate all of the knowledge and understanding required for registration."
+    }
+   ],
+   "caveat": "Relevant to WG03’s finding that partial recognition is undefined and reads as semi-failure. The Note cites RfR 4.1 paragraph numbers."
+  },
+  {
+   "id": "PS-RBAV-18",
+   "target": "V5-051",
+   "kind": "policy",
+   "trigger": null,
+   "title": "Major changes between accreditation visits",
+   "source": {
+    "document": "Risk-based approach to accreditation visits: policy statement",
+    "version": "v1.1, January 2025",
+    "file": "07 Reference/risk-based-accreditation-visits-policy-january-2025.pdf",
+    "location": "Visits to consider major changes to programmes, paras 18 and 20"
+   },
+   "extract": [
+    {
+     "ref": "18",
+     "text": "PEIs must place a condition on providers to inform them of major changes during the period of accreditation that might affect the delivery of the specified programme outcomes."
+    },
+    {
+     "ref": "20",
+     "text": "A visit is required to confirm continuation of accreditation to programmes that have undergone a major change in between the normal cycle of accreditation visits, but this may be a light-touch virtual visit (which may be shorter in duration than a full virtual visit) if no more than 50% of the content has changed. In some cases where less than 30% of programme content has changed, the requirement to visit may be waived completely (see information below in paragraphs 25to 3429 on waiving the requirement for an accreditation visit)."
+    }
+   ],
+   "caveat": "Quoted verbatim, including the source’s cross-reference slip in para 20 (“paragraphs 25to 3429”)."
+  },
+  {
+   "id": "PS-RBAV-11",
+   "target": "V5-040",
+   "kind": "policy",
+   "trigger": null,
+   "title": "When a visit must have a significant in-person element",
+   "source": {
+    "document": "Risk-based approach to accreditation visits: policy statement",
+    "version": "v1.1, January 2025",
+    "file": "07 Reference/risk-based-accreditation-visits-policy-january-2025.pdf",
+    "location": "Visits where a significant in-person element is mandatory, para 11"
+   },
+   "extract": [
+    {
+     "ref": "11",
+     "text": "A visit containing a significant in-person element is mandatory where one or more of the following apply:",
+     "items": [
+      "a. The programme is new to accreditation and is substantially different (eg a different discipline without commonality) to previous programmes currently accredited at the provider.",
+      "b. The previous Action Plan contained a requirement relating to any inadequacy of physical or staff resources which has not since been confirmed as addressed during an on-site monitoring visit.",
+      "c. A recent visit report indicated issues/concerns in properly monitoring laboratory/workshop provision, with regards to health and safety, or identified from meeting with students, which has not since been confirmed as addressed during an on-site monitoring visit.",
+      "d. An education regulator has raised concerns related to the (overall or engineering) education provided by the provider. PEIs may request details of any relevant audits or other assessments as part of submission documentation.",
+      "e. The provider/department/location (including any franchise or partnership provision being considered for accreditation) has not received an in-person or hybrid accreditation visit previously.",
+      "f. The last full accreditation visit to the provider/department/location did not involve a significant in-person element.",
+      "g. The submission mentions changes (whether to programmes or within the provider - for example to staffing, physical facilities, assessment processes, management of the programme(s) or regulations) that the PEI judges to warrant closer scrutiny through an in-person or hybrid visit.",
+      "h. The PEI feels that an in-person or hybrid visit is appropriate for another reason."
+     ]
+    },
+    {
+     "ref": "11",
+     "text": "Where none of a-h above apply, the visit requirement may be fulfilled through an in-person, hybrid or virtual visit at the discretion of the PEI(s)."
+    }
+   ],
+   "caveat": "This is v4.4 footnote 6. Replaces the Annex K summary used in the first build: this is the policy itself. Footnote 2 (on which education regulator) removed from item d."
+  },
+  {
+   "id": "GN-AA-6",
+   "target": "V5-040",
+   "trigger": null,
+   "title": "Programmes delivered on more than one campus",
+   "source": {
+    "document": "Guidance Note on Academic Accreditation",
+    "version": "v3.4, August 2024",
+    "file": "07 Reference/Guidance Note on Academic Accreditation Issue 3.4.pdf",
+    "location": "Section 6: Location of Study"
+   },
+   "extract": [
+    {
+     "ref": "§6",
+     "text": "Licensee(s) must normally visit all campuses involved in delivery of programmes they are invited to accredit, or only accredit for delivery in campuses visited. A visit is usually required to enable Licensed Members to consider evidence from a range of indicators, including those listed in regulation 44 of the RfR 4.1. If a programme is delivered on multiple campuses (including through franchise or partnership arrangements) students will only be considered to have completed an accredited programme if they have completed the programme at a campus for which accreditation is confirmed. In some circumstances a visit may be hybrid or virtual (the policy on risk-based accreditation provides more information)"
+    },
+    {
+     "ref": "§6",
+     "text": "Licensees should record on the courses database any limit to the scope of accreditation awarded."
+    }
+   ],
+   "caveat": "The Note cites regulation 44 of RfR 4.1. Footnote markers on “partnership” and “campus” removed; the footnotes define partnership delivery and what completing at a campus means."
+  },
+  {
+   "id": "PS-RBAV-27",
+   "target": "V5-059",
+   "kind": "policy",
+   "trigger": null,
+   "title": "Visiting every provider",
+   "source": {
+    "document": "Risk-based approach to accreditation visits: policy statement",
+    "version": "v1.1, January 2025",
+    "file": "07 Reference/risk-based-accreditation-visits-policy-january-2025.pdf",
+    "location": "Waiving the requirement for an accreditation visit, paras 27 and 29"
+   },
+   "extract": [
+    {
+     "ref": "27",
+     "text": "Not undertaking an accreditation visit is expected to be the exception rather than the norm. The default position is therefore that each provider involved in the delivery of a programme will be visited (whether in-person, virtually or through a hybrid visit)."
+    },
+    {
+     "ref": "29",
+     "text": "For the purposes of such considerations, the term ‘provider’ includes the delivery provider (which could be for example a university, college, or employer) and any person or organisation external to the delivery provider with a lead responsibility for a significant element of the programme. The awarding organisation may be the same as the provider (as is typical with university degrees) or may be an organisation that awards a qualification delivered by multiple providers."
+    }
+   ],
+   "caveat": null
+  },
+  {
+   "id": "PS-RBAV-26",
+   "target": "V5-056",
+   "kind": "policy",
+   "trigger": null,
+   "title": "Conditions for waiving an accreditation visit",
+   "source": {
+    "document": "Risk-based approach to accreditation visits: policy statement",
+    "version": "v1.1, January 2025",
+    "file": "07 Reference/risk-based-accreditation-visits-policy-january-2025.pdf",
+    "location": "Waiving the requirement for an accreditation visit, para 26"
+   },
+   "extract": [
+    {
+     "ref": "26",
+     "text": "A PEI may waive the requirement for an accreditation visit where the programme concerned has significant commonality with programmes already accredited by the PEI, and provided that sufficient evidence is available, including to demonstrate that factors which can normally only be reviewed during a visit are satisfactory.",
+     "items": [
+      "The process must ensure that high standards of accreditation are maintained.",
+      "Programmes must comply with a current edition of AHEP or AAQA.",
+      "The requirement for a visit must not be waived if there is more than a maximum 30% difference in content from a programme accredited at the last accreditation visit.",
+      "A visit must not be waived if major changes have occurred with regards to department or provider resources or governance since the most recent accreditation visit.",
+      "The provider must provide a good reason for requesting accreditation between the normal schedule of visits rather than awaiting the next round of accreditation.",
+      "After reviewing evidence, the PEI may still require a visit before awarding accreditation."
+     ]
+    }
+   ],
+   "caveat": "Drafting point: 9.21 says these conditions “are set out in AHEP and AAQA”. They are set out here, in the risk-based visits policy."
+  },
+  {
+   "id": "PS-IPD-1",
+   "target": "IPD-007",
+   "kind": "policy",
+   "trigger": "IPD Policy Statement",
+   "title": "What an accredited IPD scheme offers",
+   "source": {
+    "document": "Initial Professional Development Policy Statement",
+    "version": "Issue 1, approved by RSC 14 February 2019",
+    "file": "07 Reference/ipd-policy-statement-2019.pdf",
+    "location": "Accreditation of structured IPD schemes"
+   },
+   "extract": [
+    {
+     "ref": "IPD",
+     "text": "IPD schemes differ greatly, as each is designed to meet the needs of the employer. However, all accredited IPD schemes will have clear objectives which satisfy the standards of competence and commitment set out in UK-SPEC and the ICTTech standard. Accredited IPD must provide assessment and certification of achievement, and have the support of senior and line management. The value of accredited IPD is in how it offers individuals opportunities to develop towards professional registration and encourages recording of evidence for Professional Review."
+    }
+   ],
+   "caveat": "This is v4.4 footnote 8. The Policy Statement predates AHEP 4 and the 2020 RfR; it is due for review."
+  },
+  {
+   "id": "PS-IPD-SITES",
+   "target": "IPD-013",
+   "kind": "policy",
+   "trigger": null,
+   "title": "Schemes delivered at more than one site",
+   "source": {
+    "document": "Initial Professional Development Policy Statement",
+    "version": "Issue 1, approved by RSC 14 February 2019",
+    "file": "07 Reference/ipd-policy-statement-2019.pdf",
+    "location": "Accreditation of structured IPD schemes"
+   },
+   "extract": [
+    {
+     "ref": "IPD",
+     "text": "Accreditation assessors visit one or more locations where the scheme is delivered or administered. Where the same scheme is delivered at multiple sites, copies of examples of assessment and certification materials shall be examined as part of the process. Locations visited should be representative of an individual’s experience. Conversations with assessors and candidates should form part of the accreditation process; these may be conducted remotely if the scheme is delivered at multiple sites. The employer should demonstrate that systems are in place to ensure individuals receive consistent support if they are moving between sites."
+    }
+   ],
+   "caveat": null
+  },
+  {
+   "id": "PS-IPD-JOINT",
+   "target": "IPD-012",
+   "kind": "policy",
+   "trigger": null,
+   "title": "Joint visits, delegation and exclusivity",
+   "source": {
+    "document": "Initial Professional Development Policy Statement",
+    "version": "Issue 1, approved by RSC 14 February 2019",
+    "file": "07 Reference/ipd-policy-statement-2019.pdf",
+    "location": "Accreditation of structured IPD schemes"
+   },
+   "extract": [
+    {
+     "ref": "IPD",
+     "text": "Joint visits are appropriate where an employer is seeking accreditation from more than one Licensed Member. However, accreditation shall not be jointly granted; each Licensed Member shall make a decision to grant or renew accreditation on its own.\n\nThe duration of accreditation is decided by the Licensed Member but shall be no longer than five years. Where re-accreditation is undertaken jointly, the participating PEIs may agree to delegate the visit among themselves. However, PEIs delegating visits must ensure they remotely obtain evidence from candidates each time through online or paper-based communications. A visit to re-accredit a particular IPD scheme may not be delegated to another PEI twice successively."
+    },
+    {
+     "ref": "IPD",
+     "text": "Accreditation of IPD schemes may not be an exclusive agreement, and must not preclude the employer or its employees from working with other PEIs for implementation and assessment of IPD."
+    }
+   ],
+   "caveat": "The delegation rule (no successive delegated visits) and the exclusivity rule have no counterpart in Draft 7’s section 10."
+  },
+  {
+   "id": "PS-CPD-PLAN",
+   "target": "CPD-001",
+   "kind": "policy",
+   "trigger": "CPD Policy Statement",
+   "title": "Planning, recording and reflecting on CPD",
+   "source": {
+    "document": "CPD Policy Statement",
+    "version": "v3.1, February 2025",
+    "file": "07 Reference/cpd-policy-statement-31.pdf",
+    "location": "pages 1 and 2"
+   },
+   "extract": [
+    {
+     "ref": "CPD",
+     "text": "Individual registrants are best placed to determine their needs and how to meet them and should set this out in a CPD Plan, which should be reviewed on a regular basis, and at least once a year. Often, employers or experienced colleagues will play a significant part in the development and execution of an individual’s CPD; but it is the registrant’s responsibility to proactively identify their professional development needs and opportunities."
+    },
+    {
+     "ref": "CPD",
+     "text": "Whatever its purpose or nature, learning through CPD should be reflective and should relate to specific objectives even if these are only to maintain their professional engineering competence. Having a regularly reviewed development plan will facilitate learning, although there will always be a place for unplanned activities. Registrants should record both their CPD activities and what they have learned or achieved through them, and relate this to any planned objectives. UK-SPEC and the ICTTech standard may serve as a framework for setting personal development objectives. Registrants may also find value in planning learning against contextualised or mutually recognised competence frameworks such as the Global Responsibility Competency Compass. Doing this will help them to determine their future needs and plan accordingly, as part of a cyclical process. It will also encourage an outcome-based approach which is more appropriate to professional learning than relying solely on input measures such as hours or points."
+    }
+   ],
+   "caveat": "This is v4.4 footnote 9, and the home of R03 (reflection; UK-SPEC as a planning scaffold). Footnote marker removed from “Compass”."
+  },
+  {
+   "id": "GN-CPDS-SAMPLE",
+   "target": "CPD-002",
+   "trigger": "Guidance Note on CPD Sampling",
+   "title": "Drawing the sample, and who reviews it",
+   "source": {
+    "document": "Guidance Note on CPD Sampling",
+    "version": "current Partner Portal issue (undated)",
+    "file": "07 Reference/guidance-note-on-cpd-sampling.pdf",
+    "location": "Q2, Q11 and Q12"
+   },
+   "extract": [
+    {
+     "ref": "Q2",
+     "q": "Who should be part of a sample?",
+     "text": "CPD sample selections must draw from all professionally active Engineering Council registrants. While samples are never fully ‘random’, Licensed PEIs should operate on the principle that no one registrant should be significantly more likely to be sampled than any other.\n\nLicensed PEIs may decide that individuals who have submitted records one year are not asked to do so again the following year/years, with a view to sampling a broad range of registrants and registrant grades.\n\nLicensed PEIs may extend CPD sampling to non-registrants and general members, but only sampling of Engineering Council registrants should be reported in the Annual Licence Reports and at licence review."
+    },
+    {
+     "ref": "Q11",
+     "q": "Who should review records submitted by registrants?",
+     "text": "Peer review is the key principle. Registrants’ records should be reviewed by an assessment process that is overseen by trained registrants, and may be supported by systems and staff. Licensed PEIs should establish a pool of suitably training and qualified registrants from which reviewers can be drawn. CPD reviewers should be trained before carrying out reviews and at intervals thereafter, in line with the Licensee’s training policies. Feedback and support provided must be appropriate to the registration grade of the individual.\n\nUse of staff, or of automated systems, may be appropriate in offering feedback to registrants. Licensed PEIs should operate on the principle that where feedback is positive – that is, where the CPD record presented clearly demonstrates reflection and relates to objectives – staff or automated systems can provide the feedback. However, where the CPD record is deficient in some aspect, and the registrant requires guidance, feedback should be produced or approved by another registrant."
+    },
+    {
+     "ref": "Q12",
+     "q": "What should the sample size be?",
+     "text": "From January 2026, Licensed PEIs are required to sample at least 5% of their Engineering Council registrants each year. This includes those on Registers based on Recognised Standards, unless otherwise specified in the Recognised Standard.\n\nIn line with the aspiration of adding value to professional registration, where Licensed PEIs are able to extend their CPD sample to more than 5%, Registration Standards Committee has recommended that they are encouraged to do so."
+    }
+   ],
+   "caveat": "This is v4.4 footnote 11. Footnote marker removed from “Recognised Standards”."
+  },
+  {
+   "id": "GN-CPDS-EXEMPT",
+   "target": "CPD-003",
+   "trigger": null,
+   "title": "Who is professionally active, and exemptions",
+   "source": {
+    "document": "Guidance Note on CPD Sampling",
+    "version": "current Partner Portal issue (undated)",
+    "file": "07 Reference/guidance-note-on-cpd-sampling.pdf",
+    "location": "Q13 and Q14"
+   },
+   "extract": [
+    {
+     "ref": "Q13",
+     "q": "What is meant by “professionally active”?",
+     "text": "The Policy Statement says that those who are not professionally active may request exemption from a CPD sample. Registrants who are temporarily inactive should consider maintaining a level of CPD commensurate with their return to professional practice.\n\nThose who are not employed but engaged in voluntary activity, whether for their Licensed PEI, the Engineering Council, or a comparable body (for example within the governance structure of their Licensed PEI) or in activity such as professional reviewing or accreditation of academic programmes and professional development schemes are considered to be professionally active. Such volunteers should be encouraged to record and reflect on their practice and learning, and should not be granted exemption from a CPD sample on those grounds.\n\nGenerally, it is for individuals to declare themselves as exempt against their Licensed PEIs’ published criteria, though the Licensed PEI’s committee responsible for CPD sampling should have the final say on whether a registrant should be considered professionally active, based on this guidance."
+    },
+    {
+     "ref": "Q14",
+     "q": "In what circumstances can a registrant request exemption from a sample?",
+     "text": "Licensed PEIs should seek to balance a duty of care to registrants’ personal wellbeing with the need to maintain professional standards. Decisions on whether to grant exemptions from a CPD sample – and the duration of such exemptions – should be overseen by the Licensed PEI’s committee responsible for CPD sampling, and should be tracked and recorded.\n\nThe size of the initial sample taken – before exemptions are requested or granted – should be the figure reported in the Annual Licence Report."
+    }
+   ],
+   "caveat": null
+  },
+  {
+   "id": "GN-CPDS-RECORDS",
+   "target": "CPD-004",
+   "trigger": null,
+   "title": "Accepting records kept for other purposes",
+   "source": {
+    "document": "Guidance Note on CPD Sampling",
+    "version": "current Partner Portal issue (undated)",
+    "file": "07 Reference/guidance-note-on-cpd-sampling.pdf",
+    "location": "Q4"
+   },
+   "extract": [
+    {
+     "ref": "Q4",
+     "q": "Does that mean we can accept records prepared for other purposes?",
+     "text": "Yes; provided that they include the necessary information.\n\nRecords prepared for other professional bodies or regulators, or development logs maintained for employers, should be acceptable. Reflection by registrants on the value of the CPD they have undertaken is an essential element. Where records for employers do not give an adequate account of reflection, registrants should be asked to provide an appropriate supplemental record of reflection."
+    }
+   ],
+   "caveat": null
+  },
+  {
+   "id": "GN-CPDS-REMOVAL",
+   "target": "CPD-005",
+   "trigger": "guidance on removal from the Register",
+   "title": "Registrants who do not respond",
+   "source": {
+    "document": "Guidance Note on CPD Sampling",
+    "version": "current Partner Portal issue (undated)",
+    "file": "07 Reference/guidance-note-on-cpd-sampling.pdf",
+    "location": "Q18"
+   },
+   "extract": [
+    {
+     "ref": "Q18",
+     "q": "What should be done if registrants do not respond to a request for CPD records?",
+     "text": "When registrants who are invited to submit CPD records do not respond, or respond negatively, the Licensed PEI’s first action may be to contact the individual to explain the CPD sampling process and its purpose. Previous experience suggests that most non-respondents will at this point agree to submit a record.\n\nEngineering Council regulations mandate removal from the Register of individuals who persistently do not respond to or engage with requests for CPD records from a Licensed PEI. There is no call to remove an individual from the register for submitting an unsatisfactory CPD record. Where submissions do not show evidence of appropriate CPD or reflection, support from the Licensed PEI would be offered rather than any sanction.\n\nShould a registrant be removed from the Register for this reason, Licensed PEIs should ensure the removal code used is ‘CPD’.\n\nThe concept of natural justice should be applied to Licensed PEIs’ efforts to communicate with those who do not engage with CPD sampling. It is for Licensed PEIs to define what is deemed persistent in accordance with their own policies and procedures, but this should be based on the Licensed PEIs making reasonable endeavours to communicate with sampled individuals.\n\nNon-compliance can be significantly cut down by notifying sampled registrants of the ‘intention to sample’ ahead of the formal request. The intention is to give registrants ample time to prepare submissions – and to give ample time for communications with reticent registrants.\n\nLicensed PEIs should provide to the Engineering Council a list of registrants removed from the Register for non-compliance with a CPD sample each year. This information will be made available to other Licensed PEIs."
+    }
+   ],
+   "caveat": "This appears to be the “additional guidance on removal from the Register” that v4.4 para 70 and the section 11 introduction mention without naming."
   }
  ]
 }
