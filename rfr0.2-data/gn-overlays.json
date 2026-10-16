@@ -4,7 +4,7 @@
   {
    "id": "GN-RS-4",
    "target": "V5-012",
-   "trigger": "Guidance Note on Recognised Standards",
+   "trigger": null,
    "title": "What “fully meeting UK-SPEC” means",
    "source": {
     "document": "Guidance Note on Recognised Standards",
@@ -542,7 +542,7 @@
    "id": "PS-IPD-1",
    "target": "IPD-007",
    "kind": "policy",
-   "trigger": "IPD Policy Statement",
+   "trigger": null,
    "title": "What an accredited IPD scheme offers",
    "source": {
     "document": "Initial Professional Development Policy Statement",
@@ -606,7 +606,7 @@
    "id": "PS-CPD-PLAN",
    "target": "CPD-001",
    "kind": "policy",
-   "trigger": "CPD Policy Statement",
+   "trigger": null,
    "title": "Planning, recording and reflecting on CPD",
    "source": {
     "document": "CPD Policy Statement",
@@ -629,7 +629,7 @@
   {
    "id": "GN-CPDS-SAMPLE",
    "target": "CPD-002",
-   "trigger": "Guidance Note on CPD Sampling",
+   "trigger": null,
    "title": "Drawing the sample, and who reviews it",
    "source": {
     "document": "Guidance Note on CPD Sampling",

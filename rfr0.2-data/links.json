@@ -1,53 +1,90 @@
 {
- "note": "External-link inventory carried from rfr0.1 (verified 2026-07-24) plus Draft 7 additions. url null = render as a stub with a \"Would link to\" tooltip. Longest match first; first occurrence per block. Do not link inside xrefs, glossary or definition triggers.",
+ "note": "External links. A document named in full links to that document (new tab) where a public copy exists. url null = stub with a \"Would link to\" note. portal: true = Partner Portal, sign-in required. Longest match first; first occurrence per block; links take precedence over glossary and definition triggers. Edit in tools/extras.py.",
  "links": [
   {
-   "match": "UK-SPEC",
-   "url": "https://www.engc.org.uk/our-role-as-regulator/setting-standards/professional-engineering-competence-and-commitment/",
+   "match": "UK Standard for Professional Engineering Competence and Commitment",
+   "url": "https://www.engc.org.uk/media/a1yfae02/uk-spec-fourth-edition-v42.pdf",
    "verified": true,
-   "note": "Verified 2026-07-24 (rfr0.1 inventory)"
+   "note": "UK-SPEC fourth edition v4.2 (PDF), checked 2026-10-16"
+  },
+  {
+   "match": "UK-SPEC",
+   "url": "https://www.engc.org.uk/media/a1yfae02/uk-spec-fourth-edition-v42.pdf",
+   "verified": true,
+   "note": "UK-SPEC fourth edition v4.2 (PDF), checked 2026-10-16"
+  },
+  {
+   "match": "Information and Communications Technology Technician Standard",
+   "url": "https://www.engc.org.uk/media/yqsjxoiw/icttech-standard-third-edition-v31.pdf",
+   "verified": true,
+   "note": "ICTTech Standard third edition v3.1 (PDF), checked 2026-10-16"
   },
   {
    "match": "ICTTech Standard",
-   "url": "https://www.engc.org.uk/our-role-as-regulator/setting-standards/professional-engineering-competence-and-commitment/icttech-standard/",
+   "url": "https://www.engc.org.uk/media/yqsjxoiw/icttech-standard-third-edition-v31.pdf",
    "verified": true,
-   "note": "Verified 2026-07-24"
+   "note": "ICTTech Standard third edition v3.1 (PDF), checked 2026-10-16"
   },
   {
    "match": "Recognised Standards",
-   "url": "https://www.engc.org.uk/our-role-as-regulator/setting-standards/professional-engineering-competence-and-commitment/recognised-standards/",
+   "url": "https://www.engc.org.uk/our-role-as-regulator/setting-standards/uk-spec-professional-engineering-competence-and-commitment/recognised-standards",
    "verified": true,
-   "note": "Verified 2026-07-24"
+   "note": "Landing page (a concept, not one document), checked 2026-10-16"
+  },
+  {
+   "match": "Accreditation of Higher Education Programmes",
+   "url": "https://www.engc.org.uk/media/isdl1tem/the-accreditation-of-higher-education-programmes-ahep-v44.pdf",
+   "verified": true,
+   "note": "AHEP v4.4 (PDF), checked 2026-10-16"
   },
   {
    "match": "AHEP",
-   "url": "https://www.engc.org.uk/our-role-as-regulator/setting-standards/recognising-learning-and-development-programmes/",
+   "url": "https://www.engc.org.uk/media/isdl1tem/the-accreditation-of-higher-education-programmes-ahep-v44.pdf",
    "verified": true,
-   "note": "Landing page; document deep link to confirm"
+   "note": "AHEP v4.4 (PDF), checked 2026-10-16"
+  },
+  {
+   "match": "Approval and Accreditation of Qualifications and Apprenticeships",
+   "url": "https://www.engc.org.uk/media/3lqpvgwc/approval-and-accreditation-of-qualifications-and-apprenticeships-aaqa-standard-v13.pdf",
+   "verified": true,
+   "note": "AAQA v1.3 (PDF), checked 2026-10-16"
   },
   {
    "match": "AAQA",
-   "url": "https://www.engc.org.uk/our-role-as-regulator/setting-standards/recognising-learning-and-development-programmes/",
+   "url": "https://www.engc.org.uk/media/3lqpvgwc/approval-and-accreditation-of-qualifications-and-apprenticeships-aaqa-standard-v13.pdf",
    "verified": true,
-   "note": "Landing page; document deep link to confirm"
+   "note": "AAQA v1.3 (PDF), checked 2026-10-16"
   },
   {
    "match": "Regulations for Licensing",
    "url": "https://www.engc.org.uk/our-role-as-regulator/licensing-professional-engineering-institutions/",
    "verified": true,
-   "note": "Licensing page; RfL deep link to confirm"
+   "note": "Licensing landing page: no public copy of the RfL found, 2026-10-16"
   },
   {
    "match": "IPD Policy Statement",
-   "url": "https://www.engc.org.uk/resources-and-guidance/professional-development/initial-professional-development-ipd/",
+   "url": "https://www.engc.org.uk/media/lkgbi4zy/ipd-policy-statement.pdf",
    "verified": true,
-   "note": "IPD landing; Policy Statement PDF to confirm"
+   "note": "IPD Policy Statement (PDF), checked 2026-10-16"
   },
   {
    "match": "CPD Policy Statement",
-   "url": "https://www.engc.org.uk/resources-and-guidance/professional-development/continuing-professional-development-cpd/",
+   "url": "https://www.engc.org.uk/media/1lupucbv/cpd-policy-statement.pdf",
    "verified": true,
-   "note": "CPD landing; Policy Statement PDF to confirm"
+   "note": "CPD Policy Statement (PDF), checked 2026-10-16"
+  },
+  {
+   "match": "Guidance Note on Recognised Standards",
+   "url": "https://www.engc.org.uk/media/0mqmheqb/guidance-note-on-recognised-standards.pdf",
+   "verified": true,
+   "note": "Guidance Note on Recognised Standards (PDF), checked 2026-10-16"
+  },
+  {
+   "match": "Guidance Note on CPD Sampling",
+   "url": "https://partner.engc.org.uk/institution-guidance/standards-related-guidance-and-statements/",
+   "verified": true,
+   "note": "Partner Portal (sign-in required): not published on the public site",
+   "portal": true
   },
   {
    "match": "recognised programmes database",
@@ -58,26 +95,14 @@
   {
    "match": "Welsh Language Act 1993",
    "url": "https://www.legislation.gov.uk/ukpga/1993/38/contents",
-   "verified": false,
-   "note": "legislation.gov.uk pattern; unfetched"
+   "verified": true,
+   "note": "legislation.gov.uk, checked 2026-10-16"
   },
   {
    "match": "Code of Practice on Document Hierarchy and Associated Language",
    "url": null,
    "verified": false,
    "note": "Not public. Stub: would link to the CoP once published"
-  },
-  {
-   "match": "Guidance Note on CPD Sampling",
-   "url": null,
-   "verified": false,
-   "note": "Partner Portal document; stub"
-  },
-  {
-   "match": "Guidance Note on Recognised Standards",
-   "url": null,
-   "verified": false,
-   "note": "Superseded in this build by the GN overlay on V5-012 (gn-overlays.json); stub elsewhere"
   },
   {
    "match": "A list of current agreements",

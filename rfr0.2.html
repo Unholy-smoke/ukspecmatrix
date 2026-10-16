@@ -230,7 +230,7 @@ a.xref:hover{text-decoration:none;border-bottom-color:currentColor}
 .t-gl:hover{border-bottom-color:var(--text)}
 .rfr-ext{color:var(--accent);border-bottom:1px solid var(--accent-line)}
 .rfr-ext:hover{text-decoration:none;border-bottom-color:currentColor}
-.rfr-ext-icon{font-size:.78em;vertical-align:.15em;margin-left:1px}
+.rfr-ext-icon{display:inline-block;font-size:.82em;line-height:0;vertical-align:-.06em;margin-left:3px;white-space:nowrap}
 .rfr-ext-stub{background:none;border:none;padding:0;font:inherit;color:inherit;cursor:help;border-bottom:1px dashed var(--text-muted)}
 mark{background:var(--mark-bg);color:var(--mark-fg);border-radius:2px;padding:0 1px}
 
@@ -483,7 +483,7 @@ mark{background:var(--mark-bg);color:var(--mark-fg);border-radius:2px;padding:0 
         <nav aria-label="Document contents" id="rfr-toc"></nav>
       </div>
       <div class="rfr-nav-foot">
-        <a href="https://www.engc.org.uk/" target="_blank" rel="noopener">Engineering Council website ↗</a>
+        <a href="https://www.engc.org.uk/" target="_blank" rel="noopener">Engineering Council website <span class="rfr-ext-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></span></a>
         <button type="button" class="rfr-btn" id="rfr-print">Print / save as PDF</button>
       </div>
     </aside>
@@ -502,7 +502,7 @@ mark{background:var(--mark-bg);color:var(--mark-fg);border-radius:2px;padding:0 
       <footer class="rfr-foot">
         <div class="rfr-foot-inner">
           <span>© Engineering Council 2026. Registered Charity Number 286142. This digital prototype is not an authoritative version of the Regulations for Registration.</span>
-          <a href="https://www.engc.org.uk/" target="_blank" rel="noopener">engc.org.uk ↗</a>
+          <a href="https://www.engc.org.uk/" target="_blank" rel="noopener">engc.org.uk <span class="rfr-ext-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></span></a>
         </div>
       </footer>
     </main>
@@ -703,7 +703,8 @@ function buildPasses() {
     [d.term, ...(d.variants || [])].forEach((f) => f && defs.push({ key: d.id, form: f, d }));
   });
   defs.sort(byLen);
-  const ext = (S.data.links.links || []).map((l, i) => ({ key: 'ext:' + i, form: l.match, l })).sort(byLen);
+  // keyed by URL, so a full name and its abbreviation link once per block, not twice
+  const ext = (S.data.links.links || []).map((l, i) => ({ key: 'ext:' + (l.url || 'stub' + i), i, form: l.match, l })).sort(byLen);
   const gl = [];
   (S.data.glossary.terms || []).forEach((t, gi) => {
     [t.term, ...(t.variants || [])].forEach((f) => {
@@ -736,21 +737,25 @@ function buildPasses() {
       b.setAttribute('aria-label', c.form + ': open the Guidance Note extract');
       return b;
     } },
-    { name: 'gl-titles', mode: 'lowerfirst', cands: glTitles, make: makeGl, glossary: true },
-    { name: 'def', mode: 'first', cands: defs, make: (c) => trigger('t-def', { def: c.d.id }, true) },
+    // Links run before glossary and definitions: a document named in full is a
+    // link to that document, not a term to explain.
     { name: 'ext', mode: 'exact', cands: ext, make: (c) => {
       if (c.l.url) {
         const a = document.createElement('a');
-        a.className = 'rfr-ext'; a.href = c.l.url; a.target = '_blank'; a.rel = 'noopener noreferrer';
-        a.title = c.l.verified ? 'Opens in a new tab' : 'External link (unverified), opens in a new tab';
+        a.className = 'rfr-ext' + (c.l.portal ? ' is-portal' : '');
+        a.href = c.l.url; a.target = '_blank'; a.rel = 'noopener noreferrer';
+        a.title = (c.l.portal ? 'Partner Portal (sign-in required). ' : '') + 'Opens in a new tab';
         const ic = document.createElement('span');
-        ic.className = 'rfr-ext-icon'; ic.setAttribute('aria-hidden', 'true'); ic.textContent = '↗';
+        ic.className = 'rfr-ext-icon';
+        ic.innerHTML = EXT_ICON + '<span class="vh">' + (c.l.portal ? ' (Partner Portal, sign-in required; opens in a new tab)' : ' (opens in a new tab)') + '</span>';
         a.dataset.trail = '1';
         a._icon = ic;
         return a;
       }
-      return trigger('rfr-ext-stub', { stub: c.key.slice(4) }, true);
+      return trigger('rfr-ext-stub', { stub: c.i }, true);
     } },
+    { name: 'gl-titles', mode: 'lowerfirst', cands: glTitles, make: makeGl, glossary: true },
+    { name: 'def', mode: 'first', cands: defs, make: (c) => trigger('t-def', { def: c.d.id }, true) },
     { name: 'gl', mode: 'lowerfirst', cands: gl, make: makeGl, glossary: true },
   ];
 }
@@ -762,6 +767,8 @@ function buildPasses() {
 const GLOSSARY_ONCE_PER = 'section';
 let glScope = new Set();
 function newGlossaryScope() { glScope = new Set(); }
+
+const EXT_ICON = '<svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>';
 
 function enrich(el, skipKey, opts = {}) {
   const used = new Set();
